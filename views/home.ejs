@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;1,800&family=Plus+Jakarta+Sans:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Home Page</title>
+</head>
+
+<body>
+    <%- include("includes/navbar.ejs") %>
+
+        <div class="dynamicImg">
+
+            <div class="mainText">
+                <span>MEET OUR TEAM</span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus officia earum maiores minus iure
+                    nostrum tenetur, eaque quia exercitationQuod voluptas nisi eaque.
+                    Beatae cum obcaecati culpa eum deleniti eos,</p>
+            </div>
+
+            <div class="leftIcon"><i class="fa-solid fa-circle-arrow-left icon" onclick="goPrev()"></i></div>
+
+            <div class="author">
+                    <%for(author of authors) {%>
+                    <img src="<%=author.img%>" alt="" class="slide">
+                    <%}%>
+            </div>
+
+            <div class="rightIcon"><i class="fa-solid fa-circle-arrow-right icon" onclick="goNext()"></i></div>
+        </div>
+
+        <h1>Hot Topics</h1>
+        
+        <div class="topics">
+            <% for (let i=0; i < 5; i++) { %>
+                <a href="/majors/<%=allmajors[i]._id%>">
+                    <div class="topic">
+                        <img src="img<%=i+1%>.jpg" alt="">
+                        <ul>
+                            <li>
+                                <%=allmajors[i].title%>
+                            </li>
+                            <li>
+                                <%=allmajors[i].writername%>
+                            </li> <br>
+                            <li class="description">
+                                <%=allmajors[i].desc%>...
+                            </li>
+                        </ul>
+                    </div>
+                </a>
+                <% } %>
+
+                <a href="/majors">
+                    <div class="topic">
+                        <h2>Show More</h2>
+                    </div>
+                </a>
+                    
+        </div>
+        <hr><br>
+
+        <h1>Recents</h1>
+
+        <div class="topics" style="margin-bottom: 10rem;">
+            <% for (let i=0; i < 5; i++) { %>
+                <a href="/minors/<%=allminors[i]._id%>">
+                    <div class="topic">
+                        <img src="img<%=i+1%>.jpg" alt="">
+                        <ul>
+                            <li>
+                                <%=allminors[i].title%>
+                            </li>
+                            <li>
+                                <%=allminors[i].writername%>
+                            </li> <br>
+                            <li class="description">
+                                <%=allminors[i].desc%>...
+                            </li>
+                        </ul>
+                    </div>
+                </a>
+                <% } %>
+
+                <a href="/minors">
+                    <div class="topic">
+                        <h2>Show More</h2>
+                        </ul>
+                    </div>
+                </a>
+                    
+        </div>
+
+        <%- include("includes/footer.ejs") %>
+        <script src="home.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/author.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;1,800&family=Plus+Jakarta+Sans:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>About Author</title>
+</head>
+<body>
+    <%- include("includes/navbar.ejs") %>
+
+    <div class="container">
+        <div class="nav-div">
+            <% for (Minors of authorMinors) { %>
+            <a href="/minors/<%=Minors.id%>">
+            <div class="authorMinor">
+                <div class="img">
+                    <img src="/<%=Minors.img%>" alt="">
+                </div>
+
+                <div class="intro">
+                    <div class="title"><h3><%=Minors.title%></h3></div>
+                    <div class="desc"><%=Minors.desc%></div>
+                </div>
+            </div>
+        </a>
+            <% } %>
+
+            <% for (Majors of authorMajors) { %>
+                <a href="/majors/<%=Majors.id%>">
+                <div class="authorMinor">
+                    <div class="img">
+                        <img src="/<%=Majors.img%>" alt="">
+                    </div>
+    
+                    <div class="intro">
+                        <div class="title"><h3><%=Minors.title%></h3></div>
+                        <div class="desc"><%=Minors.desc%></div>
+                    </div>
+                </div>
+            </a>
+                <% } %>
+        </div>
+
+        <div class="author-div">
+            <div class="author"><h1><%=author.name%></h1></div>
+            <div class="author-image"><img src="/<%=author.img%>" alt=""></div>
+            <div class="content"><%=author.description%></div></div>
+    </div>
+
+    <%- include("includes/footer.ejs") %>
+</body>
+</html>

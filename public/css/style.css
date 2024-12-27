@@ -1,0 +1,217 @@
+body {
+    /* background-color: rgb(34, 40, 49); */
+    background-color: rgb(0, 10, 32);
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.dynamicImg {
+    margin: 2rem auto 7rem auto;
+    height: 32rem;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    display: flex;
+}
+
+.mainText {
+    height: 80%;
+    width: 50%;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: auto 3rem auto 3rem;
+    padding: auto 1rem;
+    color: beige;
+    letter-spacing: 2px;
+    font-style: italic;
+    /* background-color: black; */
+}
+
+.mainText span {
+    display: block;
+    margin-top: 8rem;
+}
+
+.mainText p {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: justify;
+    width: 29rem;
+}
+
+.leftIcon {
+    margin: auto 0.5rem;
+    font-size: 1.5rem;
+    color: rgba(245, 222, 179, 0.863);
+}
+
+.rightIcon {
+    margin: auto 0.5rem;
+    font-size: 1.5rem;
+    color: rgba(245, 222, 179, 0.863);
+}
+
+.author{
+    height: 80%;
+    width: 30%;
+    /* background-color: red; */
+    margin: auto 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.author img {
+    height: 100%;
+    width: 100%;
+    margin-right: 5rem;
+    position: absolute;
+    border-radius: 1rem;
+    transition: 1s;
+}
+
+/* .authorDesc {
+    height: 30%;
+    width: 100%;
+    background-color: aqua;
+    position: relative;
+}
+
+.authorDesc span {
+    height: 100%;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: wheat;
+    margin-right: 5rem;
+    position: absolute;
+} */
+
+.typewriter {
+display: flex;
+flex-wrap: nowrap;
+width: 100%;
+/* background-color: red; */
+margin-right: 5rem;
+}
+
+/* .typewriter p {
+    font-size: 2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 1px solid;
+    animation: typing 3s steps(22) forwards, blink 1s step-end 10;
+    color: white;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+} */
+
+
+.topics{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 6rem 5.5rem 2rem 8.5rem;
+}
+
+.topic {
+    background-color: rgba(255, 228, 196, 0.02);
+    height: 25rem;
+    width: 18rem;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    padding: 1rem 0.5rem 0rem 0rem;
+    color: rgb(225, 225, 225);
+    line-height: 1.3rem;
+}
+
+.topic:hover {
+    background-color: rgba(255, 228, 196, 0.1);
+    transition: 500ms;
+}
+
+.topic img{ 
+    height: 60%;
+    width: 80%;
+    display: block;
+    margin: auto auto;
+}
+
+.topic ul {
+    padding-left: 3.5rem;
+}
+
+.description {
+    text-align: justify;
+    color: rgba(255, 255, 255, 0.5) ;
+    width: 90%;
+}
+
+a {  
+    text-decoration: none;
+}
+
+.expandTopic {
+    margin-left: 5.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem 2rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    background-color: rgba(0, 10, 32, 0.459);
+    color: rgba(240, 255, 255, 0.7);
+    border-radius: 1rem;
+}
+
+.expandTopic:hover {
+    color: rgb(255, 255, 255);
+    box-shadow: 2px 5px 2px rgba(49, 49, 59, 0.6);
+    transition: 150ms ease-out 20ms;
+}
+
+
+.frontGradient {
+    font-size: 2rem;
+    padding: 0.5rem 5.5rem;
+    background-color: transparent;
+    color: #fff8f8c4;
+    border-radius: 0.5rem;
+    border: 2px solid rgba(237, 235, 245, 0.9);
+    margin-left: 1rem;
+}
+
+.frontGradient:hover {
+    background-color: rgba(0, 10, 32, 0.6);
+    color: whitesmoke;
+    box-shadow: 2px 5px 2px rgba(0, 10, 32, 0.6);
+    transition: 150ms ease-out 20ms;
+}
+
+hr {
+    width: 90%;
+    opacity: 0.3;
+}
+
+h1 {
+    color: whitesmoke;
+    text-align: center;
+}
+
+h2 {
+    color: whitesmoke;
+    margin: 50% 30%;
+    width: 100%;
+}
