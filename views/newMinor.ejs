@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/newMinor.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("includes/navbar.ejs") %>
+
+    <div class="container">
+        <h1>Create New Minor</h1><br>
+        <form method="post" action="http://localhost:8080/minors/new">
+            <label for="title">Title</label><br>
+            <input name="title" type="text" id="title"><br><br>
+
+            <label for="description">Description</label><br>
+            <textarea name="description" id="description" rows="9" cols="75"></textarea>
+
+            <button>Create</button>
+        </form>
+    </div>
+
+
+    <%- include("includes/footer.ejs") %>
+</body>
+</html>

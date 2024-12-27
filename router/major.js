@@ -20,6 +20,7 @@ router.get("/:id", async (req, res, next) => {
     
     let all = JSON.parse(JSON.stringify(datas));
     // res.send(data);
+    // console.log(all.writername);
     res.render("major.ejs", { data: all});
 });
 
@@ -34,7 +35,6 @@ router.get("/:id/submajor", async (req, res, next) => {
     data = data.filter((sub) => sub._id === subid);
     data = data[0];
     res.render("submajor.ejs", { data });
-
 });
 
 module.exports = router;
