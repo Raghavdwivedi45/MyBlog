@@ -5,8 +5,13 @@ const minorInfoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    author: {
+    writername: {
         type: String,
+        required: true
+    },
+    author: {
+        type: mongoose.ObjectId,
+        ref: "AuthorInfo",
         required: true
     },
     desc: {

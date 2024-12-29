@@ -11,24 +11,10 @@ router.get("", async (req, res) => {
 
 router.get("/:id", async (req, res, next) => {
     let { id } = req.params;
-    let author = await authorInfo.findById(id);
-    let authorMinors = await minorInfo.find();
-    let authorMajors = await majorInfo.find();
-
-    for (let i = 0; i < authorMinors.length; i++) {
-        if (authorMinors[i].author != id) {
-            authorMinors.splice(i, 1);
-            i--;
-        }
-    }
-
-    for (let i = 0; i < authorMajors.length; i++) {
-        if (authorMajors[i].author != id) {
-            authorMajors.splice(i, 1);
-            i--;
-        }
-    }
-    res.render("author.ejs", { author, authorMinors, authorMajors });
+    let authors = await authorInfo.findById(id);
+    let authorMinors = await minorInfo.find({author: id});
+    let authorMajors = await majorInfo.find({author: id});
+    res.render("author.ejs", { authors, authorMinors, authorMajors });
 });
 
 module.exports = router;

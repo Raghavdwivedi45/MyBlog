@@ -13,12 +13,21 @@ const mongoose = require('mongoose');
 // });
 
 const majorInfoSchema = new mongoose.Schema({
+    submajor: [
+        { subtitle: String, 
+          subdescription: String }
+    ],
     title: {
         type: String,
         required: true
     },
-    author: {
+    writername: {
         type: String,
+        required: true
+    },
+    author: {
+        type: mongoose.ObjectId,
+        ref: "AuthorInfo",
         required: true
     },
     desc: {

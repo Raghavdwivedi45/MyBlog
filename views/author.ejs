@@ -16,9 +16,19 @@
 </head>
 <body>
     <%- include("includes/navbar.ejs") %>
-
     <div class="container">
+
         <div class="nav-div">
+
+            <a href="/minors/<%=authors.id%>/new">
+                <button style="margin-left: 3rem;">Create New Minor</button>
+            </a>
+
+            <a href="/majors/<%=authors.id%>/new">
+                <button>Create New Major</button>
+            </a><br><br><br>
+    
+
             <% for (Minors of authorMinors) { %>
             <a href="/minors/<%=Minors.id%>">
             <div class="authorMinor">
@@ -42,8 +52,8 @@
                     </div>
     
                     <div class="intro">
-                        <div class="title"><h3><%=Minors.title%></h3></div>
-                        <div class="desc"><%=Minors.desc%></div>
+                        <div class="title"><h3><%=Majors.title%></h3></div>
+                        <div class="desc"><%=Majors.desc%></div>
                     </div>
                 </div>
             </a>
@@ -51,9 +61,9 @@
         </div>
 
         <div class="author-div">
-            <div class="author"><h1><%=author.name%></h1></div>
-            <div class="author-image"><img src="/<%=author.img%>" alt=""></div>
-            <div class="content"><%=author.description%></div></div>
+            <div class="author"><h1><%=authors.name%></h1></div>
+            <div class="author-image"><img src="/<%=authors.img%>" alt=""></div>
+            <div class="content"><%=authors.description%></div></div>
     </div>
 
     <%- include("includes/footer.ejs") %>

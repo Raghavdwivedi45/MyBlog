@@ -16,7 +16,6 @@
 </head>
 <body>
     <%- include("includes/navbar.ejs") %>
-
     <div class="container">
         <div class="nav-div">
                 <ul>
@@ -29,10 +28,21 @@
         <div class="content">
             <div class="title"><h1><%=data.title%></h1></div>
             <div class="author"><h2><%=data.writername%></h2></div>
-            <div class="blog"><%=data.description%></div>
+            <div class="blog"><%=data.description%></div><br><br>
+            <button style="margin-left: 35rem;"><a href="/hello">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="delete">Delete</button>
         </div>
     </div>
+    <div class="fullscreen-container">
+        <div class="alertBox">
+            <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
+            <button style="margin-left: 4rem;">Yes</button>
+            <button class="close" style="margin-left: 1rem;">No</button>
+        </div>
+    </div>
+    
 
     <%- include("includes/footer.ejs") %>
+    <script src="/dialogbox.js"></script>
 </body>
 </html>

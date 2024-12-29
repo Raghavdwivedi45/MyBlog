@@ -20,6 +20,19 @@ body {
     color: wheat;
 }
 
+.nav-div a button {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    background-color: rgba(2, 62, 138, 0.5);
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    cursor: pointer;
+    color: wheat;
+    margin: 2rem 0 0 1rem;
+}
+
 .author-div {
     width: 30%;
     padding: 0 1rem 1rem 1rem;

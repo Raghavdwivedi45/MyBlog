@@ -10,17 +10,18 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 1rem auto;
+    height: fit-content;
 }
 
 .nav-div {
     width: 27%;
     color: wheat;
     position: sticky;
-    top: 30%;
+    top: 15%;
     background-color: rgba(255, 228, 196, 0.04);
     margin-right: 3rem;
     height: fit-content;
-    min-height: 20rem;
+    min-height: 10rem;
 }
 
 .content {
@@ -29,9 +30,69 @@ body {
     background-color: rgba(46, 80, 119, 0.2);
     color: wheat;
     height: fit-content;
+    min-height: 20rem;
 }
 
 .blog {
     line-height: 1.5rem;
     font-size: 1.2rem;
+    overflow-x: auto;
+    min-height: 20rem;
 }
+
+.content button {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    background-color: rgba(255, 183, 3, 0.6);
+    width: 9rem;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    color: wheat;
+}
+
+.content button:hover {
+    background-color: rgba(255, 183, 3, 0.8);
+    transition: 200ms;
+}
+
+.content a {
+     text-decoration: none;
+     color: wheat;
+}
+
+.alertBox {
+    margin: 15rem auto;
+    width: 30rem;
+    height: 10rem;
+    background-color: rgb(251, 133, 0);
+    opacity: 0.95;
+    font-size: 1.3rem;
+    border-radius: 0.5rem;
+    /* display: none; */
+}
+
+.alertBox button {
+    width: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-radius: 0.2rem;
+    border: none;
+    padding: 0.2rem 0 0.2rem 0;
+}
+
+.alertBox button:hover {
+    box-shadow: 3px 3px 5px red;
+    transition: 200ms;
+}
+
+.fullscreen-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    z-index: 9999;
+  }

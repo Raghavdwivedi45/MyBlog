@@ -18,8 +18,8 @@
     <%- include("includes/navbar.ejs") %>
 
     <div class="container">
-        <h1>Create New Minor</h1><br>
-        <form method="post" action="http://localhost:8080/minors/<%=obj.id%>/new">
+        <h1>Create New Major</h1><br>
+        <form method="post" action="http://localhost:8080/majors/<%=obj.id%>/new">
             <label for="title">Title</label><br>
             <input name="title" type="text" id="title" required><br><br>
 
@@ -27,7 +27,7 @@
             <input type="text" name="img" id="img" required><br><br>
 
             <label for="description">Description</label><br>
-            <textarea name="description" id="description" rows="9" cols="75" required minlength="2"></textarea><br><br>
+            <textarea name="description" id="description" rows="5" cols="75" required minlength="2" maxlength="100"></textarea><br><br>
 
             <button>Create</button>
         </form>

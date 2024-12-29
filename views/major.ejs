@@ -25,20 +25,24 @@
                 <div class="written">
                     <h2><%=data.title%></h2>
                     <h3><%=data.writername%></h3>
-                    <h4><%=data.desc%></h4>
+                    <p style="max-width: 80%; text-align: justify; opacity: 0.8;"><%=data.description%></p>
                 </div>
             </div>
+
+            <a href="/majors/<%=data.id%>/submajor/new">
+                <button style="margin-left: 59rem; width: 8rem;">Add New</button>
+            </a>
             
         <ol>
+            <!-- <div class="submajors">
+                <a href="/majors/<=data.id>/submajor/new"><li>Create New</li></a>
+            </div> -->
+
             <% for(sub of data.submajor) { %>
                     <div class="submajors">
                         <a href="<%=data._id%>/submajor?subid=<%=sub._id%>"><li><%=sub.subtitle%></li></a>
                     </div>
             <% } %>
-
-            <div class="submajors">
-                <a href=""><li>Create New</li></a>
-            </div>
         </ol>
 
         </div>
