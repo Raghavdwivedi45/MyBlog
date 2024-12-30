@@ -28,10 +28,22 @@
         
         <div class="content">
             <div class="title"><h1><%=data.subtitle%></h1></div><br>
-            <div class="blog"><%=data.subdescription%></div>
+            <div class="blog"><%=data.subdescription%></div><br><br>
+            <a href="/majors/<%=id%>/edit?submajor=<%=data._id%>"><button style="margin-left: 35rem;">Edit</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="delete">Delete</button>
+        </div>
+    </div>
+
+    <div class="fullscreen-container">
+        <div class="alertBox">
+            <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
+            <form method="post" action="http://localhost:8080/majors/<%=id%>/delete/?_method=DELETE" style="display: inline;"><button style="margin-left: 4rem;">Yes</button></form>
+            <button class="close" style="margin-left: 1rem;">No</button>
         </div>
     </div>
 
     <%- include("includes/footer.ejs") %>
+
+    <script src="/dialogbox.js"></script>
 </body>
 </html>
