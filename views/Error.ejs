@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: rgb(0, 10, 32);
+        font-family: "Roboto", sans-serif;
+    }
+.main {
+    margin: 5rem auto; 
+    background-color: rgba(255, 228, 196, 0.2); 
+    height: fit-content; 
+    width: fit-content; 
+    max-height: 90vh;
+    max-width: 90vw;
+    font-size: 2rem;
+    color: wheat;
+    text-align: center;
+    padding: 2rem 3rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+</style>
+<body>
+    <div class="main"><span style="color: rgb(230, 41, 41);">Error</span><br><br><span>Status: <%=status%></span><br><span><%=message%></span></div>
+</body>
+</html>

@@ -2,20 +2,22 @@ const express = require("express");
 const router = express.Router({mergeParams: true});
 const majorInfo = require("../models/majorInfo.js");
 const authorInfo = require("../models/authorInfo.js");
+const ExpressError = require("../utils/ExpressError.js");
+const {asyncWrap} = require("../utils/asyncWrap.js");
 
-router.get("", async (req, res) => {
+router.get("", asyncWrap (async (req, res) => {
     let blogs = await majorInfo.find();
     res.render("majors.ejs", { blogs });
-});
+}));
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", asyncWrap (async (req, res, next) => {
     let {id} = req.params;  
     let data = await majorInfo.findById(id);
 
     res.render("major.ejs", { data });
-});
+}));
 
-router.get("/:id/submajor", async (req, res, next) => {
+router.get("/:id/submajor", asyncWrap (async (req, res, next) => {
     let {id} = req.params;
     let {subid} = req.query; 
     let data = await majorInfo.findById(id);
@@ -27,15 +29,15 @@ router.get("/:id/submajor", async (req, res, next) => {
         }
     }
     res.render("submajor.ejs", { data: sub[0] });
-});
+}));
 
 router.get("/:id/new", (req, res) => {
     let {id} = req.params;
     let obj = {id: id}
     res.render("newMajor.ejs", { obj });
-})
+});
 
-router.post("/:id/new", async (req, res) => {
+router.post("/:id/new", asyncWrap (async (req, res) => {
     let {id} = req.params;
     let inp = req.body;
     let desc = inp.description.substring(0, 21);
@@ -52,7 +54,7 @@ router.post("/:id/new", async (req, res) => {
 
     await obj.save(); 
     res.redirect(`/authors/${id}`);
-})
+}));
 
 router.get("/:id/submajor/new", (req, res) => {
     let {id} = req.params;
@@ -60,7 +62,7 @@ router.get("/:id/submajor/new", (req, res) => {
     res.render("newSubMajor.ejs", { obj });
 })
 
-router.post("/:id/submajor/new", async (req, res) => {
+router.post("/:id/submajor/new", asyncWrap (async (req, res) => {
     try {
     let {id} = req.params;
     let inp = req.body;
@@ -77,6 +79,6 @@ router.post("/:id/submajor/new", async (req, res) => {
     catch(err) {
         console.log(err);
     }
-})
+}));
 
 module.exports = router;

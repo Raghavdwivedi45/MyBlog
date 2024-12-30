@@ -17,7 +17,8 @@ h1 {
     text-align: center;
 }
 
-input, textarea {
+input,
+textarea {
     /* background-color: brown; */
     font-size: 1.5rem;
     padding: 0.5rem;
@@ -35,4 +36,57 @@ form {
 form button {
     margin-left: 91%;
     font-size: 1.5rem;
+}
+
+.delete {
+    margin-left: 89%;
+    text-align: center;
+    padding: 0.4rem 0 0.4rem 0;
+    background-color: rgba(255, 183, 3, 0.6);
+    width: 7rem;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    color: wheat;
+}
+
+.alertBox {
+    margin: 15rem auto;
+    width: 30rem;
+    height: 10rem;
+    background-color: rgb(251, 133, 0);
+    opacity: 0.95;
+    font-size: 1.3rem;
+    border-radius: 0.5rem;
+    /* display: none; */
+}
+
+.alertBox button {
+    width: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-radius: 0.2rem;
+    border: none;
+    padding: 0.2rem 0 0.2rem 0;
+}
+
+.alertBox button:hover {
+    box-shadow: 3px 3px 5px red;
+    transition: 200ms;
+}
+
+.fullscreen-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    z-index: 9999;
+}
+
+#description {
+    resize: vertical;
 }
