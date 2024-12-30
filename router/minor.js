@@ -41,16 +41,6 @@ router.post("/:id/new", asyncWrap(async (req, res) => {
     res.redirect(`/authors/${id}`);
 }));
 
-router.delete("/:id/delete", asyncWrap(async (req, res, next) => {
-    let { id } = req.params;
-    let data = await minorInfo.findByIdAndDelete(id);
-    // console.log(data);
-    if (!data) {
-        return next(new ExpressError(401, "Minor doesn't exist."));
-    }
-    res.redirect(`/authors/${data.author}`);
-}));
-
 router.get("/:id/edit", asyncWrap(async (req, res, next) => {
     let { id } = req.params;
     let data = await minorInfo.findById(id);
@@ -68,6 +58,16 @@ router.put("/:id/edit", asyncWrap(async (req, res, next) => {
         }
     },
         { returnDocument: "after" });
+    res.redirect(`/authors/${data.author}`);
+}));
+
+router.delete("/:id/delete", asyncWrap(async (req, res, next) => {
+    let { id } = req.params;
+    let data = await minorInfo.findByIdAndDelete(id);
+    // console.log(data);
+    if (!data) {
+        return next(new ExpressError(401, "Minor doesn't exist."));
+    }
     res.redirect(`/authors/${data.author}`);
 }));
 

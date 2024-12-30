@@ -79,16 +79,6 @@ router.post("/:id/submajor/new", asyncWrap(async (req, res) => {
     }
 }));
 
-// router.delete("/:id/delete", asyncWrap(async (req, res, next) => {
-//     let { id } = req.params;
-//     let data = await minorInfo.findByIdAndDelete(id);
-//     // console.log(data);
-//     if (!data) {
-//         return next(new ExpressError(401, "Minor doesn't exist."));
-//     }
-//     res.redirect(`/authors/${data.author}`);
-// }));
-
 router.get("/:id/edit", asyncWrap(async (req, res, next) => {
     let { id } = req.params;
     let { submajor } = req.query;
@@ -111,5 +101,29 @@ router.put("/:id/edit", asyncWrap(async (req, res, next) => {
     await majorInfo.findByIdAndUpdate(id, { $set: { submajor: result } }, { returnDocument: "after" });
     res.redirect(`/majors/${id}/submajor?subid=${req.body.id}`);
 }));
+
+router.delete("/:id/delete", asyncWrap(async (req, res, next) => {
+    let { id } = req.params;
+    let data = await majorInfo.findById(id);
+
+    let result = data.submajor.filter((sub) => sub._id != req.body.subid);
+    let final = await majorInfo.findByIdAndUpdate(id, { $set: { submajor: result } }, { returnDocument: "after" });
+
+    if (!data) {
+        return next(new ExpressError(401, "Major doesn't exist."));
+    }
+    res.redirect(`/majors/${data.id}`);
+}));
+
+router.delete("/:id/topic/delete", asyncWrap(async (req, res, next) => {
+    let { id } = req.params;
+    let data = await majorInfo.findByIdAndDelete(id);
+
+    if (!data) {
+        return next(new ExpressError(401, "Major doesn't exist."));
+    }
+    res.redirect(`/authors/${data.author}`);
+}));
+
 
 module.exports = router;

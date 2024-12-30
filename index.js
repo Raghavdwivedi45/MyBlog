@@ -34,8 +34,6 @@ app.use(express.static(path.join(__dirname, "assets")));
 
 app.use(methodOverride('_method'));
 
-
-
 app.use("/", homePath);
 app.use("/majors", majorPath);
 app.use("/minors", minorPath);

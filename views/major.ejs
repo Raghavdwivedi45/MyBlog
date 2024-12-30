@@ -29,9 +29,13 @@
                 </div>
             </div>
 
+                <button class="delete" style="margin-left: 40rem;">Delete Major</button>
+
             <a href="/majors/<%=data.id%>/submajor/new">
-                <button style="margin-left: 59rem; width: 8rem;">Add New</button>
+                <button style="margin-left: 1rem;">Add New Topic</button>
             </a>
+
+
             
         <ol>
             <!-- <div class="submajors">
@@ -47,7 +51,18 @@
 
         </div>
 
+        <div class="fullscreen-container">
+            <div class="alertBox">
+                <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
+                <form method="post" action="http://localhost:8080/majors/<%=data.id%>/topic/delete/?_method=DELETE" style="display: inline;">
+                    <button class="off" style="margin-left: 4rem;">Yes</button>
+                </form>
+                <button class="close" style="margin-left: 1rem;">No</button>
+            </div>
+        </div>
+
 
     <%- include("includes/footer.ejs") %>
+    <script src="/dialogbox.js"></script>
 </body>
 </html>

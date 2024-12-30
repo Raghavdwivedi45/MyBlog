@@ -62,4 +62,55 @@ a button {
     padding: 0.5rem 1rem 0.5rem 1rem;
     cursor: pointer;
     color: wheat;
+
 }
+
+.delete {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    background-color: rgba(2, 62, 138, 0.5);
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    cursor: pointer;
+    color: wheat;
+    width: 9rem;
+}
+
+.alertBox {
+    margin: 15rem auto;
+    width: 30rem;
+    height: 10rem;
+    background-color: rgb(251, 133, 0);
+    opacity: 0.95;
+    font-size: 1.3rem;
+    border-radius: 0.5rem;
+    /* display: none; */
+}
+
+.alertBox button {
+    width: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-radius: 0.2rem;
+    border: none;
+    padding: 0.2rem 0 0.2rem 0;
+}
+
+.alertBox button:hover {
+    box-shadow: 3px 3px 5px red;
+    transition: 200ms;
+}
+
+.fullscreen-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    z-index: 9999;
+  }
