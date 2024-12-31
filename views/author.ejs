@@ -28,36 +28,72 @@
                 <button>Create New Major</button>
             </a><br><br><br>
     
+            
+
 
             <% for (Minors of authorMinors) { %>
-            <a href="/minors/<%=Minors.id%>">
-            <div class="authorMinor">
-                <div class="img">
-                    <img src="/<%=Minors.img%>" alt="">
-                </div>
-
-                <div class="intro">
-                    <div class="title"><h3><%=Minors.title%></h3></div>
-                    <div class="desc"><%=Minors.desc%></div>
-                </div>
-            </div>
-        </a>
-            <% } %>
-
-            <% for (Majors of authorMajors) { %>
-                <a href="/majors/<%=Majors.id%>">
                 <div class="authorMinor">
-                    <div class="img">
-                        <img src="/<%=Majors.img%>" alt="">
+                <a href="/minors/<%=Minors.id%>">
+                    <div class="contains">
+                        <div class="img">
+                            <img src="/<%=Minors.img%>" alt="">
+                        </div>
+        
+                        <div class="intro">
+                            <div class="title"><h3><%=Minors.title%></h3></div>
+                            <div class="desc"><%=Minors.desc%></div>
+                        </div>
+                    </div>
+                </a>
+                <div class="btn" style="margin-left: 30rem; height: fit-content;" >
+                    <button ><a href="/minors/<%=Minors.id%>/edit">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="delete">Delete</button>
+                </div>  
+                <br><br><br> 
+                </div>
+
+                <div class="fullscreen-container">
+                    <div class="alertBox">
+                        <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
+                        <form method="post" action="http://localhost:8080/minors/<%=Majors.id%>/delete/?_method=DELETE" style="display: inline;" class="off"><button style="margin-left: 4rem;">Yes</button></form>
+                        <button class="close" style="margin-left: 1rem;">No</button>
+                    </div>
+                </div>
+
+                <% } %>
+
+                <% for (Majors of authorMajors) { %>
+                    <div class="authorMinor">
+                    <a href="/majors/<%=Majors.id%>">
+                        <div class="contains">
+                            <div class="img">
+                                <img src="/<%=Majors.img%>" alt="">
+                            </div>
+            
+                            <div class="intro">
+                                <div class="title"><h3><%=Majors.title%> (<span style="color: brown;">Major</span>)</h3></div>
+                                <div class="desc"><%=Majors.desc%></div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="btn" style="margin-left: 17rem; height: fit-content;" >
+                        <a href="/majors/<%=Majors.id%>/submajor/new"  >
+                            <button style="width: fit-content; height: fit-content;  margin: 0; font-weight: normal;">Add New Topic</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button ><a href="/minors/<%=Majors.id%>/edit">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="delete">Delete</button>
+                    </div>  
+                    <br><br><br> 
                     </div>
     
-                    <div class="intro">
-                        <div class="title"><h3><%=Majors.title%></h3></div>
-                        <div class="desc"><%=Majors.desc%></div>
+                    <div class="fullscreen-container">
+                        <div class="alertBox">
+                            <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
+                            <form method="post" action="http://localhost:8080/minors/<%=Majors.id%>/delete/?_method=DELETE" style="display: inline;" class="off"><button style="margin-left: 4rem;">Yes</button></form>
+                            <button class="close" style="margin-left: 1rem;">No</button>
+                        </div>
                     </div>
-                </div>
-            </a>
-                <% } %>
+    
+                    <% } %>
         </div>
 
         <div class="author-div">
@@ -66,6 +102,9 @@
             <div class="content"><%=authors.description%></div></div>
     </div>
 
+
+
     <%- include("includes/footer.ejs") %>
+    <script src="/dialogbox.js"></script>
 </body>
 </html>

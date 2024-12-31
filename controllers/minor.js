@@ -1,6 +1,7 @@
 const minorInfo = require("../models/minorInfo.js");
 const authorInfo = require("../models/authorInfo.js");
 const ExpressError = require("../utils/ExpressError.js");
+const {minorValidate, ratingValidate} = require("../schema.js");
 
 module.exports.renderAllMinors = async (req, res) => {
     let minors = await minorInfo.find();
@@ -15,16 +16,15 @@ module.exports.renderOneMinor = async (req, res) => {
 
 module.exports.saveNewMinor = async (req, res) => {
     let { id } = req.params;
-    let inp = req.body;
-    let desc = inp.description.substring(0, 21);
     let authors = await authorInfo.findById(id);
+    if(minorValidate.validate(req.body).error)  throw new ExpressError(400, minorValidate.validate(req.body).error);
 
     let obj = new minorInfo({
-        title: inp.title,
+        title: req.body.title,
         author: id,
-        desc: desc,
-        img: inp.img,
-        description: inp.description,
+        desc: req.body.description.substring(0, 21),
+        img: req.body.img,
+        description: req.body.description,
         writername: authors.name
     });
 
@@ -40,6 +40,7 @@ module.exports.editMinor = async (req, res, next) => {
 
 module.exports.saveEditedMinor = async (req, res, next) => {
     let { id } = req.params;
+    if(minorValidate.validate(req.body).error)  throw new ExpressError(400, minorValidate.validate(req.body).error);
     let data = await minorInfo.findByIdAndUpdate(id, {
         $set: {
             title: req.body.title,
@@ -64,17 +65,15 @@ module.exports.deleteMinor = async (req, res, next) => {
 
 module.exports.rating = async (req, res) => {
     let {id} = req.params;
-    let data = await minorInfo.findById(id);
 
+    let data = await minorInfo.findById(id);
     let obj = {
         stars : req.body.rating,
         author : data.author
     };
-
-    if(req.body.rating>=1 && req.body.rating<=5) {
-        let result = await minorInfo.findByIdAndUpdate(id, { $push: {rating: obj} }, { returnDocument: "after" });
-        // console.log(result);
-        return res.redirect(`/minors/${data.id}`);
+    if(ratingValidate.validate(obj).error)  {
+        throw new ExpressError(400, ratingValidate.validate(obj).error);
     }
-    next(new ExpressError(401, "Oops ! You are rating out of limit"));
+    await minorInfo.findByIdAndUpdate(id, { $push: {rating: obj} }, { returnDocument: "after" });
+    res.redirect(`/minors/${data.id}`);
 }

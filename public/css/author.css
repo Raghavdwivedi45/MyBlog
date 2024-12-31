@@ -75,16 +75,34 @@ body {
 
 .authorMinor {
     background-color: rgba(255, 228, 196, 0.04);
-    height: 8rem;
+    height: 15rem;
     width: 90%;
     margin: 1rem auto;
     display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 1rem 0rem 1rem;
+
     /* border-bottom: 2px solid wheat; */
 }
 
-.authorMinor .img {
-    height: 6rem;
-    width: 6rem;
+.authorMinor a {
+        text-decoration: none;
+        color: wheat;
+        height: 80%;
+        width: 80%;
+        /* background-color: aliceblue; */
+}
+
+.authorMinor a .contains {
+    height: 100%;
+    display: flex;
+    /* background-color: aqua; */
+}
+
+
+.contains .img {
+    height: 100%;
+    width: 25%;
     /* background-color: black; */
     margin: auto 1rem;
 }
@@ -94,8 +112,79 @@ body {
     width: 100%;
 }
 
-.intro {
+.content .intro {
     /* background-color: pink; */
     padding-top: 0.7rem;
     margin: 0;
 }
+
+.authorMinor button {
+    padding: 0.2rem 0.3rem 0.2rem 0.3rem;
+    background-color: rgba(255, 183, 3, 0.6);
+    width: 7rem;
+    font-size: 1.5rem;
+    border-radius: 0.4rem;
+    border: none;
+    color: wheat;
+}
+
+.authorMinor a button {
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    background-color: rgba(255, 183, 3, 0.6);
+    width: fit-content;
+    font-size: 1.5rem;
+    border-radius: 0.4rem;
+    border: none;
+    color: wheat;
+}
+
+.authorMinor button:hover {
+    background-color: rgba(255, 183, 3, 0.8);
+    transition: 200ms;
+}
+
+.authorMinor a button:hover {
+    background-color: rgba(255, 183, 3, 0.8);
+    transition: 200ms;
+}
+
+
+
+.alertBox {
+    margin: 15rem auto;
+    width: 30rem;
+    height: 10rem;
+    background-color: rgb(251, 133, 0);
+    opacity: 0.95;
+    font-size: 1.3rem;
+    border-radius: 0.5rem;
+    /* display: none; */
+}
+
+.alertBox button {
+    width: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-radius: 0.2rem;
+    border: none;
+    padding: 0.2rem 0 0.2rem 0;
+}
+
+.alertBox button:hover {
+    box-shadow: 3px 3px 5px red;
+    transition: 200ms;
+}
+
+.fullscreen-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    z-index: 9999;
+}
+
+
