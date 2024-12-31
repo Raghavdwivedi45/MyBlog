@@ -14,8 +14,10 @@ const mongoose = require('mongoose');
 
 const majorInfoSchema = new mongoose.Schema({
     submajor: [
-        { subtitle: String, 
-          subdescription: String }
+        {
+            subtitle: String,
+            subdescription: String
+        }
     ],
     title: {
         type: String,
@@ -42,6 +44,22 @@ const majorInfoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    rating: [
+        {
+            stars: {
+                type: Number,
+                required: true,
+                min: 1,
+                max: 5
+            },
+            author: {
+                type: mongoose.ObjectId,
+                ref: "AuthorInfo",
+                required: true
+            },
+            _id: false,
+        }
+    ],
 });
 
 const majorInfo = mongoose.model("MajorInfo", majorInfoSchema);

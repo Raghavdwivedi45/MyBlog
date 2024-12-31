@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/rating.css">
     <link rel="stylesheet" href="/minorDetail.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,20 +18,39 @@
 <body>
     <%- include("includes/navbar.ejs") %>
     <div class="container">
-        <div class="nav-div">
-                <ul>
-                    <li>jkdw</li>
-                    <li>jkdw</li>
-                    <li>jkdw</li>
-                </ul>
+
+        <div class="nav-div"><br><br>
+            <%if(data.rating.length == 0) {%>
+                    <fieldset class="starability-fade">
+                        <input type="radio" id="first-rate1" name="rating" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="rating" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="rating" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="rating" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="rating" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                      </fieldset>
+                      <input style="display: none;" type="text" id="rate-id" value="http://localhost:8080/minors/<%=data.id%>/rating">
+
+                <button id="btn" onclick="Rate()">Rate us</button>
+                <% } %>
+
+                <%if(data.rating.length > 0) {%>
+                    <br>
+                    <span style="margin-left: 2rem; font-size: 1.3rem;">Thankyou for Rating &#128513;</span>
+                    <% } %>
         </div>
+
         
         <div class="content">
             <div class="title"><h1><%=data.title%></h1></div>
             <div class="author"><h2><%=data.writername%></h2></div>
             <div class="blog"><%=data.description%></div><br><br>
             <button style="margin-left: 29rem;"><a href="/minors/<%=data.id%>/edit">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="delete">Delete</button>
+            <button class="delete">Delete</button><br><br>
         </div>
     </div>
     <div class="fullscreen-container">
@@ -40,9 +60,13 @@
             <button class="close" style="margin-left: 1rem;">No</button>
         </div>
     </div>
+
+    
     
 
     <%- include("includes/footer.ejs") %>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="/dialogbox.js"></script>
+
 </body>
 </html>

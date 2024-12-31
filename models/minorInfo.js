@@ -26,6 +26,22 @@ const minorInfoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    rating: [
+        { 
+            stars: {
+                type: Number,
+                required: true,
+                min: 1,
+                max: 5
+            }, 
+            author: {
+                type: mongoose.ObjectId,
+                ref: "AuthorInfo",
+                required: true
+            },
+            _id: false,
+        }
+    ],
 });
 
 const MinorInfo = mongoose.model("MinorInfo", minorInfoSchema);

@@ -1,28 +1,19 @@
-const express = require("express");
-const app = express();
-const router = express.Router({ mergeParams: true });
 const minorInfo = require("../models/minorInfo.js");
 const authorInfo = require("../models/authorInfo.js");
 const ExpressError = require("../utils/ExpressError.js");
-const { asyncWrap } = require("../utils/asyncWrap.js");
 
-router.get("", asyncWrap(async (req, res) => {
+module.exports.renderAllMinors = async (req, res) => {
     let minors = await minorInfo.find();
     res.render("minors.ejs", { minors });
-}));
+}
 
-router.get("/:id/new", (req, res) => {
-    let { id } = req.params;
-    res.render("newMinor.ejs", { id });
-});
-
-router.get("/:id", asyncWrap(async (req, res) => {
+module.exports.renderOneMinor = async (req, res) => {
     let { id } = req.params;
     let data = await minorInfo.findById(id);
     res.render("minorDetail.ejs", { data });
-}));
+}
 
-router.post("/:id/new", asyncWrap(async (req, res) => {
+module.exports.saveNewMinor = async (req, res) => {
     let { id } = req.params;
     let inp = req.body;
     let desc = inp.description.substring(0, 21);
@@ -39,15 +30,15 @@ router.post("/:id/new", asyncWrap(async (req, res) => {
 
     await obj.save();
     res.redirect(`/authors/${id}`);
-}));
+}
 
-router.get("/:id/edit", asyncWrap(async (req, res, next) => {
+module.exports.editMinor = async (req, res, next) => {
     let { id } = req.params;
     let data = await minorInfo.findById(id);
     res.render("editMinor.ejs", { data });
-}));
+}
 
-router.put("/:id/edit", asyncWrap(async (req, res, next) => {
+module.exports.saveEditedMinor = async (req, res, next) => {
     let { id } = req.params;
     let data = await minorInfo.findByIdAndUpdate(id, {
         $set: {
@@ -59,16 +50,31 @@ router.put("/:id/edit", asyncWrap(async (req, res, next) => {
     },
         { returnDocument: "after" });
     res.redirect(`/authors/${data.author}`);
-}));
+}
 
-router.delete("/:id/delete", asyncWrap(async (req, res, next) => {
+module.exports.deleteMinor = async (req, res, next) => {
     let { id } = req.params;
     let data = await minorInfo.findByIdAndDelete(id);
-    // console.log(data);
+
     if (!data) {
         return next(new ExpressError(401, "Minor doesn't exist."));
     }
     res.redirect(`/authors/${data.author}`);
-}));
+}
 
-module.exports = router;
+module.exports.rating = async (req, res) => {
+    let {id} = req.params;
+    let data = await minorInfo.findById(id);
+
+    let obj = {
+        stars : req.body.rating,
+        author : data.author
+    };
+
+    if(req.body.rating>=1 && req.body.rating<=5) {
+        let result = await minorInfo.findByIdAndUpdate(id, { $push: {rating: obj} }, { returnDocument: "after" });
+        // console.log(result);
+        return res.redirect(`/minors/${data.id}`);
+    }
+    next(new ExpressError(401, "Oops ! You are rating out of limit"));
+}

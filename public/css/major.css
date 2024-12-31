@@ -114,3 +114,17 @@ a button {
     background: transparent;
     z-index: 9999;
   }
+
+  #btn {
+    margin-left: 0.2rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    background-color: rgba(2, 62, 138, 0.5);
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    cursor: pointer;
+    color: wheat;
+    width: 9rem;
+}

@@ -5,10 +5,10 @@ const path = require("path");
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
 
-const majorPath = require("./router/major.js") ;
-const minorPath = require("./router/minor.js") ;
-const authorPath = require("./router/author.js") ;
-const homePath = require("./router/home.js") ;
+const majorPath = require("./routes/major.js") ;
+const minorPath = require("./routes/minor.js") ;
+const authorPath = require("./routes/author.js") ;
+const homePath = require("./routes/home.js") ;
 const ExpressError = require("./utils/ExpressError.js");
 
 async function main() {
@@ -28,6 +28,7 @@ app.use(express.json());
 app.set("view engine", "ejs");
 
 app.set("views", path.join(__dirname, "views"));
+
 app.use(express.static(path.join(__dirname, "public/css")));
 app.use(express.static(path.join(__dirname, "public/js")));
 app.use(express.static(path.join(__dirname, "assets")));

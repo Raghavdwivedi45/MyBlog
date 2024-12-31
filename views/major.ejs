@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/rating.css">
     <link rel="stylesheet" href="/major.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,47 +16,85 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Majors</title>
 </head>
+
 <body>
     <%- include("includes/navbar.ejs") %>
 
 
         <div class="container">
-            
+
             <div class="about">
                 <div class="img"><img src="/<%=data.img%>" alt=""></div>
                 <div class="written">
-                    <h2><%=data.title%></h2>
-                    <h3><%=data.writername%></h3>
-                    <p style="max-width: 80%; text-align: justify; opacity: 0.8;"><%=data.description%></p>
+                    <h2>
+                        <%=data.title%>
+                    </h2>
+                    <h3>
+                        <%=data.writername%>
+                    </h3>
+                    <p style="max-width: 80%; text-align: justify; opacity: 0.8;">
+                        <%=data.description%>
+                    </p>
                 </div>
             </div>
 
-                <button class="delete" style="margin-left: 40rem;">Delete Major</button>
+
+            <div class="stars">
+                <% if(data.rating.length==0) {%>
+                    <fieldset class="starability-fade">
+                        <input type="radio" id="first-rate1" name="rating" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="rating" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="rating" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="rating" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="rating" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                    <input style="display: none;" type="text" id="rate-id"
+                        value="http://localhost:8080/majors/<%=data.id%>/rating">
+
+                    <button id="btn" onclick="Rate()">Rate us</button>
+                    <% } %>
+
+            </div>
+
+
+
+
+            <button class="delete" style="margin-left: 40rem;">Delete Major</button>
 
             <a href="/majors/<%=data.id%>/submajor/new">
                 <button style="margin-left: 1rem;">Add New Topic</button>
             </a>
 
 
-            
-        <ol>
-            <!-- <div class="submajors">
+
+            <ol>
+                <!-- <div class="submajors">
                 <a href="/majors/<=data.id>/submajor/new"><li>Create New</li></a>
             </div> -->
 
-            <% for(sub of data.submajor) { %>
+                <% for(sub of data.submajor) { %>
                     <div class="submajors">
-                        <a href="<%=data._id%>/submajor?subid=<%=sub._id%>"><li><%=sub.subtitle%></li></a>
+                        <a href="<%=data._id%>/submajor?subid=<%=sub._id%>">
+                            <li>
+                                <%=sub.subtitle%>
+                            </li>
+                        </a>
                     </div>
-            <% } %>
-        </ol>
+                    <% } %>
+            </ol>
 
         </div>
 
         <div class="fullscreen-container">
             <div class="alertBox">
                 <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
-                <form method="post" action="http://localhost:8080/majors/<%=data.id%>/topic/delete/?_method=DELETE" style="display: inline;">
+                <form method="post" action="http://localhost:8080/majors/<%=data.id%>/topic/delete/?_method=DELETE"
+                    style="display: inline;">
                     <button class="off" style="margin-left: 4rem;">Yes</button>
                 </form>
                 <button class="close" style="margin-left: 1rem;">No</button>
@@ -62,7 +102,9 @@
         </div>
 
 
-    <%- include("includes/footer.ejs") %>
-    <script src="/dialogbox.js"></script>
+        <%- include("includes/footer.ejs") %>
+            <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+            <script src="/dialogbox.js"></script>
 </body>
+
 </html>
