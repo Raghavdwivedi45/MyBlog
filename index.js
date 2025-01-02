@@ -4,12 +4,18 @@ const port = 8080;
 const path = require("path");
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const flash = require("connect-flash");
+
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
 
 const majorPath = require("./routes/major.js") ;
 const minorPath = require("./routes/minor.js") ;
 const authorPath = require("./routes/author.js") ;
 const homePath = require("./routes/home.js") ;
-const ExpressError = require("./utils/ExpressError.js");
 
 async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/blogs');
@@ -34,6 +40,20 @@ app.use(express.static(path.join(__dirname, "public/js")));
 app.use(express.static(path.join(__dirname, "assets")));
 
 app.use(methodOverride('_method'));
+
+app.use(cookieParser());
+app.use(session({secret: "mysupersecretstring",
+                 resave: false,
+                 saveUninitialized: true }));
+
+app.use(flash());
+
+
+app.use((req, res, next) => {
+    res.locals.successMsg = req.flash("success");
+    res.locals.errorMsg = req.flash("error");
+    next();
+})
 
 app.use("/", homePath);
 app.use("/majors", majorPath);

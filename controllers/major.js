@@ -10,6 +10,7 @@ module.exports.renderAllMajors = async (req, res) => {
 module.exports.renderOneMajor = async (req, res) => {
     let { id } = req.params;
     let data = await majorInfo.findById(id);
+    req.flash("success", "Thankyou for your feedback");
     res.render("major.ejs", { data });
 }
 
@@ -28,7 +29,7 @@ module.exports.renderSubmajor = async (req, res, next) => {
 module.exports.createNewMajor = async (req, res) => {
     let { id } = req.params;
     let inp = req.body;
-    let desc = inp.description.substring(0, 21);
+    let desc = inp.description.substring(0, 51);
     let authors = await authorInfo.findById(id);
 
     let obj = new majorInfo({
@@ -41,6 +42,7 @@ module.exports.createNewMajor = async (req, res) => {
     });
 
     await obj.save();
+    req.flash("success", "A new Major was succesffully created");
     res.redirect(`/authors/${id}`);
 }
 
@@ -55,6 +57,7 @@ module.exports.createNewSubmajor = async (req, res) => {
     });
 
     await data.save();
+    req.flash("success", "A new submajor was succesffully created");
     res.redirect(`/majors/${id}`);
 }
 
@@ -78,6 +81,7 @@ module.exports.editSubmajor = async (req, res, next) => {
     let result = data.submajor;
 
     await majorInfo.findByIdAndUpdate(id, { $set: { submajor: result } }, { returnDocument: "after" });
+    req.flash("success", "The submajor was succesffully edited");
     res.redirect(`/majors/${id}/submajor?subid=${req.body.id}`);
 }
 
@@ -89,8 +93,9 @@ module.exports.deleteSubmajor = async (req, res, next) => {
     await majorInfo.findByIdAndUpdate(id, { $set: { submajor: result } }, { returnDocument: "after" });
 
     if (!data) {
-        return next(new ExpressError(401, "Major doesn't exist."));
+        return next(new ExpressError(401, "Submajor doesn't exist."));
     }
+    req.flash("success", "The submajor was succesffully deleted");
     res.redirect(`/majors/${data.id}`);
 }
 
@@ -101,10 +106,11 @@ module.exports.deleteMajor = async (req, res, next) => {
     if (!data) {
         return next(new ExpressError(401, "Major doesn't exist."));
     }
+    req.flash("success", "The Major was succesffully deleted");
     res.redirect(`/authors/${data.author}`);
 }
 
-module.exports.rating = async (req, res) => {
+module.exports.rating = async (req, res) => {j
     let {id} = req.params;
     let data = await majorInfo.findById(id);
 
@@ -114,8 +120,8 @@ module.exports.rating = async (req, res) => {
     };
 
     if(req.body.rating>=1 && req.body.rating<=5) {
-        let result = await majorInfo.findByIdAndUpdate(id, { $push: {rating: obj} }, { returnDocument: "after" });
-        console.log(result);
+        await majorInfo.findByIdAndUpdate(id, { $push: {rating: obj} }, { returnDocument: "after" });
+        req.flash("success", "Thankyou for your feedback");
         return res.redirect(`/majors/${data.id}`);
     }
     next(new ExpressError(401, "Oops ! You are rating out of limit"));

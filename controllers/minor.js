@@ -29,6 +29,7 @@ module.exports.saveNewMinor = async (req, res) => {
     });
 
     await obj.save();
+    req.flash("success", "The Minor was successfully created");
     res.redirect(`/authors/${id}`);
 }
 
@@ -50,7 +51,8 @@ module.exports.saveEditedMinor = async (req, res, next) => {
         }
     },
         { returnDocument: "after" });
-    res.redirect(`/authors/${data.author}`);
+    req.flash("success", "The Minor was successfully saved");
+    res.redirect(`/minors/${id}`);
 }
 
 module.exports.deleteMinor = async (req, res, next) => {
@@ -60,6 +62,7 @@ module.exports.deleteMinor = async (req, res, next) => {
     if (!data) {
         return next(new ExpressError(401, "Minor doesn't exist."));
     }
+    req.flash("success", "The Minor was successfully deleted");
     res.redirect(`/authors/${data.author}`);
 }
 
@@ -75,5 +78,6 @@ module.exports.rating = async (req, res) => {
         throw new ExpressError(400, ratingValidate.validate(obj).error);
     }
     await minorInfo.findByIdAndUpdate(id, { $push: {rating: obj} }, { returnDocument: "after" });
+    req.flash("success", "Thankyou for your feedback");
     res.redirect(`/minors/${data.id}`);
 }

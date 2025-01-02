@@ -19,12 +19,34 @@
 
 <body>
     <%- include("includes/navbar.ejs") %>
+    <%- include("includes/flash.ejs") %>
 
 
         <div class="container">
 
             <div class="about">
-                <div class="img"><img src="/<%=data.img%>" alt=""></div>
+                <div class="img"><img src="/<%=data.img%>" alt="" style="margin-left: 0.2rem;"><br><br>
+                    <div class="stars" >
+                        <% if(data.rating.length==0) {%>
+                            <fieldset class="starability-fade">
+                                <input type="radio" id="first-rate1" name="rating" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="rating" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="rating" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="rating" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="rating" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                            <input style="display: none;" type="text" id="rate-id"
+                                value="http://localhost:8080/majors/<%=data.id%>/rating">
+        
+                            <button id="btn" onclick="Rate()">Rate us</button>
+                            <% } %>
+        
+                    </div></div>
                 <div class="written">
                     <h2>
                         <%=data.title%>
@@ -38,36 +60,11 @@
                 </div>
             </div>
 
-
-            <div class="stars">
-                <% if(data.rating.length==0) {%>
-                    <fieldset class="starability-fade">
-                        <input type="radio" id="first-rate1" name="rating" value="1" />
-                        <label for="first-rate1" title="Terrible">1 star</label>
-                        <input type="radio" id="first-rate2" name="rating" value="2" />
-                        <label for="first-rate2" title="Not good">2 stars</label>
-                        <input type="radio" id="first-rate3" name="rating" value="3" />
-                        <label for="first-rate3" title="Average">3 stars</label>
-                        <input type="radio" id="first-rate4" name="rating" value="4" />
-                        <label for="first-rate4" title="Very good">4 stars</label>
-                        <input type="radio" id="first-rate5" name="rating" value="5" />
-                        <label for="first-rate5" title="Amazing">5 stars</label>
-                    </fieldset>
-                    <input style="display: none;" type="text" id="rate-id"
-                        value="http://localhost:8080/majors/<%=data.id%>/rating">
-
-                    <button id="btn" onclick="Rate()">Rate us</button>
-                    <% } %>
-
-            </div>
-
-
-
             <ol>
                 <!-- <div class="submajors">
                 <a href="/majors/<=data.id>/submajor/new"><li>Create New</li></a>
             </div> -->
-
+<br><br>
                 <% for(sub of data.submajor) { %>
                     <div class="submajors">
                         <a href="<%=data._id%>/submajor?subid=<%=sub._id%>">

@@ -1,0 +1,22 @@
+<style>
+    .flash{
+        background-color: rgba(255, 228, 196, 0.1);
+        margin: 1rem auto;
+        width: fit-content;
+        font-size: 1.2rem;
+        padding: 1rem;
+        color: wheat;
+        border-radius: 0.3rem;
+    }
+</style>
+
+
+<% if(successMsg.length>0) { %>
+    <div class="flash success"><%=successMsg%> <span><i class="fa-solid fa-x" style="font-size: 1rem; padding-left: 2rem;"></i></span> </div>
+<%}%>
+
+<% if(errorMsg.length>0) { %>
+    <div class="flash error"><%=errorMsg%> <span><i class="fa-solid fa-x" style="font-size: 1rem; padding-left: 2rem;"></i></span></div>
+<%}%>
+
+<script src="/../../flash.js"></script>

@@ -8,25 +8,33 @@ body {
 .container {
     width: 80vw;
     /* background-color: brown; */
-    margin: 2rem auto;color: wheat;
+    margin: 2rem auto;
+    color: wheat;
 }
 
 .about {
     display: flex;
+    flex-wrap: nowrap;
     /* background-color: rgba(255, 228, 196, 0.02); */
     width: 100%;
-    height: 15rem;
+    height: fit-content;
 }
 
 .about .img {
-    width: 20%;
-    height: 80%;
-    margin: auto 1rem;
+    width: 15%;
+    height: 14rem;
+    margin: 2rem 2rem;
 }
 
 .img img {
     height: 100%;
     width: 100%;
+}
+
+.written {
+    width: 85%;
+    /* background-color: aqua; */
+    height: fit-content;
 }
 
 a {
@@ -116,7 +124,6 @@ a button {
   }
 
   #btn {
-    margin-left: 0.2rem;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-size: 1.2rem;
@@ -127,4 +134,8 @@ a button {
     cursor: pointer;
     color: wheat;
     width: 9rem;
+}
+
+fieldset {
+   height: fit-content !important;
 }

@@ -10,8 +10,21 @@ module.exports.renderAllAuthors = async (req, res) => {
 
 module.exports.renderOneAuthor = async (req, res) => {
     let { id } = req.params;
-    let authors = await authorInfo.findById(id);
-    let authorMinors = await minorInfo.find({author: id});
-    let authorMajors = await majorInfo.find({author: id});
+    let authors;
+    if(id === 'search') {
+        let {name} = req.query;
+        authors = await authorInfo.findOne({name : name});
+    }
+    else {
+        authors = await authorInfo.findById(id);
+    }
+    let authorMinors = await minorInfo.find({author: authors.id});
+    let authorMajors = await majorInfo.find({author: authors.id});
     res.render("author.ejs", { authors, authorMinors, authorMajors });
+}
+
+module.exports.renderAuthorByName = async (req, res) => {
+    let { authName } = req.query;
+    let authors = await authorInfo.find({name: authName});
+    res.redirect(`/authors/${authors.id}`);
 }

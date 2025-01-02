@@ -1,14 +1,16 @@
 let alertBox = document.querySelector(".alertBox");
-let del =document.querySelector(".delete");
+let del =document.getElementsByClassName("delete");
 let close = document.querySelector(".close");
 let off = document.querySelector(".off");
 let cont = document.querySelector(".fullscreen-container");
 
-del.addEventListener
+for(el of del){
+el.addEventListener
 ('click', function () {
     document.querySelector(".fullscreen-container").style.display="block";
     // alertBox.style.display = "block";
 });
+}
 
 close.addEventListener
 ('click', function () {
@@ -30,5 +32,5 @@ async function Rate() {
     }
     console.log(currStar);
 
-    await axios.put(url, { rating: Math.floor(currStar) })
+    await axios.put(url, { rating: Math.floor(currStar) });
 }

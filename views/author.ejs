@@ -16,6 +16,7 @@
 </head>
 <body>
     <%- include("includes/navbar.ejs") %>
+    <%- include("includes/flash.ejs") %>
     <div class="container">
 
         <div class="nav-div">
@@ -47,15 +48,15 @@
                 </a>
                 <div class="btn" style="margin-left: 30rem; height: fit-content;" >
                     <button ><a href="/minors/<%=Minors.id%>/edit">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="delete">Delete</button>
+                    <button class="delete" id="<%=Minors.id%>">Delete</button>
                 </div>  
                 <br><br><br> 
                 </div>
 
-                <div class="fullscreen-container">
+                <div class="fullscreen-container" id="<%=Minors.id%>-cont">
                     <div class="alertBox">
                         <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
-                        <form method="post" action="http://localhost:8080/minors/<%=Majors.id%>/delete/?_method=DELETE" style="display: inline;" class="off"><button style="margin-left: 4rem;">Yes</button></form>
+                        <form method="post" action="http://localhost:8080/minors/<%=Minors.id%>/delete/?_method=DELETE" style="display: inline;" class="close"><button style="margin-left: 4rem;">Yes</button></form>
                         <button class="close" style="margin-left: 1rem;">No</button>
                     </div>
                 </div>
@@ -76,20 +77,19 @@
                             </div>
                         </div>
                     </a>
-                    <div class="btn" style="margin-left: 17rem; height: fit-content;" >
+                    <div class="btn" style="margin-left: 26rem; height: fit-content;" >
                         <a href="/majors/<%=Majors.id%>/submajor/new"  >
                             <button style="width: fit-content; height: fit-content;  margin: 0; font-weight: normal;">Add New Topic</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button ><a href="/minors/<%=Majors.id%>/edit">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="delete">Delete</button>
+                        <button class="delete" id="<%=Majors.id%>">Delete</button>
                     </div>  
                     <br><br><br> 
                     </div>
     
-                    <div class="fullscreen-container">
+                    <div class="fullscreen-container" id="<%=Majors.id%>-cont">
                         <div class="alertBox">
                             <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
-                            <form method="post" action="http://localhost:8080/minors/<%=Majors.id%>/delete/?_method=DELETE" style="display: inline;" class="off"><button style="margin-left: 4rem;">Yes</button></form>
-                            <button class="close" style="margin-left: 1rem;">No</button>
+                            <form method="post" action="http://localhost:8080/majors/<%=Majors.id%>/topic/delete/?_method=DELETE" style="display: inline;" class="close" ><button style="margin-left: 4rem;">Yes</button></form>
+                            <button class="close" style="margin-left: 1rem;" >No</button>
                         </div>
                     </div>
     
@@ -105,6 +105,6 @@
 
 
     <%- include("includes/footer.ejs") %>
-    <script src="/dialogbox.js"></script>
+    <script src="../authorDialog.js"></script>
 </body>
 </html>
