@@ -20,7 +20,7 @@
     <div class="container">
 
         <div class="nav-div">
-
+            <%if(currUser && currUser._id.equals(authors.id)) {%>
             <a href="/minors/<%=authors.id%>/new">
                 <button style="margin-left: 3rem;">Create New Minor</button>
             </a>
@@ -28,7 +28,7 @@
             <a href="/majors/<%=authors.id%>/new">
                 <button>Create New Major</button>
             </a><br><br><br>
-    
+            <% } %>
             
 
 
@@ -46,10 +46,13 @@
                         </div>
                     </div>
                 </a>
-                <div class="btn" style="margin-left: 30rem; height: fit-content;" >
-                    <button ><a href="/minors/<%=Minors.id%>/edit">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="delete" id="<%=Minors.id%>">Delete</button>
-                </div>  
+                <%if(currUser && currUser._id.equals(Minors.author)) {%>
+                    <div class="btn" style="margin-left: 30rem; height: fit-content;" >
+                        <button ><a href="/minors/<%=Minors.id%>/edit">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="delete" id="<%=Minors.id%>">Delete</button>
+                    </div>  
+                    <%}%>
+
                 <br><br><br> 
                 </div>
 
@@ -77,11 +80,14 @@
                             </div>
                         </div>
                     </a>
-                    <div class="btn" style="margin-left: 26rem; height: fit-content;" >
-                        <a href="/majors/<%=Majors.id%>/submajor/new"  >
-                            <button style="width: fit-content; height: fit-content;  margin: 0; font-weight: normal;">Add New Topic</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="delete" id="<%=Majors.id%>">Delete</button>
-                    </div>  
+                    <%if(currUser && currUser._id.equals(Majors.author)) {%>
+                        <div class="btn" style="margin-left: 26rem; height: fit-content;" >
+                            <a href="/majors/<%=Majors.id%>/submajor/new"  >
+                                <button style="width: fit-content; height: fit-content;  margin: 0; font-weight: normal;">Add New Topic</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="delete" id="<%=Majors.id%>">Delete</button>
+                        </div>  
+                    <%}%>
+
                     <br><br><br> 
                     </div>
     

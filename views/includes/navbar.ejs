@@ -9,8 +9,16 @@
         <span class="navTags"><a href="/contact">Contact Us</a></span>
     </div>
     <div class="right">
-        <span class="navTags"><a href="">Log in</a></span>
-        <button class="signUp"><a href="">Get Started</a></button>
+        <%if(!currUser) {%>
+            <span class="navTags"><a href="/authors/login">Log in</a></span>
+            <a href="/authors/signup"><button class="signUp">Get Started</button></a>
+        <%}%>
+
+        <%if(currUser) {%>
+            <a href="/authors/logout"><button class="signUp">Logout</button></a>
+        <%}%>
+
     </div>
 </div>
+
 

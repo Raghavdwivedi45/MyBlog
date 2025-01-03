@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;1,800&family=Plus+Jakarta+Sans:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <%- include("includes/navbar.ejs") %>
+
+    <form method="post" action="http://localhost:8080/authors/signup">
+        <div class="container">
+            
+            <div class="info">
+                <div class="basic">
+                    <input type="text" name="name" placeholder="Enter full name" required>
+                    
+                    <input type="text" name="username" placeholder="Create a unique username for yourself" required>
+                    <input type="password" name="password" placeholder="Create a strong password" required>
+    
+                    <input type="url" name="image" placeholder="Enter a valid link for your image" style="color: wheat;" required><br>
+    
+                    <input type="email" name="mail" placeholder="Enter your email id" style="color: wheat;" required><br>
+    
+                    <input type="text" onfocus="(this.type='date')" name="birthdate" placeholder="Enter Date of Birth" style="color-scheme: dark;" required>
+                </div>
+
+                <div class="description">
+                    <textarea name="description" placeholder="Describe yourself in 200-300 words" maxlength="1600" required></textarea>
+                </div>
+            </div>
+            
+            <div class="btn">
+                <button>Register</button>
+            </div>
+            
+        </div>    
+       
+    </form>
+
+</body>
+</html>

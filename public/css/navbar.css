@@ -37,10 +37,12 @@
     border-radius: 5px;
     padding: 0.5rem 1rem 0.5rem 1rem;
     cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
 }
 
-.signUp a {
+.signUp:hover {
     color: white;
+    transition: color 200ms ease-in-out;
 }
 
 .mainIcon a{

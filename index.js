@@ -10,7 +10,7 @@ const flash = require("connect-flash");
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const User = require("./models/user.js");
+const authorInfo = require("./models/authorInfo.js"); //author will first need to create the account to write. Other readers can read w/o signup
 
 const majorPath = require("./routes/major.js") ;
 const minorPath = require("./routes/minor.js") ;
@@ -48,10 +48,17 @@ app.use(session({secret: "mysupersecretstring",
 
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(authorInfo.authenticate()));
+
+passport.serializeUser(authorInfo.serializeUser());
+passport.deserializeUser(authorInfo.deserializeUser());
 
 app.use((req, res, next) => {
     res.locals.successMsg = req.flash("success");
     res.locals.errorMsg = req.flash("error");
+    res.locals.currUser = req.user;
     next();
 })
 
@@ -64,6 +71,10 @@ app.use((err, req, res, next) => {
     let {status=500, message="Something went wrong" } = err;
     console.log(err);
     res.render("Error.ejs", {status, message});
+})
+
+app.use("*", (req, res) => {
+    res.render("Error.ejs", {status:404, message:"Page Not Found"});
 })
 
 app.listen(port, ()=> {

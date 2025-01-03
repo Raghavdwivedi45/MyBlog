@@ -1,0 +1,106 @@
+body {
+    background-color: rgb(0, 10, 32);
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: 70vw;
+    margin: 3rem auto;
+    height: 70vh;
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: black; */
+}
+
+.info {
+    height: 90%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    color: wheat;
+}
+
+.basic {
+    display: flex;
+    padding: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 228, 196, 0.04);
+    /* backdrop-filter: blur(20px); */
+}
+
+.basic input {
+    width: 70%;
+    background-color: transparent;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.5rem;
+}
+.basic input:valid {
+    color: wheat;
+    background-color: transparent;
+}
+
+
+.description {
+    width: 50%;
+    background-color: rgba(255, 228, 196, 0.04);
+    backdrop-filter: blur(20px);
+    display: flex;
+    padding: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+textarea {
+    font-family: "Roboto", sans-serif;
+    height: 80%;
+    width: 80%;
+    background-color: transparent;
+    color: wheat;
+    border-radius: 0.5rem;
+    border: none;
+    resize: none;
+    padding: 0.5rem;
+    scrollbar-color: rgba(255, 228, 196, 0.1) rgb(0, 10, 32);
+
+}
+
+.btn {
+    width: 100%;
+    display: flex;
+    /* background-color: green; */
+    padding: 0.5rem;
+    justify-content: center;
+
+
+}
+
+.btn button {
+width: 70%;
+padding: 0.5rem;
+font-size: 1.3rem;
+background-color: rgba(255, 228, 196, 0.04);
+    color: rgba(245, 222, 179, 0.6);
+    border-radius: 0.5rem;
+    border: 0.1rem solid rgba(245, 222, 179, 0.5);
+    margin-top: 0.2rem;
+}
+
+button:hover {
+    border: 0.1rem solid wheat;
+    color: wheat;
+    transition: 300ms;
+}
