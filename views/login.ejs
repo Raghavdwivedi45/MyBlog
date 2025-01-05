@@ -13,6 +13,23 @@
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
+    <style>
+        .basic:hover {
+    border-color: white;
+    animation: border-glow 700ms infinite alternate;
+}
+
+@keyframes border-glow {
+    from {
+        border-color: #f6f8f6;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    to {
+        border-color: #ffffff;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+    }
+}
+    </style>
 </head>
 <body>
     <%- include("includes/navbar.ejs") %>

@@ -62,6 +62,10 @@ app.use((req, res, next) => {
     next();
 })
 
+app.get("/contact", (req, res) => {
+    res.render("contact.ejs");
+})
+
 app.use("/", homePath);
 app.use("/majors", majorPath);
 app.use("/minors", minorPath);

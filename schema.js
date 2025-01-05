@@ -7,6 +7,5 @@ module.exports.minorValidate = Joi.object({
 })
 
 module.exports.ratingValidate = Joi.object({
-    stars: Joi.number().required().min(1).max(5),
     author: Joi.object().required(),
 })

@@ -26,7 +26,8 @@ router
 
 router.get("/:id", asyncWrap(minorController.renderOneMinor));
 
-router.put("/:id/rating", asyncWrap(minorController.rating));
+router.post("/:id/like", checkAuthentication, asyncWrap(minorController.like));
+router.post("/:id/love", checkAuthentication, asyncWrap(minorController.love));
 
 router
     .route("/:id/edit")

@@ -49,6 +49,11 @@ form button {
     cursor: pointer;
 }
 
+.delete:hover {
+    background-color: rgba(255, 183, 3, 0.8);
+    transition: 700ms;
+}
+
 .alertBox {
     margin: 15rem auto;
     width: 30rem;

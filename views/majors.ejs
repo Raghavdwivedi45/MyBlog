@@ -22,17 +22,6 @@
 
         <div class="majors">
 
-            <!-- <div class="major">
-                <div class="writer">
-                </div>
-                <a href="/majors/new">
-                    <div class="topic">
-                        <span style="height: fit-content; margin: auto; font-size: 3rem; color: wheat; font-weight: bolder;">Create New</span>
-                    </div>
-                </a>
-            </div> -->
-
-
             <% for(blog of blogs) { %>
                 <div class="major">
 
@@ -50,9 +39,9 @@
                                 <ul>
                                     <li><span>Title:</span> &nbsp;<%=blog.title%>
                                     </li><br>
-                                    <li><span>Author:</span> &nbsp;<%=blog.writername%>
+                                    <li><span>Author:</span> &nbsp;<%=blog.author.name%>
                                     </li><br>
-                                    <li><span>Description:</span> &nbsp;<%=blog.description%>
+                                    <li><span>Description:</span> &nbsp;<%=blog.desc%>
                                     </li><br>
                                 </ul>
                             </div>

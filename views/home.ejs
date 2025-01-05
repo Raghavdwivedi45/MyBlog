@@ -14,11 +14,78 @@
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Home Page</title>
+
+    <style>
+        .search-bar {
+    height: 2rem;
+    background-color: aliceblue;
+    margin-top: 0.5rem;
+    margin-right: 7rem;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    float: inline-end;
+    padding-right: 1rem;
+    justify-content: flex-end;
+    border-radius: 1rem;
+}
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 0;
+    background: transparent;
+    transition: 1s;
+}
+
+.search-bar:hover input{
+    border: none;
+    outline: none;
+    color: black;
+    width: 18rem;
+    padding-left: 1rem;
+    background: transparent;
+}
+
+.search-bar input:focus{
+    border: none;
+    outline: none;
+    color: black;
+    width: 18rem;
+    padding-left: 1rem;
+}
+
+.search {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    outline: 0;
+}
+
+
+    </style>
 </head>
 
 <body>
     <%- include("includes/navbar.ejs") %>
     <%- include("includes/flash.ejs") %>
+
+    <div class="search-bar">
+        <form action="/search">
+            <input type="text" list="search" name="title" >&nbsp;&nbsp;&nbsp;
+            <datalist id="search" >
+                <% for(major of uniqueMajors) { %>
+                    <option value="<%=major%> - Major"></option>
+                <% } %>
+                <% for(minor of uniqueMinors) { %>
+                    <option value="<%=minor%> - Minor"></option>
+                <% } %>
+                <% for(author of uniqueAuthors) { %>
+                    <option value="<%=author%>"></option>
+                <% } %>
+            </datalist>
+            <button class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div><br><br>
 
         <div class="dynamicImg">
 
@@ -52,7 +119,7 @@
                                 <%=allmajors[i].title%>
                             </li>
                             <li>
-                                <%=allmajors[i].writername%>
+                                <%=allmajors[i].author.name%>
                             </li> <br>
                             <li class="description">
                                 <%=allmajors[i].desc%>...
@@ -83,7 +150,7 @@
                                 <%=allminors[i].title%>
                             </li>
                             <li>
-                                <%=allminors[i].writername%>
+                                <%=allminors[i].author.name%>
                             </li> <br>
                             <li class="description">
                                 <%=allminors[i].desc%>...

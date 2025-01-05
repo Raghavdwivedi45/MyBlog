@@ -1,18 +1,16 @@
 const majorInfo = require("../models/majorInfo.js");
-const authorInfo = require("../models/authorInfo.js");
 const ExpressError = require("../utils/ExpressError.js");
 const passport = require("passport");
 
 module.exports.renderAllMajors = async (req, res) => {
-    let blogs = await majorInfo.find();
+    let blogs = await majorInfo.find().populate("author");
     res.render("majors.ejs", { blogs });
 }
 
 module.exports.renderOneMajor = async (req, res) => {
     let { id } = req.params;
-    let data = await majorInfo.findById(id);
-    req.flash("success", "Thankyou for your feedback");
-    res.render("major.ejs", { data });
+    let data = await majorInfo.findById(id).populate("author");
+    res.render("major.ejs", { data, likes:data.like.length, loves:data.love.length });
 }
 
 module.exports.renderSubmajor = async (req, res, next) => {
@@ -30,8 +28,7 @@ module.exports.renderSubmajor = async (req, res, next) => {
 module.exports.createNewMajor = async (req, res) => {
     let { id } = req.params;
     let inp = req.body;
-    let desc = inp.description.substring(0, 51);
-    let authors = await authorInfo.findById(id);
+    let desc = inp.description.substring(0, 251);
     if(res.locals.currUser._id.equals(id)) {
     let obj = new majorInfo({
         title: inp.title,
@@ -39,7 +36,6 @@ module.exports.createNewMajor = async (req, res) => {
         desc: desc,
         img: inp.img,
         description: inp.description,
-        writername: authors.name
     });
 
     await obj.save();
@@ -134,4 +130,32 @@ module.exports.rating = async (req, res) => {j
         return res.redirect(`/majors/${data.id}`);
     }
     next(new ExpressError(401, "Oops ! Your rating is out of limit"));
+}
+
+module.exports.love = async (req, res) => {
+    let { id } = req.params;
+    let data = await majorInfo.findById(id);
+    if (data.love.indexOf(res.locals.currUser.id) == -1) {
+        data.love.push(res.locals.currUser.id);
+        await data.save();
+        req.flash("success", "Thankyou for your feedback");
+
+    } else {
+        req.flash("success", "You've already reviewed this major");
+    }
+    res.redirect(`/majors/${data.id}`);
+}
+
+module.exports.like = async (req, res) => {
+    let { id } = req.params;
+    let data = await majorInfo.findById(id);
+    if (data.like.indexOf(res.locals.currUser.id) == -1) {
+        data.like.push(res.locals.currUser.id);
+        await data.save();
+        req.flash("success", "Thankyou for your feedback");
+
+    } else {
+        req.flash("success", "You've already reviewed this major");
+    }
+    res.redirect(`/majors/${data.id}`);
 }

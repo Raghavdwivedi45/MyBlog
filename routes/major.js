@@ -29,7 +29,8 @@ router
     })
     .post(checkAuthentication, asyncWrap(majorController.createNewMajor));
 
-router.put("/:id/rating", asyncWrap(majorController.rating));
+router.post("/:id/like", checkAuthentication, asyncWrap(majorController.like));
+router.post("/:id/love", checkAuthentication, asyncWrap(majorController.love));
 
 router
     .route("/:id/submajor/new")

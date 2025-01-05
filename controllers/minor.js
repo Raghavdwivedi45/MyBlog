@@ -1,23 +1,21 @@
 const minorInfo = require("../models/minorInfo.js");
-const authorInfo = require("../models/authorInfo.js");
 const ExpressError = require("../utils/ExpressError.js");
-const {minorValidate, ratingValidate} = require("../schema.js");
+const { minorValidate } = require("../schema.js");
 
 module.exports.renderAllMinors = async (req, res) => {
-    let minors = await minorInfo.find();
+    let minors = await minorInfo.find().populate("author");
     res.render("minors.ejs", { minors });
 }
 
 module.exports.renderOneMinor = async (req, res) => {
     let { id } = req.params;
-    let data = await minorInfo.findById(id);
-    res.render("minorDetail.ejs", { data });
+    let data = await minorInfo.findById(id).populate("author");
+    res.render("minorDetail.ejs", { data, likes: data.like.length, loves: data.love.length });
 }
 
 module.exports.saveNewMinor = async (req, res) => {
     let { id } = req.params;
-    let authors = await authorInfo.findById(id);
-    if(minorValidate.validate(req.body).error)  throw new ExpressError(400, minorValidate.validate(req.body).error);
+    if (minorValidate.validate(req.body).error) throw new ExpressError(400, minorValidate.validate(req.body).error);
 
     let obj = new minorInfo({
         title: req.body.title,
@@ -25,7 +23,6 @@ module.exports.saveNewMinor = async (req, res) => {
         desc: req.body.description.substring(0, 21),
         img: req.body.img,
         description: req.body.description,
-        writername: authors.name
     });
 
     await obj.save();
@@ -41,7 +38,7 @@ module.exports.editMinor = async (req, res, next) => {
 
 module.exports.saveEditedMinor = async (req, res, next) => {
     let { id } = req.params;
-    if(minorValidate.validate(req.body).error)  throw new ExpressError(400, minorValidate.validate(req.body).error);
+    if (minorValidate.validate(req.body).error) throw new ExpressError(400, minorValidate.validate(req.body).error);
     let data = await minorInfo.findByIdAndUpdate(id, {
         $set: {
             title: req.body.title,
@@ -66,18 +63,30 @@ module.exports.deleteMinor = async (req, res, next) => {
     res.redirect(`/authors/${data.author}`);
 }
 
-module.exports.rating = async (req, res) => {
-    let {id} = req.params;
-
+module.exports.love = async (req, res) => {
+    let { id } = req.params;
     let data = await minorInfo.findById(id);
-    let obj = {
-        stars : req.body.rating,
-        author : data.author
-    };
-    if(ratingValidate.validate(obj).error)  {
-        throw new ExpressError(400, ratingValidate.validate(obj).error);
+    if (data.love.indexOf(res.locals.currUser.id) == -1) {
+        data.love.push(res.locals.currUser.id);
+        await data.save();
+        req.flash("success", "Thankyou for your feedback");
+
+    } else {
+        req.flash("success", "You've already reviewed this minor");
     }
-    await minorInfo.findByIdAndUpdate(id, { $push: {rating: obj} }, { returnDocument: "after" });
-    req.flash("success", "Thankyou for your feedback");
+    res.redirect(`/minors/${data.id}`);
+}
+
+module.exports.like = async (req, res) => {
+    let { id } = req.params;
+    let data = await minorInfo.findById(id);
+    if (data.like.indexOf(res.locals.currUser.id) == -1) {
+        data.like.push(res.locals.currUser.id);
+        await data.save();
+        req.flash("success", "Thankyou for your feedback");
+
+    } else {
+        req.flash("success", "You've already reviewed this minor");
+    }
     res.redirect(`/minors/${data.id}`);
 }

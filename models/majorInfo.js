@@ -23,10 +23,6 @@ const majorInfoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    writername: {
-        type: String,
-        required: true
-    },
     author: {
         type: mongoose.ObjectId,
         ref: "AuthorInfo",
@@ -44,22 +40,14 @@ const majorInfoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    rating: [
-        {
-            stars: {
-                type: Number,
-                required: true,
-                min: 1,
-                max: 5
-            },
-            author: {
-                type: mongoose.ObjectId,
-                ref: "AuthorInfo",
-                required: true
-            },
-            _id: false,
-        }
-    ],
+    like: [{
+        type: mongoose.ObjectId,
+        ref: "AuthorInfo",
+    }],
+    love: [{
+        type: mongoose.ObjectId,
+        ref: "AuthorInfo",
+    }],
 });
 
 const majorInfo = mongoose.model("MajorInfo", majorInfoSchema);

@@ -20,22 +20,10 @@
 <body>
     <%- include("includes/navbar.ejs") %>
 
-        <div class="search-bar">
-            <form action="/authors/search">
-                <input type="text" list="search" name="name" >&nbsp;&nbsp;&nbsp;
-                <datalist id="search" >
-                    <% for(author of authors) { %>
-                        <option value="<%=author.name%>"><%=author.name%></option>
-                    <% } %>
-                </datalist>
-                <button class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
-
         <div class="authors">
             <% for(author of authors) { %>
                     <div class="author"> 
-                        <div class="img"><img src="<%=author.img%>" alt="">
+                        <div class="img"><img src="<%=author.img%>" alt="Image not valid">
                     </div>
 
                     <p><%=author.name%></p>
