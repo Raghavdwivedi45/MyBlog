@@ -54,3 +54,21 @@
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
+
+@media (max-width: 850px) {
+    #nav-tags, .signUp {
+        display: none;
+    }
+}
+
+@media (max-width: 560px) {
+    #hide-mediumScreen {
+        display: none;
+    }
+}
+
+@media (max-width: 341px) {
+    #hide-smallScreen {
+        display: none;
+    }
+}

@@ -3,14 +3,14 @@
 <div class="navbar">
     <div class="left">
         <span class="mainIcon"><a href="/">Blogger</a></span>
-        <span class="navTags"><a href="/majors">Majors</a></span>
-        <span class="navTags"><a href="/minors">Minors</a></span>
-        <span class="navTags"><a href="/authors">Authors</a></span>
-        <span class="navTags"><a href="/contact">Contact Us</a></span>
+        <span class="navTags" id="hide-smallScreen"><a href="/majors">Majors</a></span>
+        <span class="navTags" id="hide-smallScreen"><a href="/minors">Minors</a></span>
+        <span class="navTags" id="hide-mediumScreen"><a href="/authors">Authors</a></span>
+        <span class="navTags" id="hide-mediumScreen"><a href="/contact">Contact Us</a></span>
     </div>
     <div class="right">
         <%if(!currUser) {%>
-            <span class="navTags"><a href="/authors/login">Log in</a></span>
+            <span class="navTags" id="nav-tags"><a href="/authors/login">Log in</a></span>
             <a href="/authors/signup"><button class="signUp">Get Started</button></a>
         <%}%>
 
