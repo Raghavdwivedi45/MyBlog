@@ -2,6 +2,8 @@ body {
     background-color: rgb(0, 10, 32);
     margin: 0;
     font-family: "Roboto", sans-serif;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .dynamicImg {
@@ -50,7 +52,7 @@ body {
     color: rgba(245, 222, 179, 0.863);
 }
 
-.author{
+.author {
     height: 80%;
     width: 30%;
     /* background-color: red; */
@@ -71,27 +73,30 @@ body {
 }
 
 .typewriter {
-display: flex;
-flex-wrap: nowrap;
-width: 100%;
-margin-right: 5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    margin-right: 5rem;
 }
 
-.topics{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 6rem 5.5rem 2rem 8.5rem;
+.topics {
+    width: 85%;
+    margin: 1rem auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    place-items: center;
+    /* background-color: yellow; */
 }
 
 .topic {
     background-color: rgba(255, 228, 196, 0.02);
     height: 25rem;
     width: 18rem;
-    margin-right: 2.3rem;
-    margin-bottom: 3rem;
-    padding: 1rem 0.5rem 0rem 0rem;
+    margin: 0 1rem 3rem 1rem;
+    padding: 1rem 0.5rem 1rem 0.5rem;
     color: rgb(225, 225, 225);
     line-height: 1.3rem;
+    /* background-color: black; */
 }
 
 .topic:hover {
@@ -99,42 +104,29 @@ margin-right: 5rem;
     transition: 500ms;
 }
 
-.topic img{ 
+.topic .img {
     height: 60%;
     width: 80%;
-    display: block;
-    margin: auto auto;
+    margin: 1rem auto;
+}
+
+.img img {
+    height: 100%;
+    width: 100%;
 }
 
 .topic ul {
-    padding-left: 3.5rem;
+    padding-left: 16%;
 }
 
 .description {
     text-align: justify;
-    color: rgba(255, 255, 255, 0.5) ;
+    color: rgba(255, 255, 255, 0.5);
     width: 90%;
 }
 
-a {  
+a {
     text-decoration: none;
-}
-
-.expandTopic {
-    margin-left: 5.5rem;
-    margin-top: 0.5rem;
-    padding: 0.5rem 2rem;
-    font-weight: 600;
-    letter-spacing: 0.05rem;
-    background-color: rgba(0, 10, 32, 0.459);
-    color: rgba(240, 255, 255, 0.7);
-    border-radius: 1rem;
-}
-
-.expandTopic:hover {
-    color: rgb(255, 255, 255);
-    box-shadow: 2px 5px 2px rgba(49, 49, 59, 0.6);
-    transition: 150ms ease-out 20ms;
 }
 
 
@@ -157,6 +149,7 @@ a {
 
 hr {
     width: 90%;
+    margin: 0 auto;
     opacity: 0.3;
 }
 
@@ -183,25 +176,55 @@ h2 {
     }
 }
 
+@media (max-width: 1160px) {
+    .topics {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media (max-width: 800px) {
+    .topic {
+        margin: 0;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 750px) {
+    .topics {
+        grid-template-columns: auto;
+    }
+}
+
 @media (max-width: 1030px) {
     .dynamicImg {
-        width: 50%;
+        width: 75%;
         display: flex;
         justify-content: center;
         align-items: center;
-        -webkit-box-shadow:0px 0px 183px 60px rgba(229,252,245,0.75);
--moz-box-shadow: 0px 0px 183px 60px rgba(229,252,245,0.75);
-box-shadow: 0px 0px 183px 60px rgba(229,252,245,0.75);
+        box-shadow: 0px 0px 300px 25px rgba(229, 252, 245, 0.75);
         border: none;
         transition: 300ms;
-        background-color: rgba(0, 10, 32, 0.2);
+        background: rgb(2, 0, 36);
+        background: linear-gradient(90deg, rgba(245, 245, 245, 0.568) 0%, rgba(228, 250, 255, 0.5) 100%);
         height: 75vh;
     }
     .author {
         width: 50%;
     }
-
+    hr {
+        width: 75%;
+    }
     .mainText {
         display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .dynamicImg {
+        display: none;
+    }
+    .search-bar {
+        margin-right: 0.1rem;
+
     }
 }

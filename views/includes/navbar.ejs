@@ -2,23 +2,57 @@
 
 <div class="navbar">
     <div class="left">
-        <span class="mainIcon"><a href="/">Blogger</a></span>
-        <span class="navTags" id="hide-smallScreen"><a href="/majors">Majors</a></span>
-        <span class="navTags" id="hide-smallScreen"><a href="/minors">Minors</a></span>
-        <span class="navTags" id="hide-mediumScreen"><a href="/authors">Authors</a></span>
-        <span class="navTags" id="hide-mediumScreen"><a href="/contact">Contact Us</a></span>
+        <div class="mainIcon"><a href="/">Blogger</a></div>
+        <div class="navTags" id="hide-smallScreen"><a href="/majors">Majors</a></div>
+        <div class="navTags" id="hide-smallScreen"><a href="/minors">Minors</a></div>
+        <div class="navTags" id="hide-mediumScreen"><a href="/authors">Authors</a></div>
+        <div class="navTags" id="hide-mediumScreen"><a href="/contact">Contact Us</a></div>
     </div>
     <div class="right">
         <%if(!currUser) {%>
-            <span class="navTags" id="nav-tags"><a href="/authors/login">Log in</a></span>
+            <div class="navTags" id="nav-tags"><a href="/authors/login">Log in</a></div>
             <a href="/authors/signup"><button class="signUp">Get Started</button></a>
         <%}%>
 
         <%if(currUser) {%>
             <a href="/authors/logout"><button class="signUp">Logout</button></a>
         <%}%>
-
+        <div class="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
     </div>
 </div>
+
+<div class="side-menu">
+    <div class="side-top"><i class="fa-solid fa-xmark"></i></div>
+    <a href="/"><div>Home</div></a>
+    <a href="/majors"><div class="show-smallScreen">Majors</div></a>
+    <a href="/minors"><div class="show-smallScreen">Minors</div></a>
+    <a href="/authors"><div>Authors</div></a>
+    <a href="/authors/signup"><div>Sign in</div></a>
+    <a href="/authors/login"><div>Login</div></a>
+    <a href="/contact"><div>Contact Us</div></a>
+
+    <div class="side-contact">
+        <i class="fa-brands fa-facebook"></i>   
+        <i class="fa-brands fa-instagram"></i>  
+        <i class="fa-brands fa-youtube"></i>    
+        <i class="fa-brands fa-square-x-twitter"></i>   
+        <i class="fa-solid fa-envelope"></i>    
+    </div>
+</div>
+
+<script>
+document.querySelector(".hamburger i").addEventListener("click", ()=> {
+
+    
+    // document.querySelector(".side-menu").style.display = "block";
+    document.querySelector(".side-menu").classList.add("menu-open");
+})
+
+document.querySelector(".side-top i").addEventListener("click", ()=> {
+    document.querySelector(".menu-open").classList.remove("menu-open");
+})
+</script>
 
 

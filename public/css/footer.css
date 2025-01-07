@@ -1,37 +1,65 @@
 .footer {
     background-color: rgba(255, 255, 255, 0.041);
     color: whitesmoke;
-    position: relative;
-    width: 80%;
-    bottom: 0;
-    height: 4rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    padding-left: 20%;
+    position: static;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .footerLink {
-    padding-left: 12rem;
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
 }
 
-.footerLink span {
+.footerLink div {
     margin-right: 2rem;
+    display: inline-block;
+    /* background-color: yellow; */
     font-size: 1rem;
     opacity: 0.5;
 }
 
 .footerIcon {
-    padding-left: 19rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
 }
 
-.footerIcon span {
+.footerIcon div {
     margin-right: 1rem;
+    display: inline-block;
+    /* background-color: yellow; */
     font-size: 1rem;
     opacity: 0.5;
 }
 
-.footer span:hover {
+.footer div:hover {
     opacity: 1;
     transition: 300ms;
     cursor: pointer;
+}
+
+@media (max-width: 560px) {
+    .footerLink,
+    .footerIcon {
+        flex-direction: column;
+    }
+
+    .footerLink div,
+    .footerIcon div {
+        margin-bottom: 0.5rem;
+    }
 }

@@ -2,12 +2,18 @@
     background-color: rgb(0, 10, 32);
     height: fit-content;
     display: flex;
-    flex-wrap: nowrap;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem 1rem 0.5rem 1rem;
     position: sticky;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 2;
+}
+
+.left div, .right div {
+    display: inline-block;
 }
 
 .navbar a {
@@ -17,7 +23,7 @@
 .navTags a{
     font-family: "Roboto", sans-serif;
     font-weight: 700;
-    margin-right: 1.5rem;
+    padding-right: 1.5rem;
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
@@ -49,26 +55,101 @@
     font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
     font-size: 1.5rem;
     font-weight: 600;
-    margin-right: 2rem;
-    margin-left: 0.5rem;
+    padding-right: 2rem;
+    padding-left: 0.5rem;
     color: rgb(255, 255, 255);
     cursor: pointer;
+}
+
+.right .hamburger i{
+    display: none;
+}
+
+.side-menu {
+    position: fixed;
+    right: -60vw;
+    width: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 10000;
+    transition: all 700ms linear 0s;
+}
+
+.side-menu div {
+    font-size: 1.5rem; 
+    padding: 1rem 1rem 1rem 2rem;
+    color: rgba(0, 0, 0, 0.747);
+    font-weight: 500;
+}
+
+.side-menu div:hover {
+    box-shadow: 1px 1px 5px black;
+}
+
+.side-menu div i {
+    padding-right: 1rem;
+}
+
+.menu-open {
+    width: 60vw;
+    transition: all 700ms linear 0s;
+    right: 0;
+    background-color: rgba(255, 228, 196, 0.85);
+}
+
+.side-contact {
+    box-shadow: none; 
+    text-align: center;
+}
+
+.show-smallScreen {
+    display: none;
+}
+
+.side-top {
+    height: fit-content; 
+    margin-bottom: 3rem; 
+    box-shadow: 1px 1px 5px black;
 }
 
 @media (max-width: 850px) {
     #nav-tags, .signUp {
         display: none;
     }
-}
-
-@media (max-width: 560px) {
+    .right .hamburger i{
+        display: block;
+        color: white;
+        font-size: 1.3rem;
+    }
     #hide-mediumScreen {
         display: none;
     }
+    .side-top {
+        margin-bottom: 2rem;
+    }
+    .side-contact {
+        margin-top: 9rem;
+    }
 }
 
-@media (max-width: 341px) {
+@media (max-width: 475px) {
     #hide-smallScreen {
         display: none;
     }
+    .show-smallScreen {
+        display: block;
+    }
+    .side-contact {
+        margin-top: 3rem; 
+    }
+    .side-top {
+        margin-bottom: 2rem;
+    }
 }
+
+@media (max-width: 450px) {
+    .side-menu div i {
+        padding-right: 0.3rem;
+    }
+}
+
