@@ -83,14 +83,14 @@ img {
         flex-wrap: wrap;
         width: 100%;
         justify-content: center;
-        margin-bottom: 18rem;
+        margin-bottom: 15rem;
     }
     .writer {
         display: none;
     }
     .topic {
         padding-top: 1rem;
-        height: 31rem;
+        height: 28rem;
         flex-wrap: wrap;
         align-items: flex-start;
         justify-content: center;
@@ -100,16 +100,20 @@ img {
         text-align: left;
     }
     .topicImg {
-        height: 15rem;
+        height: 12rem;
         width: 10rem;
     }
 }
 
 @media (max-width: 400px) {
     .major {
-        margin-bottom: 23rem;
+        margin-bottom: 17rem;
     }
     .topic {
-        height: 38.5rem;
+        height: 30rem;
+    }
+    .topicImg {
+        height: 10rem;
+        width: 8rem;
     }
 }

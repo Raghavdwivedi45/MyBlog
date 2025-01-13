@@ -160,7 +160,8 @@ h1 {
 
 h2 {
     color: whitesmoke;
-    margin: 50% 30%;
+    margin-top: 60%;
+    text-align: center;
     width: 100%;
 }
 
@@ -184,12 +185,19 @@ h2 {
 
 @media (max-width: 800px) {
     .topic {
-        margin: 0;
+        margin: 1rem 0.5rem;
         margin-bottom: 2rem;
+        height: 20rem;
+        width: 14rem;
+        padding: 0.5rem 0;
+    }
+    .topic .img {
+        height: 45%;
+        width: 60%;
     }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 620px) {
     .topics {
         grid-template-columns: auto;
     }

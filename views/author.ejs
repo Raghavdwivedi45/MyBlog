@@ -13,6 +13,41 @@
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>About Author</title>
+    <style>
+        @media (max-width: 800px) {
+            .container {
+                flex-wrap: wrap-reverse;
+                justify-content: center;
+            }
+            .author-div {
+                position: static;
+                width: 80%;
+                overflow-y: hidden;
+                height: fit-content;
+                text-align: center;
+            }
+            .nav-div {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .authorMinor {
+                height: fit-content;
+                padding: 1rem;
+            }
+            .authorMinor a {
+                width: 100%;
+            }
+            .contains {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .contains h3 {
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <%- include("includes/navbar.ejs") %>

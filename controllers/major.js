@@ -16,13 +16,13 @@ module.exports.renderOneMajor = async (req, res) => {
 module.exports.renderSubmajor = async (req, res, next) => {
     let { id } = req.params;
     let { subid } = req.query;
-    let data = await majorInfo.findById(id);
-
-    data = data.submajor;
+    let Majors = await majorInfo.findById(id);
+    
+    let data = Majors.submajor;
     data = data.filter((sub) => sub._id == subid);
     data = data[0];
 
-    res.render("submajor.ejs", { data, id });
+    res.render("submajor.ejs", { data, id, Majors });
 }
 
 module.exports.createNewMajor = async (req, res) => {

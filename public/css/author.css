@@ -99,6 +99,9 @@ body {
     /* background-color: aqua; */
 }
 
+.author h1 {
+    text-align: center;
+}
 
 .contains .img {
     height: 100%;

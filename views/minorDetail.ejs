@@ -20,6 +20,7 @@
             flex-wrap: wrap;
             height: fit-content;
             font-family: "Roboto", sans-serif;
+            min-width: 13rem;
         }
 
         #icons, #btn {
@@ -42,6 +43,28 @@
 
         #btn button {
             font-size: 1.2rem;
+        }
+
+        @media (max-width: 800px) {
+            .nav-div {
+                position: static;
+                margin: 1rem 2rem 1rem auto;
+            }
+            .container {
+                flex-wrap: wrap-reverse;
+            }
+            .content {
+                width: 85%;
+                padding: 0 1rem;
+                margin: 0 auto;
+                font-size: smaller;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-div {
+                margin: 1rem 1rem 1rem auto;
+            }
         }
     </style>
 </head>
@@ -77,10 +100,6 @@
                     </div>  
                 </div>
 
-                <!-- <div class="nav-div">
-                    <i class="fa-solid fa-heart" style="color: red;" ></i>
-                    <i class="fa-solid fa-thumbs-up" style="color: blue;"></i>
-                </div> -->
 
                 <div class="content">
                     <div class="title">
