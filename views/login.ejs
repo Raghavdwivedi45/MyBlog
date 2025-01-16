@@ -1,57 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/signup.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;1,800&family=Plus+Jakarta+Sans:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Document</title>
-    <style>
-        .basic:hover {
-    border-color: white;
-    animation: border-glow 700ms infinite alternate;
-}
+    <%- include("includes/impLinks.ejs") %>
+        <title>Document</title>
+        <style>
+            .basic:hover {
+                border-color: white;
+                animation: border-glow 700ms infinite alternate;
+            }
 
-@keyframes border-glow {
-    from {
-        border-color: #f6f8f6;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    }
-    to {
-        border-color: #ffffff;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 1);
-    }
-}
-    </style>
+            @keyframes border-glow {
+                from {
+                    border-color: #f6f8f6;
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+                }
+
+                to {
+                    border-color: #ffffff;
+                    box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+                }
+            }
+        </style>
 </head>
+
 <body>
     <%- include("includes/navbar.ejs") %>
-    <%- include("includes/flash.ejs") %>
+        <%- include("includes/flash.ejs") %>
 
-    <form method="post" action="http://localhost:8080/authors/login">
-        <div class="container">
-            
-            <div class="info">
-                <div class="basic">
-                    <input type="text" name="username" placeholder="Enter your username" required>
-                    <input type="email" name="mail" placeholder="Enter your email id" style="color: wheat;" required>
-                    <input type="password" name="password" placeholder="Enter your password" required>
-                </div>
-            
-            <div class="btn" style="height: 5rem; margin: auto 0.1rem; width: 40%;">
-                <button style="font-size: 2.5rem;">Login</button>
-            </div>
-            
-        </div>    
-       
-    </form>
+            <form method="post" action="http://localhost:8080/authors/login">
+                <div class="container">
+
+                    <div class="info">
+                        <div class="basic">
+                            <input type="text" name="username" placeholder="Enter your username" required>
+                            <input type="email" name="mail" placeholder="Enter your email id" style="color: wheat;"
+                                required>
+                            <input type="password" name="password" placeholder="Enter your password" required>
+                        </div>
+
+                        <div class="btn" style="height: 5rem; margin: auto 0.1rem; width: 40%;">
+                            <button style="font-size: 2.5rem;">Login</button>
+                        </div>
+
+                    </div>
+
+            </form>
 
 </body>
+
 </html>

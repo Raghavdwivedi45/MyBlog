@@ -46,7 +46,6 @@ body {
 .basicInfo {
     width: 50%;
     height: 80%;
-    /* background-color: red; */
     padding-left: 2rem;
     font-family: "Roboto", sans-serif;
     display: flex;
@@ -59,7 +58,6 @@ body {
 .basicContact {
     width: 100%;
     height: 80%;
-    /* background-color: aqua; */
     color: wheat;
     padding-left: 3rem;
 
@@ -69,7 +67,6 @@ body {
 .basicIcons {
     width: 100%;
     height: 20%;
-    /* background-color: aqua; */
     display: flex;
     justify-content: center;
     align-items: center;

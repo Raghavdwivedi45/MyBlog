@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;1,800&family=Plus+Jakarta+Sans:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/newMinor.css">
-    <title>Document</title>
+    <%- include("includes/impLinks.ejs") %>
+        <link rel="stylesheet" href="/newMinor.css">
+        <title>Edit: <%=data.title%></title>
 </head>
+
 <body>n
     <%- include("includes/navbar.ejs") %>
-    <form method="post" action="http://localhost:8080/minors/<%=data.id%>/edit/?_method=PUT" style="display: inline;">
-    <div class="container">
-        
-        <h1>Edit Minor</h1><br>
-            <label for="title">Title</label><br>
-            <input name="title" type="text" id="title" value="<%=data.title%>" required><br><br>
+        <form method="post" action="http://localhost:8080/minors/<%=data.id%>/edit/?_method=PUT"
+            style="display: inline;">
+            <div class="container">
 
-            <label for="img">Image</label><br>
-            <input type="text" name="img" id="img" value="<%=data.img%>" required><br><br>
+                <h1>Edit Minor</h1><br>
+                <label for="title">Title</label><br>
+                <input name="title" type="text" id="title" value="<%=data.title%>" required><br><br>
 
-            <label for="description">Description</label><br>
-            <textarea name="description" id="description" rows="10" cols="75" required minlength="2"><%=data.description%></textarea><br><br>
+                <label for="img">Image</label><br>
+                <input type="text" name="img" id="img" value="<%=data.img%>" required><br><br>
 
-            <button class="delete" id="delete" type="button">Save</button>
-    </div>
+                <label for="description">Description</label><br>
+                <textarea name="description" id="description" rows="10" cols="75" required
+                    minlength="2"><%=data.description%></textarea><br><br>
 
-<div class="fullscreen-container" id="fullscreen">
-<div class="alertBox">
-    <p style="transform: translate(9.5rem, 2rem); font-weight: bold;">Save changes?</p><br>
-    <button style="margin-left: 4rem;" type="submit" class="off">Yes</button>
-    <button class="close" style="margin-left: 1rem;" type="button">No</button>
-    </div>
-</div>
-</form>
+                <button class="delete" id="delete" type="button">Save</button>
+            </div>
+
+            <div class="fullscreen-container" id="fullscreen">
+                <div class="alertBox">
+                    <p style="transform: translate(9.5rem, 2rem); font-weight: bold;">Save changes?</p><br>
+                    <button style="margin-left: 4rem;" type="submit" class="off">Yes</button>
+                    <button class="close" style="margin-left: 1rem;" type="button">No</button>
+                </div>
+            </div>
+        </form>
 
 
-    <%- include("includes/footer.ejs") %>
-    <script src="/editMinor.js"></script>
+        <%- include("includes/footer.ejs") %>
+            <script src="/editMinor.js"></script>
 </body>
+
 </html>

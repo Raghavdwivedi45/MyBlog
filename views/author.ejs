@@ -1,151 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/author.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;1,800&family=Plus+Jakarta+Sans:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>About Author</title>
-    <style>
-        @media (max-width: 800px) {
-            .container {
-                flex-wrap: wrap-reverse;
-                justify-content: center;
-            }
-            .author-div {
-                position: static;
-                width: 80%;
-                overflow-y: hidden;
-                height: fit-content;
-                text-align: center;
-            }
-            .nav-div {
-                width: 90%;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .authorMinor {
-                height: fit-content;
-                padding: 1rem;
-            }
-            .authorMinor a {
-                width: 100%;
-            }
-            .contains {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .contains h3 {
-                text-align: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/author2.css">
+    <%- include("includes/impLinks.ejs") %>
+        <title>
+            <%=authors.name%>
+        </title>
 </head>
+
 <body>
     <%- include("includes/navbar.ejs") %>
-    <%- include("includes/flash.ejs") %>
-    <div class="container">
+        <%- include("includes/flash.ejs") %>
+            <div class="container">
 
-        <div class="nav-div">
-            <%if(currUser && currUser._id.equals(authors.id)) {%>
-            <a href="/minors/<%=authors.id%>/new">
-                <button style="margin-left: 3rem;">Create New Minor</button>
-            </a>
+                <div class="nav-div">
+                    <%if(currUser && currUser._id.equals(authors.id)) {%>
+                        <a href="/minors/<%=authors.id%>/new">
+                            <button style="margin-left: 3rem;">Create New Minor</button>
+                        </a>
 
-            <a href="/majors/<%=authors.id%>/new">
-                <button>Create New Major</button>
-            </a><br><br><br>
-            <% } %>
-            
+                        <a href="/majors/<%=authors.id%>/new">
+                            <button>Create New Major</button>
+                        </a><br><br><br>
+                        <% } %>
 
 
-            <% for (Minors of authorMinors) { %>
-                <div class="authorMinor">
-                <a href="/minors/<%=Minors.id%>">
-                    <div class="contains">
-                        <div class="img">
-                            <img src="/<%=Minors.img%>" alt="">
-                        </div>
-        
-                        <div class="intro">
-                            <div class="title"><h3><%=Minors.title%></h3></div>
-                            <div class="desc"><%=Minors.desc%></div>
-                        </div>
-                    </div>
-                </a>
-                <%if(currUser && currUser._id.equals(Minors.author)) {%>
-                    <div class="btn" style="margin-left: 30rem; height: fit-content;" >
-                        <button ><a href="/minors/<%=Minors.id%>/edit">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="delete" id="<%=Minors.id%>">Delete</button>
-                    </div>  
-                    <%}%>
 
-                <br><br><br> 
+                            <% for (Minors of authorMinors) { %>
+                                <div class="authorMinor">
+                                    <a href="/minors/<%=Minors.id%>">
+                                        <div class="contains">
+                                            <div class="img">
+                                                <img src="/<%=Minors.img%>" alt="">
+                                            </div>
+
+                                            <div class="intro">
+                                                <div class="title">
+                                                    <h3>
+                                                        <%=Minors.title%>
+                                                    </h3>
+                                                </div>
+                                                <div class="desc">
+                                                    <%=Minors.desc%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <%if(currUser && currUser._id.equals(Minors.author)) {%>
+                                        <div class="btn">
+                                            <button><a
+                                                    href="/minors/<%=Minors.id%>/edit">Edit</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button class="delete" id="<%=Minors.id%>">Delete</button>
+                                        </div>
+                                        <%}%>
+
+                                            <br><br><br>
+                                </div>
+
+                                <div class="fullscreen-container" id="<%=Minors.id%>-cont">
+                                    <div class="alertBox">
+                                        <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really
+                                            want to delete?</p><br>
+                                        <form method="post"
+                                            action="http://localhost:8080/minors/<%=Minors.id%>/delete/?_method=DELETE"
+                                            style="display: inline;" class="close"><button
+                                                style="margin-left: 4rem;">Yes</button></form>
+                                        <button class="close" style="margin-left: 1rem;">No</button>
+                                    </div>
+                                </div>
+
+                                <% } %>
+
+                                    <% for (Majors of authorMajors) { %>
+                                        <div class="authorMinor">
+                                            <a href="/majors/<%=Majors.id%>">
+                                                <div class="contains">
+                                                    <div class="img">
+                                                        <img src="/<%=Majors.img%>" alt="">
+                                                    </div>
+
+                                                    <div class="intro">
+                                                        <div class="title">
+                                                            <h3>
+                                                                <%=Majors.title%> (<span
+                                                                        style="color: brown;">Major</span>)
+                                                            </h3>
+                                                        </div>
+                                                        <div class="desc">
+                                                            <%=Majors.desc%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <%if(currUser && currUser._id.equals(Majors.author)) {%>
+                                                <div class="btn">
+                                                    <a href="/majors/<%=Majors.id%>/submajor/new"
+                                                        style="width: fit-content; height: fit-content;"><button>Add New
+                                                            Topic</button></a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <button class="delete" id="<%=Majors.id%>">Delete</button>
+                                                </div>
+                                                <%}%>
+
+                                                    <br><br><br>
+                                        </div>
+
+                                        <div class="fullscreen-container" id="<%=Majors.id%>-cont">
+                                            <div class="alertBox">
+                                                <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you
+                                                    really want to delete?</p><br>
+                                                <form method="post"
+                                                    action="http://localhost:8080/majors/<%=Majors.id%>/topic/delete/?_method=DELETE"
+                                                    style="display: inline;" class="close"><button
+                                                        style="margin-left: 4rem;">Yes</button></form>
+                                                <button class="close" style="margin-left: 1rem;">No</button>
+                                            </div>
+                                        </div>
+
+                                        <% } %>
                 </div>
 
-                <div class="fullscreen-container" id="<%=Minors.id%>-cont">
-                    <div class="alertBox">
-                        <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
-                        <form method="post" action="http://localhost:8080/minors/<%=Minors.id%>/delete/?_method=DELETE" style="display: inline;" class="close"><button style="margin-left: 4rem;">Yes</button></form>
-                        <button class="close" style="margin-left: 1rem;">No</button>
+                <div class="author-div">
+                    <div class="author">
+                        <h1>
+                            <%=authors.name%>
+                        </h1>
+                    </div>
+                    <div class="author-image"><img src="/<%=authors.img%>" alt=""></div>
+                    <div class="content">
+                        <%=authors.description%>
                     </div>
                 </div>
-
-                <% } %>
-
-                <% for (Majors of authorMajors) { %>
-                    <div class="authorMinor">
-                    <a href="/majors/<%=Majors.id%>">
-                        <div class="contains">
-                            <div class="img">
-                                <img src="/<%=Majors.img%>" alt="">
-                            </div>
-            
-                            <div class="intro">
-                                <div class="title"><h3><%=Majors.title%> (<span style="color: brown;">Major</span>)</h3></div>
-                                <div class="desc"><%=Majors.desc%></div>
-                            </div>
-                        </div>
-                    </a>
-                    <%if(currUser && currUser._id.equals(Majors.author)) {%>
-                        <div class="btn" style="margin-left: 26rem; height: fit-content;" >
-                            <a href="/majors/<%=Majors.id%>/submajor/new"  >
-                                <button style="width: fit-content; height: fit-content;  margin: 0; font-weight: normal;">Add New Topic</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="delete" id="<%=Majors.id%>">Delete</button>
-                        </div>  
-                    <%}%>
-
-                    <br><br><br> 
-                    </div>
-    
-                    <div class="fullscreen-container" id="<%=Majors.id%>-cont">
-                        <div class="alertBox">
-                            <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really want to delete?</p><br>
-                            <form method="post" action="http://localhost:8080/majors/<%=Majors.id%>/topic/delete/?_method=DELETE" style="display: inline;" class="close" ><button style="margin-left: 4rem;">Yes</button></form>
-                            <button class="close" style="margin-left: 1rem;" >No</button>
-                        </div>
-                    </div>
-    
-                    <% } %>
-        </div>
-
-        <div class="author-div">
-            <div class="author"><h1><%=authors.name%></h1></div>
-            <div class="author-image"><img src="/<%=authors.img%>" alt=""></div>
-            <div class="content"><%=authors.description%></div></div>
-    </div>
+            </div>
 
 
 
-    <%- include("includes/footer.ejs") %>
-    <script src="../authorDialog.js"></script>
+            <%- include("includes/footer.ejs") %>
+                <script src="../authorDialog.js"></script>
 </body>
+
 </html>

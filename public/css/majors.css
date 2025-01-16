@@ -7,14 +7,12 @@ body {
 
 .majors {
     width: 85vw;
-    /* background-color: brown; */
     margin: 4rem auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 .major {
-    /* background-color: pink; */
     width: 100%;
     height: 18rem;
     margin-bottom: 4rem;
@@ -24,7 +22,6 @@ body {
 
 .major a {
     text-decoration: none;
-    /* background-color: aqua; */
     width: 60%;
 }
 

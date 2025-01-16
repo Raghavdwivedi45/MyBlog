@@ -4,41 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;1,800&family=Plus+Jakarta+Sans:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <%- include("includes/impLinks.ejs") %>
         <link rel="stylesheet" href="/contact.css">
-    <title>Document</title>
-
-    <style>
-        @media (max-width: 860px) {
-            .container {
-                flex-wrap: wrap;
-                justify-content: center;
-                height: fit-content;
-                padding: 1rem;
-            }
-            .forms {
-                width: 60%;
-                margin-right: 4rem;
-            }
-            .basicInfo {
-                display: flex;
-                width: 100%;
-                justify-content: center;
-            }
-            .basicContact {
-                display: flex;
-                justify-content: space-around;
-                padding: 0;
-            }
-        }
-    </style>
+        <link rel="stylesheet" href="/contact2.css">
+        <title>Contact Us</title>
 </head>
 
 <body>
@@ -47,25 +16,30 @@
 
             <div class="forms">
                 <form action="/">
-                    <div class="namel" style="margin-bottom: 0.5rem; margin-left: 0.3rem;"><label for="name">Name</label></div>
+                    <div class="namel" style="margin-bottom: 0.5rem; margin-left: 0.3rem;"><label
+                            for="name">Name</label></div>
                     <div class="name"> <input type="text" id="name"></div><br><br>
-                    <div class="maill" style="margin-bottom: 0.5rem; margin-left: 0.3rem;"><label for="mail">Email</label></div>
+                    <div class="maill" style="margin-bottom: 0.5rem; margin-left: 0.3rem;"><label
+                            for="mail">Email</label></div>
                     <div class="mail"> <input type="email" id="mail"></div><br><br>
-                    <div class="msgl" style="margin-bottom: 0.5rem; margin-left: 0.3rem;"><label for="msg">Message</label></div>
+                    <div class="msgl" style="margin-bottom: 0.5rem; margin-left: 0.3rem;"><label
+                            for="msg">Message</label></div>
                     <div class="msg"> <input type="text" id="msg"></div><br><br>
                     <div class="btn" style="text-align: center;"><button>Submit</button></div>
                 </form>
             </div>
 
             <div class="basicInfo">
-                    <div class="basicContact">
-                        <p><span style="text-decoration: underline;">Contact</span><br><br>blogger@gmail.in <br>+91 9868 999 999</p><br>
-                        <p><span style="text-decoration: underline;">Based In</span><br>Delhi @India</p>
-                    </div>
+                <div class="basicContact">
+                    <p><span style="text-decoration: underline;">Contact</span><br><br>ArticleVerse@gmail.in <br>+91
+                        9868 999 999</p><br>
+                    <p><span style="text-decoration: underline;">Based In</span><br>Delhi @India</p>
+                </div>
 
-                    <div class="basicIcons">
-                        <i class="fa-brands fa-facebook"></i><i class="fa-brands fa-whatsapp"></i><i class="fa-brands fa-instagram"></i><i class="fa-brands fa-youtube"></i>
-                    </div>
+                <div class="basicIcons">
+                    <i class="fa-brands fa-facebook"></i><i class="fa-brands fa-whatsapp"></i><i
+                        class="fa-brands fa-instagram"></i><i class="fa-brands fa-youtube"></i>
+                </div>
             </div>
         </div>
 </body>

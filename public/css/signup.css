@@ -14,13 +14,11 @@ a {
     height: 70vh;
     display: flex;
     flex-wrap: wrap;
-    /* background-color: black; */
 }
 
 .info {
     height: 90%;
     width: 100%;
-    /* background-color: red; */
     display: flex;
     color: wheat;
 }
@@ -35,7 +33,6 @@ a {
     margin-right: 1rem;
     border-radius: 0.5rem;
     background-color: rgba(255, 228, 196, 0.04);
-    /* backdrop-filter: blur(20px); */
 }
 
 .basic input {
@@ -82,7 +79,6 @@ textarea {
 .btn {
     width: 100%;
     display: flex;
-    /* background-color: green; */
     padding: 0.5rem;
     justify-content: center;
 

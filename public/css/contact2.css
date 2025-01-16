@@ -1,0 +1,22 @@
+@media (max-width: 860px) {
+    .container {
+        flex-wrap: wrap;
+        justify-content: center;
+        height: fit-content;
+        padding: 1rem;
+    }
+    .forms {
+        width: 60%;
+        margin-right: 4rem;
+    }
+    .basicInfo {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+    .basicContact {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+    }
+}

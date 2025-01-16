@@ -39,7 +39,8 @@ module.exports.editMinor = async (req, res, next) => {
 module.exports.saveEditedMinor = async (req, res, next) => {
     let { id } = req.params;
     if (minorValidate.validate(req.body).error) throw new ExpressError(400, minorValidate.validate(req.body).error);
-    let data = await minorInfo.findByIdAndUpdate(id, {
+
+    await minorInfo.findByIdAndUpdate(id, {
         $set: {
             title: req.body.title,
             description: req.body.description,

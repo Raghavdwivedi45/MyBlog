@@ -25,7 +25,6 @@ body {
     color: beige;
     letter-spacing: 2px;
     font-style: italic;
-    /* background-color: black; */
 }
 
 .mainText span {
@@ -55,7 +54,6 @@ body {
 .author {
     height: 80%;
     width: 30%;
-    /* background-color: red; */
     margin: auto 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -85,7 +83,6 @@ body {
     display: grid;
     grid-template-columns: auto auto auto;
     place-items: center;
-    /* background-color: yellow; */
 }
 
 .topic {
@@ -96,7 +93,6 @@ body {
     padding: 1rem 0.5rem 1rem 0.5rem;
     color: rgb(225, 225, 225);
     line-height: 1.3rem;
-    /* background-color: black; */
 }
 
 .topic:hover {

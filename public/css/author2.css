@@ -1,0 +1,52 @@
+.btn {
+    width: 100%; 
+    height: fit-content; 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+}
+
+.btn a button {
+    margin: 0; 
+    font-weight: normal;
+}
+
+@media (max-width: 800px) {
+    .container {
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+    .author-div {
+        position: static;
+        width: 80%;
+        overflow-y: hidden;
+        height: fit-content;
+        text-align: center;
+    }
+    .nav-div {
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .authorMinor {
+        height: fit-content;
+        padding: 1rem;
+    }
+    .authorMinor a {
+        width: 100%;
+    }
+    .contains {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .contains h3 {
+        text-align: center;
+    }
+    .btn {
+        margin-top: 0.5rem;
+    }
+    .btn button, .btn a button{
+        font-size: 1rem;
+    }
+}

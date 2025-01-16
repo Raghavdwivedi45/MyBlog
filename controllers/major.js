@@ -10,14 +10,14 @@ module.exports.renderAllMajors = async (req, res) => {
 module.exports.renderOneMajor = async (req, res) => {
     let { id } = req.params;
     let data = await majorInfo.findById(id).populate("author");
-    res.render("major.ejs", { data, likes:data.like.length, loves:data.love.length });
+    res.render("major.ejs", { data, likes: data.like.length, loves: data.love.length });
 }
 
 module.exports.renderSubmajor = async (req, res, next) => {
     let { id } = req.params;
     let { subid } = req.query;
     let Majors = await majorInfo.findById(id);
-    
+
     let data = Majors.submajor;
     data = data.filter((sub) => sub._id == subid);
     data = data[0];
@@ -29,18 +29,18 @@ module.exports.createNewMajor = async (req, res) => {
     let { id } = req.params;
     let inp = req.body;
     let desc = inp.description.substring(0, 251);
-    if(res.locals.currUser._id.equals(id)) {
-    let obj = new majorInfo({
-        title: inp.title,
-        author: id,
-        desc: desc,
-        img: inp.img,
-        description: inp.description,
-    });
+    if (res.locals.currUser._id.equals(id)) {
+        let obj = new majorInfo({
+            title: inp.title,
+            author: id,
+            desc: desc,
+            img: inp.img,
+            description: inp.description,
+        });
 
-    await obj.save();
-    req.flash("success", "A new Major was succesffully created");
-}
+        await obj.save();
+        req.flash("success", "A new Major was succesffully created");
+    }
     res.redirect(`/authors/${id}`);
 }
 
@@ -50,15 +50,15 @@ module.exports.createNewSubmajor = async (req, res) => {
 
     let data = await majorInfo.findById(id);
 
-    if(res.locals.currUser._id.equals(data.author)) {
-    data.submajor.push({
-        subtitle: inp.title,
-        subdescription: inp.description
-    });
+    if (res.locals.currUser._id.equals(data.author)) {
+        data.submajor.push({
+            subtitle: inp.title,
+            subdescription: inp.description
+        });
 
-    await data.save();
-    req.flash("success", "A new submajor was succesffully created");
-}
+        await data.save();
+        req.flash("success", "A new submajor was succesffully created");
+    }
     res.redirect(`/majors/${id}`);
 }
 
@@ -75,14 +75,14 @@ module.exports.renderEditSubmajorForm = async (req, res, next) => {
 module.exports.editSubmajor = async (req, res, next) => {
     let { id } = req.params;
     let data = await majorInfo.findById(id);
-    if(res.locals.currUser._id.equals(data.author)) {
-    let objIndex = data.submajor.findIndex(obj => obj.id == req.body.id);
-    data.submajor[objIndex].subtitle = req.body.title;
-    data.submajor[objIndex].subdescription = req.body.description;
-    let result = data.submajor;
+    if (res.locals.currUser._id.equals(data.author)) {
+        let objIndex = data.submajor.findIndex(obj => obj.id == req.body.id);
+        data.submajor[objIndex].subtitle = req.body.title;
+        data.submajor[objIndex].subdescription = req.body.description;
+        let result = data.submajor;
 
-    await majorInfo.findByIdAndUpdate(id, { $set: { submajor: result } }, { returnDocument: "after" });
-    req.flash("success", "The submajor was succesffully edited");
+        await majorInfo.findByIdAndUpdate(id, { $set: { submajor: result } }, { returnDocument: "after" });
+        req.flash("success", "The submajor was succesffully edited");
     }
     res.redirect(`/majors/${id}/submajor?subid=${req.body.id}`);
 }
@@ -90,42 +90,43 @@ module.exports.editSubmajor = async (req, res, next) => {
 module.exports.deleteSubmajor = async (req, res, next) => {
     let { id } = req.params;
     let data = await majorInfo.findById(id);
-    if(res.locals.currUser._id.equals(data.author)) {
-    let result = data.submajor.filter((sub) => sub._id != req.body.subid);
-    await majorInfo.findByIdAndUpdate(id, { $set: { submajor: result } }, { returnDocument: "after" });
+    if (res.locals.currUser._id.equals(data.author)) {
+        let result = data.submajor.filter((sub) => sub._id != req.body.subid);
+        await majorInfo.findByIdAndUpdate(id, { $set: { submajor: result } }, { returnDocument: "after" });
 
-    if (!data) {
-        return next(new ExpressError(401, "Submajor doesn't exist."));
+        if (!data) {
+            return next(new ExpressError(401, "Submajor doesn't exist."));
+        }
+        req.flash("success", "The submajor was succesffully deleted");
     }
-    req.flash("success", "The submajor was succesffully deleted");
-}
     res.redirect(`/majors/${data.id}`);
 }
 
 module.exports.deleteMajor = async (req, res, next) => {
     let { id } = req.params;
     let data = await majorInfo.findById(id);
-    if(res.locals.currUser._id.equals(data.author)) {
+    if (res.locals.currUser._id.equals(data.author)) {
         data = await majorInfo.findByIdAndDelete(id);
-    if (!data) {
-        return next(new ExpressError(401, "Major doesn't exist."));
+        if (!data) {
+            return next(new ExpressError(401, "Major doesn't exist."));
+        }
+        req.flash("success", "The Major was succesffully deleted");
     }
-    req.flash("success", "The Major was succesffully deleted");
-}
     res.redirect(`/authors/${data.author}`);
 }
 
-module.exports.rating = async (req, res) => {j
-    let {id} = req.params;
+module.exports.rating = async (req, res) => {
+    j
+    let { id } = req.params;
     let data = await majorInfo.findById(id);
 
     let obj = {
-        stars : req.body.rating,
-        author : data.author
+        stars: req.body.rating,
+        author: data.author
     };
 
-    if(req.body.rating>=1 && req.body.rating<=5) {
-        await majorInfo.findByIdAndUpdate(id, { $push: {rating: obj} }, { returnDocument: "after" });
+    if (req.body.rating >= 1 && req.body.rating <= 5) {
+        await majorInfo.findByIdAndUpdate(id, { $push: { rating: obj } }, { returnDocument: "after" });
         req.flash("success", "Thankyou for your feedback");
         return res.redirect(`/majors/${data.id}`);
     }

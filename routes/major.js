@@ -4,11 +4,10 @@ const { asyncWrap } = require("../utils/asyncWrap.js");
 const majorController = require("../controllers/major.js");
 const passport = require("passport");
 
-function checkAuthentication(req,res,next){
-    if(req.isAuthenticated()){
-        //req.isAuthenticated() will return true if user is logged in
+function checkAuthentication(req, res, next) {
+    if (req.isAuthenticated()) {
         next();
-    } else{
+    } else {
         req.session.redirectUrl = req.redirectUrl;
         res.redirect("/authors/login");
     }

@@ -8,7 +8,6 @@ body {
 .container {
     width: 75vw;
     margin: 1rem auto;
-    /* background-color: aqua; */
     color: wheat;
 }
 
@@ -18,7 +17,6 @@ h1 {
 
 input,
 textarea {
-    /* background-color: brown; */
     font-size: 1.5rem;
     padding: 0.5rem;
     background-color: rgba(255, 255, 255, 0.6);
@@ -26,7 +24,6 @@ textarea {
 }
 
 form {
-    /* background-color: brown; */
     font-size: 1.5rem;
     font-weight: 600;
 }
@@ -62,7 +59,6 @@ form button {
     opacity: 0.95;
     font-size: 1.3rem;
     border-radius: 0.5rem;
-    /* display: none; */
 }
 
 .alertBox button {

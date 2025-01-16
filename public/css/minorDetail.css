@@ -6,7 +6,6 @@ body {
 
 .container {
     width: 95vw;
-    /* background-color: brown; */
     display: flex;
     justify-content: space-between;
     margin: 1rem auto;
@@ -68,7 +67,6 @@ body {
     opacity: 0.95;
     font-size: 1.3rem;
     border-radius: 0.5rem;
-    /* display: none; */
 }
 
 .alertBox button {

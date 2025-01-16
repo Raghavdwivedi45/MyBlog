@@ -19,13 +19,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: red; */
 }
 
 .footerLink div {
     margin-right: 2rem;
     display: inline-block;
-    /* background-color: yellow; */
     font-size: 1rem;
     opacity: 0.5;
 }
@@ -35,13 +33,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: red; */
 }
 
 .footerIcon div {
     margin-right: 1rem;
     display: inline-block;
-    /* background-color: yellow; */
     font-size: 1rem;
     opacity: 0.5;
 }

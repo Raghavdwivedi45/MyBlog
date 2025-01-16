@@ -11,21 +11,21 @@ module.exports.renderAllAuthors = async (req, res) => {
 module.exports.renderOneAuthor = async (req, res) => {
     let { id } = req.params;
     let authors = await authorInfo.findById(id);
-    let authorMinors = await minorInfo.find({author: id});
-    let authorMajors = await majorInfo.find({author: id});
+    let authorMinors = await minorInfo.find({ author: id });
+    let authorMajors = await majorInfo.find({ author: id });
     res.render("author.ejs", { authors, authorMinors, authorMajors });
 }
 
 module.exports.renderAuthorByName = async (req, res) => {
     let { authName } = req.query;
-    let authors = await authorInfo.find({name: authName});
+    let authors = await authorInfo.find({ name: authName });
     res.redirect(`/authors/${authors.id}`);
 }
 
 module.exports.signup = async (req, res, next) => {
-    let currMail = await authorInfo.find({email: req.body.mail});
-    if(currMail.length>0) {
-       return next(new ExpressError(401, "This Email is already registered"));
+    let currMail = await authorInfo.find({ email: req.body.mail });
+    if (currMail.length > 0) {
+        return next(new ExpressError(401, "This Email is already registered"));
     }
     let user = new authorInfo({
         name: req.body.name,
@@ -38,16 +38,16 @@ module.exports.signup = async (req, res, next) => {
     let regUser = await authorInfo.register(user, req.body.password);
 
     req.login(regUser, (err) => {
-        if(err) {
+        if (err) {
             return next(err);
         }
-        req.flash("success", "Welcome to blogger. You successfully created your account");
+        req.flash("success", "Welcome to ArticleVerse. You successfully created your account");
         res.redirect("/");
     })
 }
 
 module.exports.login = (req, res) => {
-    req.flash("success", "Welcome back to blogger. ");
+    req.flash("success", "Welcome back to ArticleVerse. ");
     let redirectUrl = res.locals.redirectUrl || "/"
     res.redirect(redirectUrl);
 };

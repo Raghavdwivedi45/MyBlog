@@ -1,0 +1,56 @@
+.nav-div {
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    font-family: "Roboto", sans-serif;
+    float: right;
+    /* background-color: aqua; */
+}
+
+#icons, #btn {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.3rem;
+}
+
+.nav-div i{
+    font-size: 2.5rem;
+    padding: 0 1rem 0 1rem;
+    cursor: pointer;
+}
+
+#btn, #likebtn, #lovebtn {
+    visibility: hidden;
+}
+
+#btn button {
+    font-size: 1.2rem;
+}
+
+.written p {
+    max-width: 80%; 
+    text-align: justify; 
+    opacity: 0.8;
+}
+
+@media (max-width: 620px) {
+    .about {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .about .img {
+        width: 35%;
+    }
+    .container {
+        width: 95vw;
+    }
+    .written {
+        text-align: center;                
+    }
+    .written p {
+        text-align: center;
+        max-width: 100%;
+    }
+}

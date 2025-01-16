@@ -1,0 +1,51 @@
+.nav-div {
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    font-family: "Roboto", sans-serif;
+    min-width: 13rem;
+}
+
+#icons, #btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.3rem;
+}
+
+.nav-div i{
+    font-size: 2.5rem;
+    padding: 0 1rem 0 1rem;
+    cursor: pointer;
+}
+
+#btn, #likebtn, #lovebtn {
+    display: none;
+}
+
+#btn button {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 800px) {
+    .nav-div {
+        position: static;
+        margin: 1rem 2rem 1rem auto;
+    }
+    .container {
+        flex-wrap: wrap-reverse;
+    }
+    .content {
+        width: 85%;
+        padding: 0 1rem;
+        margin: 0 auto;
+        font-size: smaller;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-div {
+        margin: 1rem 1rem 1rem auto;
+    }
+}

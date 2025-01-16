@@ -7,7 +7,6 @@ body {
 
 .container {
     width: 80vw;
-    /* background-color: brown; */
     margin: 2rem auto;
     color: wheat;
 }
@@ -15,7 +14,6 @@ body {
 .about {
     display: flex;
     flex-wrap: nowrap;
-    /* background-color: rgba(255, 228, 196, 0.02); */
     width: 100%;
     height: fit-content;
 }
@@ -33,7 +31,6 @@ body {
 
 .written {
     width: 85%;
-    /* background-color: aqua; */
     height: fit-content;
 }
 
