@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="/minorDetail.css">
     <link rel="stylesheet" href="/minorDetails2.css">
     <%- include("includes/impLinks.ejs") %>
-        <title>Minor: <%=data.title%></title>
+        <title>Minor: <%=data.title%>
+        </title>
 </head>
 
 <body>
@@ -68,15 +69,21 @@
                         </h2>
                     </div>
                     <div class="blog">
-                        <%=data.description%>
-                    </div><br><br>
 
+                    </div><br><br>
+                    <div class="hiddenText" style="display: none;">
+                        <%=data.description%>
+                    </div>
                 </div>
             </div>
 
 
             <%- include("includes/footer.ejs") %>
-                <script src="../like.js"></script>
+                <script src="/like.js"></script>
+                <script>
+                    let hiddenText = document.querySelector(".hiddenText").innerHTML;
+                    document.querySelector(".blog").innerHTML = hiddenText;
+                </script>
 
 
 </body>

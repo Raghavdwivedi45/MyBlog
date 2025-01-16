@@ -37,12 +37,19 @@
     <a href="/authors">
         <div>Authors</div>
     </a>
+    <%if(!currUser) {%>
     <a href="/authors/signup">
         <div>Sign in</div>
     </a>
     <a href="/authors/login">
         <div>Login</div>
     </a>
+    <%}%>
+    <%if(currUser) {%>
+        <a href="/authors/logout">
+            <div>Logout</div>
+        </a>
+        <% } %>
     <a href="/contact">
         <div>Contact Us</div>
     </a>

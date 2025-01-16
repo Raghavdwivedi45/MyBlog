@@ -35,8 +35,18 @@ body {
 .blog {
     line-height: 1.5rem;
     font-size: 1.2rem;
-    overflow-x: auto;
     min-height: 20rem;
+}
+
+.blog .img {
+    height: 15rem;
+    width: 10rem;
+    margin: 1rem auto;
+}
+
+.blog .img img{
+    height: 100%;
+    width: 100%;
 }
 
 .content button {
