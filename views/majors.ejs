@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Majors</title>
     <%- include("includes/impLinks.ejs") %>
-        <link rel="stylesheet" href="majors.css">
+        <link rel="stylesheet" href="/majors.css">
 
 </head>
 
@@ -19,7 +19,7 @@
                 <div class="major">
 
                     <div class="writer">
-                        <img src="img7.jpg" alt="">
+                        <img src="<%=blog.author.img%>" alt="">
                     </div>
 
                     <a href="/majors/<%=blog._id%>">
