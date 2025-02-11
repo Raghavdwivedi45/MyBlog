@@ -8,11 +8,9 @@ const authorInfoSchema = new mongoose.Schema({
     },
     img: {
         type: String,
-        required: true
     },
     description: {
         type: String,
-        required: true
     },
     email: {
         type: String,
@@ -21,7 +19,10 @@ const authorInfoSchema = new mongoose.Schema({
     dateOfBirth: {
         type: Date,
         required: true
-    } 
+    },
+    typ: {
+        type: String
+    }
 });
 
 authorInfoSchema.plugin(passportLocalMongoose);

@@ -10,6 +10,7 @@ const flash = require("connect-flash");
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const userInfo = require("./models/userInfo.js");
 const authorInfo = require("./models/authorInfo.js"); //author will first need to create the account to write. Other readers can read w/o signup
 
 const majorPath = require("./routes/major.js") ;
@@ -50,10 +51,16 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(authorInfo.authenticate()));
 
+passport.use(new LocalStrategy(authorInfo.authenticate()));
 passport.serializeUser(authorInfo.serializeUser());
 passport.deserializeUser(authorInfo.deserializeUser());
+
+passport.use(new LocalStrategy(userInfo.authenticate()));
+passport.serializeUser(userInfo.serializeUser());
+passport.deserializeUser(userInfo.deserializeUser());
+
+
 
 app.use((req, res, next) => {
     res.locals.successMsg = req.flash("success");

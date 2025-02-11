@@ -4,7 +4,7 @@ const minorInfo = require("../models/minorInfo.js");
 const ExpressError = require("../utils/ExpressError.js");
 
 module.exports.renderAllAuthors = async (req, res) => {
-    let authors = await authorInfo.find();
+    let authors = await authorInfo.find({typ:"author"});
     res.render("authors.ejs", { authors });
 }
 
@@ -18,7 +18,7 @@ module.exports.renderOneAuthor = async (req, res) => {
 
 module.exports.renderAuthorByName = async (req, res) => {
     let { authName } = req.query;
-    let authors = await authorInfo.find({ name: authName });
+    let authors = await authorInfo.find({ name: authName, typ:"author" });
     res.redirect(`/authors/${authors.id}`);
 }
 
@@ -31,10 +31,13 @@ module.exports.signup = async (req, res, next) => {
         name: req.body.name,
         username: req.body.username,
         email: req.body.mail,
-        img: req.body.image,
-        description: req.body.description,
         dateOfBirth: req.body.birthdate
     });
+    if(req.body.type=="author") {
+        user.description = req.body.description;
+        user.img = req.body.image;
+        user.typ = "author";
+    }
     let regUser = await authorInfo.register(user, req.body.password);
 
     req.login(regUser, (err) => {

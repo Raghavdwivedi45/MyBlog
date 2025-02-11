@@ -22,8 +22,8 @@
                         <input type="text" name="username" placeholder="Create a unique username for yourself" required>
                         <input type="password" name="password" placeholder="Create a strong password" required>
 
-                        <input type="url" name="image" placeholder="Enter a valid link for your image"
-                            style="color: wheat;" required><br>
+                        <input type="url" name="image" placeholder="Enter a valid link for your image (*Only for Authors)"
+                            style="color: wheat;"><br>
 
                         <input type="email" name="mail" placeholder="Enter your email id" style="color: wheat;"
                             required><br>
@@ -33,9 +33,19 @@
                     </div>
 
                     <div class="description">
-                        <textarea name="description" placeholder="Describe yourself in 200-300 words" maxlength="1600"
-                            required></textarea>
+                        <textarea name="description" placeholder="Describe yourself in 200-300 words (*Only for Authors)" maxlength="1600"
+                            ></textarea>
+
+                            <div class="type">
+                                <input type="radio" name="type" id="author" value="author">
+                                <label for="author">Author</label>
+                                &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;
+                                <input type="radio" name="type" id="user" value="user">
+                                <label for="author">User</label>
+                            </div>
                     </div>
+
+
                 </div>
 
                 <div class="btn">
