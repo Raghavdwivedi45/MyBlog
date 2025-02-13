@@ -6,17 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minors</title>
     <%- include("includes/impLinks.ejs") %>
-        <link rel="stylesheet" href="minors.css">
+        <link rel="stylesheet" href="/minors.css">
 
 </head>
 
 <body>
     <%- include("includes/navbar.ejs") %>
+    <button id="filter">Filter</button>
+    <div class="tags">
+        <a href="/minors?tag=Technology"><button>Technology</button></a>
+        <a href="/minors?tag=Engineering"><button>Engineering</button></a>
+        <a href="/minors?tag=Business"><button>Business</button></a>
+        <a href="/minors?tag=Love"><button>Love</button></a>
+        <a href="/minors?tag=Relations"><button>Relations</button></a>
+        <a href="/minors?tag=Medicine"><button>Medicine</button></a>
+        <a href="/minors"><button>Health</button></a>
+        <div class="tag-close"><i class="fa-solid fa-xmark"></i></div>
+    </div>
 
         <div class="minors">
 
             <% for(minor of minors) { %>
-                <a href="/minors/<%=minor._id%>">
+                <a href="<%=minor._id%>">
                     <div class="minor">
                         <div class="img">
                             <img src="<%=minor.img%>" alt="">
@@ -43,5 +54,6 @@
 
         <%- include("includes/footer.ejs") %>
 </body>
+<script src="/filter.js"></script>
 
 </html>

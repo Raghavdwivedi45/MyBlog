@@ -1,0 +1,7 @@
+filter button in minor page
+minor.css- styling of filter button
+js functionality 
+backend tag option in models add
+
+Above 2 done (do the same for majors)
+Also add option to add tags during creation of new major and minor

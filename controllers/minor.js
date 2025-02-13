@@ -3,7 +3,12 @@ const ExpressError = require("../utils/ExpressError.js");
 const { minorValidate } = require("../schema.js");
 
 module.exports.renderAllMinors = async (req, res) => {
-    let minors = await minorInfo.find().populate("author");
+    let minors;
+    if(req.query.tag) {
+        minors = await minorInfo.find({tag: req.query.tag}).populate("author");
+    } else {
+        minors = await minorInfo.find().populate("author");
+    }
     res.render("minors.ejs", { minors });
 }
 
