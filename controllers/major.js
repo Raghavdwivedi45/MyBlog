@@ -3,7 +3,12 @@ const ExpressError = require("../utils/ExpressError.js");
 const passport = require("passport");
 
 module.exports.renderAllMajors = async (req, res) => {
-    let blogs = await majorInfo.find().populate("author");
+    let blogs;
+    if(req.query.tag) {
+        blogs = await majorInfo.find({tag: req.query.tag}).populate("author");
+    } else {
+        blogs = await majorInfo.find().populate("author");
+    }
     res.render("majors.ejs", { blogs });
 }
 
@@ -35,6 +40,7 @@ module.exports.createNewMajor = async (req, res) => {
             author: id,
             desc: desc,
             img: inp.img,
+            tag: req.body.tag,
             description: inp.description,
         });
 

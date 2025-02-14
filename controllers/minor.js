@@ -28,8 +28,8 @@ module.exports.saveNewMinor = async (req, res) => {
         desc: req.body.description.substring(0, 21),
         img: req.body.img,
         description: req.body.description,
+        tag: req.body.tag
     });
-
     await obj.save();
     req.flash("success", "The Minor was successfully created");
     res.redirect(`/authors/${id}`);

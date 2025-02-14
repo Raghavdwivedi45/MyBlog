@@ -10,6 +10,7 @@ body {
     margin: 4rem auto;
     display: flex;
     flex-wrap: wrap;
+    min-height: 43vh;
 }
 
 .major {
@@ -73,6 +74,64 @@ img {
 
 .writer img {
     border-radius: 50%;
+}
+
+
+#filter {
+    padding: 0.3rem;
+    width: 7rem;
+    border-radius: 0.7rem;
+    font-size: 1.2rem;
+    margin: 1rem 10%;
+    float: inline-end;
+    font-weight: bold;
+    background-color: rgba(255, 228, 196, 0.2);
+    color: wheat;
+    border: none;
+    position: relative;
+}
+
+.tags {
+    position: absolute;
+    top: 10%;
+    background-color: rgba(255, 228, 196, 0.8);
+    margin-left: 10%;
+    min-height: 3rem;
+    height: fit-content;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    border-radius: 1rem;
+    width: 65%;
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tags a {
+    text-decoration: none;
+}
+
+.tags a button {
+    padding: 0.5rem;
+    width: fit-content;
+    border-radius: 0.7rem;
+    font-size: 1.2rem;
+    margin-right: 1.2rem;
+    font-weight: bold;
+    background-color: rgb(0, 10, 32);
+    color: wheat;
+    border: none;
+    cursor: pointer;
+}
+
+.tag-close {
+    float: right;
+    position: absolute;
+    right: 1rem;
+    font-size: 1rem;
+    background-color: rgb(0, 10, 32);
+    color: wheat;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
 }
 
 @media (max-width: 600px) {

@@ -22,6 +22,10 @@ const minorInfoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    tag: {
+        type: [String],
+        default: []
+    },
     like: [{
         type: mongoose.ObjectId,
         ref: "AuthorInfo",

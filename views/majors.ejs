@@ -13,6 +13,18 @@
 <body>
     <%- include("includes/navbar.ejs") %>
 
+    <button id="filter">Filter</button>
+    <div class="tags">
+        <a href="/majors?tag=Technology"><button>Technology</button></a>
+        <a href="/majors?tag=Engineering"><button>Engineering</button></a>
+        <a href="/majors?tag=Business"><button>Business</button></a>
+        <a href="/majors?tag=Love"><button>Love</button></a>
+        <a href="/majors?tag=Relations"><button>Relations</button></a>
+        <a href="/majors?tag=Medicine"><button>Medicine</button></a>
+        <a href="/majors"><button>None</button></a>
+        <div class="tag-close"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+<br><br>
         <div class="majors">
 
             <% for(blog of blogs) { %>
@@ -47,4 +59,5 @@
         <%- include("includes/footer.ejs") %>
 </body>
 
+<script src="/filter.js"></script>
 </html>

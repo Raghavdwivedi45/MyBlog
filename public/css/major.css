@@ -70,3 +70,49 @@ a button {
 
 }
 
+h2{
+    text-align: center;
+    color: wheat;
+}
+
+h3 {
+    margin-bottom: 8px;
+}
+h4 {
+    margin-top: 0;
+}
+
+.comments {
+    margin: 1rem auto;
+    width: 80%;
+    min-height: 10rem;
+}
+
+.comment {
+    display: flex;
+    background-color: rgba(46, 80, 119, 0.2);
+    color: wheat;
+}
+
+.comment .img {
+    width: 10%;
+    height: 10%;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.3rem;
+}
+
+.comment .img img {
+    height: 50%;
+    width: 50%;
+    border-radius: 50%;
+}
+
+.comment .container {
+    width: 80%;
+    height: 100%;
+    display: block;
+    margin: 0;
+    
+}
+

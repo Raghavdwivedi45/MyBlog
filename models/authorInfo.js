@@ -1,3 +1,4 @@
+const { required } = require('joi');
 const mongoose = require('mongoose');
 const passportLocalMongoose = require("passport-local-mongoose");
 
@@ -8,6 +9,8 @@ const authorInfoSchema = new mongoose.Schema({
     },
     img: {
         type: String,
+        required: true,
+        default: "/authors/img9.jpg"
     },
     description: {
         type: String,
