@@ -92,17 +92,38 @@
             <br><br><hr>
             <h2>Comments</h2>
             <div class="comments">
+                
+                <% if (currUser){ %>
                 <div class="comment">
+                    <div class="img">
+                    <img src="<%=currUser.img%>">
+                    </div>
+                    
+                    <div class="container">
+                        <h3><%=currUser.name%> <%if(currUser.typ) {%> &#10037; <%}%></h3> 
+                        <form action="http://localhost:8080/majors/<%=data._id%>/comment" method="post">
+                            <textarea name="writer" style="display: none;"><%=currUser.name%></textarea>
+                            <input type="text" name="comment" required>
+                            <button><img src="../send.png" class="send-icon"></button>
+                        </form>
+                        
+                    </div>
+                </div>
+                <% } %>
+                 
+                <%for(com of data.comments) {%>
+                 <div class="comment">
                     <div class="img">
                     <img src="/authors/img9.png">
                     </div>
                     
                     <div class="container">
-                    <h3>Jane Doe &#10037;</h3>
-                    <h4>13/02/2025</h4>
-                    <p>Very Nice and Knowledgeable Information</p>
+                    <h3><%=com.commentWriter%> <%if(com.typ=="author"){%>&#10037;<%}%></h3>
+                    <h4><%=com.date%></h4>
+                    <p><%=com.comment%></p>
                     </div>
                 </div>
+                <% } %>
             </div>
 <br><br><br>
 

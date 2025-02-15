@@ -1,3 +1,4 @@
+const { required } = require('joi');
 const mongoose = require('mongoose');
 
 const minorInfoSchema = new mongoose.Schema({
@@ -34,6 +35,22 @@ const minorInfoSchema = new mongoose.Schema({
         type: mongoose.ObjectId,
         ref: "AuthorInfo",
     }],
+    comments: [{
+        commentWriter : {
+            type: mongoose.ObjectId,
+            ref: "AuthorInfo",
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true
+        },
+        date: {
+            type: Date,
+            required: true,
+            default: Date.now
+        }
+    }]
 });
 
 const MinorInfo = mongoose.model("MinorInfo", minorInfoSchema);

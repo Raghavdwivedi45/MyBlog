@@ -1,4 +1,14 @@
 comment frontend done in major.ejs and minorDetail.ejs
-now manage backend, i.e. comment type in major and minor model,
-comment will not be required type
-if comment by any author, it will be there with a star mark
+now manage backend, i.e. comment type inminor model,
+
+make img compulsory for both user and author
+
+to check author or user, add typ key in comment 
+format date to be shown 
+if typ: author, then show star with comment name
+
+apply same for minor
+
+reinitialise all minor, major, authorinfo
+
+bcoz wrong comments hatane hain aur har user ki img chahie compulsory

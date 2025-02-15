@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const { asyncWrap } = require("../utils/asyncWrap.js");
 const majorController = require("../controllers/major.js");
-const passport = require("passport");
+const majorInfo = require("../models/majorInfo.js");
 
 function checkAuthentication(req, res, next) {
     if (req.isAuthenticated()) {
@@ -30,6 +30,19 @@ router
 
 router.post("/:id/like", checkAuthentication, asyncWrap(majorController.like));
 router.post("/:id/love", checkAuthentication, asyncWrap(majorController.love));
+
+router.post("/:id/comment", async (req, res) => {
+    let {id} = req.params;
+    let major = await majorInfo.findById(id);
+
+    major.comments.push({
+        commentWriter: req.body.writer,
+        comment: req.body.comment
+    });
+
+    await major.save();
+    res.redirect(`/majors/${id}`);
+})
 
 router
     .route("/:id/submajor/new")

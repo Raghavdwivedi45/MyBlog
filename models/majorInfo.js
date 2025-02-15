@@ -52,6 +52,21 @@ const majorInfoSchema = new mongoose.Schema({
         type: mongoose.ObjectId,
         ref: "AuthorInfo",
     }],
+    comments: [{
+        commentWriter : {
+            type: String,
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true
+        },
+        date: {
+            type: Date,
+            required: true,
+            default: Date.now
+        }
+    }]
 });
 
 const majorInfo = mongoose.model("MajorInfo", majorInfoSchema);
