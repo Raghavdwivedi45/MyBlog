@@ -37,8 +37,7 @@ const minorInfoSchema = new mongoose.Schema({
     }],
     comments: [{
         commentWriter : {
-            type: mongoose.ObjectId,
-            ref: "AuthorInfo",
+            type: String,
             required: true
         },
         comment: {
@@ -46,10 +45,11 @@ const minorInfoSchema = new mongoose.Schema({
             required: true
         },
         date: {
-            type: Date,
+            type: String,
             required: true,
-            default: Date.now
-        }
+        },
+        typ: String,
+        img: String
     }]
 });
 

@@ -31,18 +31,7 @@ router
 router.post("/:id/like", checkAuthentication, asyncWrap(majorController.like));
 router.post("/:id/love", checkAuthentication, asyncWrap(majorController.love));
 
-router.post("/:id/comment", async (req, res) => {
-    let {id} = req.params;
-    let major = await majorInfo.findById(id);
-
-    major.comments.push({
-        commentWriter: req.body.writer,
-        comment: req.body.comment
-    });
-
-    await major.save();
-    res.redirect(`/majors/${id}`);
-})
+router.post("/:id/comment", asyncWrap(majorController.comments));
 
 router
     .route("/:id/submajor/new")

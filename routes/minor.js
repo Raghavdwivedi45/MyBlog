@@ -28,6 +28,8 @@ router.get("/:id", asyncWrap(minorController.renderOneMinor));
 router.post("/:id/like", checkAuthentication, asyncWrap(minorController.like));
 router.post("/:id/love", checkAuthentication, asyncWrap(minorController.love));
 
+router.post("/:id/comment", asyncWrap(minorController.comments));
+
 router
     .route("/:id/edit")
     .get(checkAuthentication, asyncWrap(minorController.editMinor))

@@ -166,3 +166,26 @@ module.exports.like = async (req, res) => {
     }
     res.redirect(`/majors/${data.id}`);
 }
+
+module.exports.comments = async (req, res) => {
+    let {id} = req.params;
+    let major = await majorInfo.findById(id);
+
+    let currentDate = new Date();
+    let formattedDate = currentDate.toString().substring(4, 15);
+
+    let comm = {
+        commentWriter: req.body.writer,
+        comment: req.body.comment,
+        date: formattedDate
+    }
+    if(res.locals.currUser.typ=="author") {
+        comm.typ="author";
+        comm.img = res.locals.currUser.img;
+    }
+
+    major.comments.push(comm);
+
+    await major.save();
+    res.redirect(`/majors/${id}`);
+}

@@ -92,6 +92,30 @@ h4 {
     display: flex;
     background-color: rgba(46, 80, 119, 0.2);
     color: wheat;
+    margin-bottom: 1.5rem;
+}
+
+.comment .container form {
+    display: inline;
+}
+
+.comment .container button {
+    border: none;
+    background-color: transparent;
+}
+
+.comment .container input {
+    width: 90%;
+    min-height: 2rem;
+    margin: 10px 0 10px 0;
+    border: none;
+    outline: none;
+    padding: 0 5px 0 5px;
+}
+.send-icon {
+    /* <a href="https://www.flaticon.com/free-icons/send-message" title="send message icons">Send message icons created by Md Tanvirul Haque - Flaticon</a> */
+    transform: translate(10px, 5px);
+    width: 20px;
 }
 
 .comment .img {
@@ -115,6 +139,7 @@ h4 {
     margin: 0;
     
 }
+
 
 .alertBox {
     margin: 15rem auto;
