@@ -88,13 +88,3 @@ app.listen(port, ()=> {
 });
 
 
-
-
-// name: 'Demo',
-// email: 'demo@gmail.com',
-// dateOfBirth: ISODate('2025-02-03T00:00:00.000Z'),
-// username: 'Demo',
-// description: 'The anonymous demo author is a creative force whose work exists in a space defined by mystery and intrigue. Not bound by the constraints of personal fame or public recognition, this author prefers to let the work speak for itself. Their demos are often experimental, filled with innovative ideas that push the boundaries of their genre, captivating listeners with new textures, sounds, and rhythms. Whether working in electronic music, ambient soundscapes, or experimental pop, the anonymity allows the focus to remain solely on the artistry, free from the distractions of celebrity.\r\n' +
-//   '\r\n' +
-//   "The lack of identity sparks curiosity among fans and critics alike, fostering a sense of discovery as each track or demo is released. There's an allure in the unknown, a sense of connection that feels both intimate and impersonal at once. The author’s decision to stay out of the spotlight allows them to explore their craft without external pressures, creating work that feels raw and authentic. Their demos, whether complete or unfinished, invite listeners into a world of sonic exploration, each piece standing as a testament to their commitment to creativity and innovation in the world of music. Through their anonymity, the demo author challenges the expectations of fame and artistic ownership.",
-// img: 'https://cdn.pixabay.com/photo/2021/07/02/04/48/user-6380868_1280.png',

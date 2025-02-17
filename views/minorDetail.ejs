@@ -102,8 +102,8 @@
                 <%for(com of data.comments) {%>
                  <div class="comment">
                     <div class="img">
-                    <%if(com.img){%><img src="<%=com.img%>>"><%}%>
-                    <%if(!com.img){%><img src="/authors/img9.png"><%}%>
+                    <%if(com.img){%><img src="<%=com.img%>"><%}%>
+                    <%if(!com.img){%><img src="/authors/demo.png"><%}%>
                     </div>
                     
                     <div class="container">
@@ -119,7 +119,7 @@
             <%- include("includes/footer.ejs") %>
                 <script src="/like.js"></script>
                 <script>
-                    let hiddenText = document.querySelector(".hiddenText").innerHTML;
+                    let hiddenText = document.querySelector(".hiddenText").innerText;
                     document.querySelector(".blog").innerHTML = hiddenText;
                 </script>
 
