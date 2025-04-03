@@ -10,3 +10,14 @@ module.exports.minorValidate = Joi.object({
 module.exports.ratingValidate = Joi.object({
     author: Joi.object().required(),
 })
+
+module.exports.authorValidate = Joi.object({
+    name: Joi.string().required(),
+    img: Joi.object({
+        url:  Joi.string().required(),
+        filename: Joi.string().required()
+    }),
+    email: Joi.string().required(),
+    dateOfBirth: Joi.string().required(),  
+    typ: Joi.string().required()
+})

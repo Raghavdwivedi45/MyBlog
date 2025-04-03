@@ -2,6 +2,7 @@ const majorInfo = require("../models/majorInfo.js");
 const authorInfo = require("../models/authorInfo.js");
 const minorInfo = require("../models/minorInfo.js");
 const ExpressError = require("../utils/ExpressError.js");
+const { authorValidate } = require("../schema.js");
 
 module.exports.renderAllAuthors = async (req, res) => {
     let authors = await authorInfo.find({typ:"author"});
@@ -23,6 +24,7 @@ module.exports.renderAuthorByName = async (req, res) => {
 }
 
 module.exports.signup = async (req, res, next) => {
+    authorValidate.validate(req.body);
     let currMail = await authorInfo.find({ email: req.body.mail });
     if (currMail.length > 0) {
         return next(new ExpressError(401, "This Email is already registered"));
@@ -35,10 +37,14 @@ module.exports.signup = async (req, res, next) => {
     });
     if(req.body.type=="author") {
         user.description = req.body.description;
-        user.img = req.body.image;
+        user.img = {
+            url : req.file.url,
+            filename: req.file.filename
+        };
         user.typ = "author";
     }
-    let regUser = await authorInfo.register(user, req.body.password);
+    console.log(user);
+    // let regUser = await authorInfo.register(user, req.body.password);
 
     req.login(regUser, (err) => {
         if (err) {

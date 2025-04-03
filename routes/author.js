@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const { asyncWrap } = require("../utils/asyncWrap.js");
-const authorInfo = require("../models/authorInfo.js");
-const authorController = require("../controllers/author.js")
+const authorController = require("../controllers/author.js");
 const passport = require("passport");
+const multer = require("multer");
+const upload = multer({dest : "./uploads"});
 
 function prevPath (req, res, next) {
     if(req.session.redirectUrl) {
@@ -34,7 +35,7 @@ router.get("/logout", (req, res, next) => {
     });
 })
 
-router.post("/signup", asyncWrap(authorController.signup))
+router.post("/signup", upload.single("image"), asyncWrap(authorController.signup))
 
 router.get("/:id", asyncWrap(authorController.renderOneAuthor));
 

@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const { asyncWrap } = require("../utils/asyncWrap.js");
-const minorController = require("../controllers/minor.js")
-const passport = require("passport");
+const minorController = require("../controllers/minor.js");
 
 function checkAuthentication(req, res, next) {
     if (req.isAuthenticated()) {

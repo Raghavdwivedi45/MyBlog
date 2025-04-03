@@ -1,6 +1,11 @@
-const { required } = require('joi');
 const mongoose = require('mongoose');
 const passportLocalMongoose = require("passport-local-mongoose");
+
+
+const ImageSchema = new mongoose.Schema({
+    url: { type: String, required: true },
+    filename: { type: String, required: true }
+  });
 
 const authorInfoSchema = new mongoose.Schema({
     name: {
@@ -8,9 +13,8 @@ const authorInfoSchema = new mongoose.Schema({
         required: true
     },
     img: {
-        type: String,
-        required: true,
-        default: "/authors/img9.jpg"
+        type: ImageSchema,
+        _id : false
     },
     description: {
         type: String,
