@@ -2,8 +2,7 @@ if(process.env.NODE_ENV!="production") {
     require("dotenv").config();
 }
 
-// Demo user - Demo demo demo@gmail.com ----> AUTHOR
-// User user user@gmail.com ----> USER
+
 const express = require("express");
 const app = express();
 const port = 8080;
@@ -24,7 +23,7 @@ const minorPath = require("./routes/minor.js") ;
 const authorPath = require("./routes/author.js") ;
 const homePath = require("./routes/home.js") ;
 
-const dbURL = `mongodb+srv://rjkb143:${process.env.ATLAS_PASS}@cluster0.bhtfxua.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const dbURL = `${process.env.PART1}${process.env.ATLAS_PASS}${process.env.PART2}retryWrites=true&w=majority&appName=Cluster0`;
 
 async function main() {
   await mongoose.connect(dbURL);

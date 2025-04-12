@@ -145,7 +145,7 @@
     let i = 0;
     window.addEventListener("scroll", () => {
         if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-            fetch("http://localhost:8080/minors/getMore")
+            fetch("/minors/getMore")
             .then(async (res) => {
                 let final = await res.json();
 
