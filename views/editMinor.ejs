@@ -9,18 +9,18 @@
         <title>Edit: <%=data.title%></title>
 </head>
 
-<body>n
+<body>
     <%- include("includes/navbar.ejs") %>
-        <form method="post" action="http://localhost:8080/minors/<%=data.id%>/edit/?_method=PUT"
-            style="display: inline;">
+        <form method="post" action="http://localhost:8080/minors/<%=data.id%>/edit/?_method=PUT" style="display: inline;" enctype="multipart/form-data">
             <div class="container">
 
                 <h1>Edit Minor</h1><br>
                 <label for="title">Title</label><br>
                 <input name="title" type="text" id="title" value="<%=data.title%>" required><br><br>
-
-                <label for="img">Image</label><br>
-                <input type="text" name="img" id="img" value="<%=data.img%>" required><br><br>
+                
+                <img src="<%=data.img.url%>" alt="" width="310"><br>
+                <label for="img" class="file-upload">Change Image</label><br>
+                <input type="file" id="img" name="" style="display: none;" value="<%=data.img.url%>"><br><br><br>
 
                 <label for="description">Description</label><br>
                 <textarea name="description" id="description" rows="10" cols="75" required
@@ -40,7 +40,27 @@
 
 
         <%- include("includes/footer.ejs") %>
-            <script src="/editMinor.js"></script>
+        <script src="/editMinor.js"></script>
+        <script>
+            const lbl = document.querySelector(".file-upload"); 
+            const fl = document.querySelector("#img");
+            const img = document.querySelector("img");
+    
+            fl.addEventListener("change", () => { 
+                lbl.innerText = fl.value;
+                lbl.style.opacity = 0.8;
+                fl.name="img";
+                const file = fl.files[0]; // get the first selected file
+                if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) { img.src = e.target.result; // set img src to file content 
+                };
+                reader.readAsDataURL(file); // convert file to base64 string
+                } else {
+                img.src = ""; // clear preview if no file selected
+                }
+            })
+        </script>
 </body>
 
 </html>

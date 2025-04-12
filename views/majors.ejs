@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Majors</title>
     <%- include("includes/impLinks.ejs") %>
-        <link rel="stylesheet" href="/majors.css">
+    <link rel="stylesheet" href="/majors.css">
 
 </head>
 
@@ -24,11 +24,11 @@
         <a href="/majors"><button>None</button></a>
         <div class="tag-close"><i class="fa-solid fa-xmark"></i></div>
     </div>
-<br><br>
+<br><br><br><br>
         <div class="majors">
 
             <% for(blog of blogs) { %>
-                <div class="major">
+                <div class="major showIt">
 
                     <div class="writer">
                         <img src="<%=blog.author.img.url%>" alt="">
@@ -37,16 +37,16 @@
                     <a href="/majors/<%=blog._id%>">
                         <div class="topic">
                             <div class="topicImg">
-                                <img src=<%=blog.img %> alt="">
+                                <img src=<%=blog.img.url %> alt="">
                             </div>
 
                             <div class="content">
                                 <ul>
                                     <li><span>Title:</span> &nbsp;<%=blog.title%>
-                                    </li><br>
+                                    </li>
                                     <li><span>Author:</span> &nbsp;<%=blog.author.name%>
                                     </li><br>
-                                    <li><span>Description:</span> &nbsp;<%=blog.desc%>
+                                    <li style="max-width: 95%;"><span>Description:</span> &nbsp;<%=blog.description.substring(0, 250)%>...
                                     </li><br>
                                 </ul>
                             </div>
@@ -60,4 +60,28 @@
 </body>
 
 <script src="/filter.js"></script>
+<script>
+    let i = 0;
+    window.addEventListener("scroll", () => {
+        if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+            fetch("http://localhost:8080/majors/getMore")
+            .then(async (res) => {
+                let final = await res.json();
+
+                let addition="";
+                for(const blog of final) {
+                    if(i>=10) break;
+                    let str = `<div class="major showIt"><div class="writer"><img src="${blog.author.img.url}" alt=""></div><a href="/majors/${blog._id}"><div class="topic"><div class="topicImg"><img src=${blog.img.url} alt=""></div><div class="content"><ul><li><span>Title:</span> &nbsp;${blog.title}</li><br><li><span>Author:</span> &nbsp;${blog.author.name}</li><br><li style="max-width: 95%;"><span>Description:</span> &nbsp;${blog.description.substring(0, 250)}...</li><br></ul></div></div></a></div>`
+                    addition+=str;
+                    }
+                if(i<10) {
+                    const mainClass = document.querySelector(".majors");
+                    const mainText = mainClass.innerHTML;
+                    mainClass.innerHTML = mainText + addition;
+                }
+                i++;
+            });
+        }
+    })
+</script>
 </html>

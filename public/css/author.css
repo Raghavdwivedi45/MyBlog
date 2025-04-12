@@ -81,11 +81,12 @@ body {
     text-decoration: none;
     color: wheat;
     height: 80%;
-    width: 80%;
+    width: 90%;
 }
 
 .authorMinor a .contains {
     height: 100%;
+    width: 100%;
     display: flex;
 }
 
@@ -93,7 +94,7 @@ body {
     text-align: center;
 }
 
-.contains .img {
+.authorMinor a .contains .img {
     height: 100%;
     width: 25%;
     margin: auto 1rem;
@@ -104,9 +105,11 @@ body {
     width: 100%;
 }
 
-.content .intro {
+.contains .intro {
     padding-top: 0.7rem;
     margin: 0;
+    width: 75%;
+    height: 100%;
 }
 
 .authorMinor button {

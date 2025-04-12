@@ -19,16 +19,17 @@
             <div class="container">
 
                 <div class="about">
-                    <div class="img"><img src="<%=data.img%>" alt="" style="margin-left: 0.2rem;"></div>
+                    <div class="img"><img src="<%=data.img.url%>" alt="" style="margin-left: 0.2rem;"></div>
                     <div class="written">
-                        <h2>
+                        <br>
+                        <h2 style="text-align: left;">
                             <%=data.title%>
                         </h2>
                         <h3>
                             <%=data.author.name%>
                         </h3>
                         <p>
-                            <%=data.description%>
+                            <%=data.description.substring(0, 500)%>
                         </p>
                     </div>
                 </div>
@@ -96,7 +97,7 @@
                 <% if (currUser){ %>
                 <div class="comment">
                     <div class="img">
-                    <img src="<%=currUser.img%>">
+                    <img src="<%=currUser.img.url%>">
                     </div>
                     
                     <div class="container">
@@ -113,10 +114,7 @@
                  
                 <%for(com of data.comments) {%>
                  <div class="comment">
-                    <div class="img">
-                    <%if(com.img){%><img src="<%=com.img%>"><%}%>
-                    <%if(!com.img){%><img src="/authors/demo.png"><%}%>
-                    </div>
+                    <div class="img"><img src="<%=com.img%>"></div>
                     
                     <div class="container">
                     <h3><%=com.commentWriter%> <%if(com.typ=="author"){%>&#10037;<%}%></h3>

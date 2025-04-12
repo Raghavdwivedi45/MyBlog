@@ -5,7 +5,7 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
-.majors {
+/* .majors {
     width: 85vw;
     margin: 4rem auto;
     display: flex;
@@ -74,7 +74,79 @@ img {
 
 .writer img {
     border-radius: 50%;
+} */
+
+/* MAJORS BLOG LIST */
+.majors {
+    width: 90%;
+    margin: 1rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 2rem 1rem;
+  justify-items: center;
 }
+
+/* BLOG CARD */
+.major {
+  background-color: rgba(255, 228, 196, 0.08);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 195, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 350px;
+}
+
+.major:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 12px rgba(0, 195, 255, 0.4);
+}
+
+/* AUTHOR IMAGE */
+.writer {
+  text-align: center;
+  padding: 0.5rem 0 0rem 0;
+}
+
+.writer img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00c3ff;
+}
+
+/* BLOG TOPIC WRAPPER */
+.topic {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* BLOG IMAGE */
+.topicImg img {
+  width: 80%;
+  height: 250px;
+  object-fit: fill;
+  border-radius: 0.6rem;
+  margin: 1rem;
+}
+
+/* CONTENT */
+.content ul {
+  list-style: none;
+  padding: 0;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.content li span {
+  color: #00c3ff;
+  font-weight: bold;
+}
+
 
 
 #filter {
@@ -82,7 +154,7 @@ img {
     width: 7rem;
     border-radius: 0.7rem;
     font-size: 1.2rem;
-    margin: 1rem 10%;
+    margin: 1rem 7%;
     float: inline-end;
     font-weight: bold;
     background-color: rgba(255, 228, 196, 0.2);
@@ -134,7 +206,23 @@ img {
     border-radius: 0.5rem;
 }
 
-@media (max-width: 600px) {
+
+
+
+.showIt {
+    animation: opaque linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 30%;
+}
+@keyframes opaque {
+    from {
+        scale: 0;
+    } to {
+        scale: 1;
+    }
+
+}
+/* @media (max-width: 600px) {
     .major {
         flex-wrap: wrap;
         width: 100%;
@@ -172,4 +260,4 @@ img {
         height: 10rem;
         width: 8rem;
     }
-}
+} */

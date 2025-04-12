@@ -35,14 +35,15 @@
                                     <a href="/minors/<%=Minors.id%>">
                                         <div class="contains">
                                             <div class="img">
-                                                <img src="<%=Minors.img%>" alt="">
+                                                <img src="<%=Minors.img.url%>" alt="">
                                             </div>
 
                                             <div class="intro">
-                                                <div class="title">
+                                                <div class="title" style="height: 80%; overflow: hidden;">
                                                     <h3>
                                                         <%=Minors.title%>
                                                     </h3>
+                                                    <%=Minors.description.substring(0, 250)%>...
                                                 </div>
                                             </div>
                                         </div>
@@ -77,15 +78,13 @@
                                             <a href="/majors/<%=Majors.id%>">
                                                 <div class="contains">
                                                     <div class="img">
-                                                        <img src="<%=Majors.img%>" alt="">
+                                                        <img src="<%=Majors.img.url%>" alt="">
                                                     </div>
 
                                                     <div class="intro">
-                                                        <div class="title">
-                                                            <h3>
-                                                                <%=Majors.title%> (<span
-                                                                        style="color: brown;">Major</span>)
-                                                            </h3>
+                                                        <div class="title" style="height: 80%; overflow: hidden;">
+                                                            <h3><%=Majors.title%> (<span style="color: brown;">Major</span>) </h3>
+                                                            <%=Majors.description.substring(0, 250)%>...
                                                         </div>
                                                     </div>
                                                 </div>

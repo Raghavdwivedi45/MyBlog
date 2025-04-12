@@ -1,4 +1,9 @@
-// Demo user - demo 1234 demo@gmail.com
+if(process.env.NODE_ENV!="production") {
+    require("dotenv").config();
+}
+
+// Demo user - Demo demo demo@gmail.com ----> AUTHOR
+// User user user@gmail.com ----> USER
 const express = require("express");
 const app = express();
 const port = 8080;
@@ -8,6 +13,7 @@ const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
+const MongoStore = require('connect-mongo');
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -18,8 +24,10 @@ const minorPath = require("./routes/minor.js") ;
 const authorPath = require("./routes/author.js") ;
 const homePath = require("./routes/home.js") ;
 
+const dbURL = `mongodb+srv://rjkb143:${process.env.ATLAS_PASS}@cluster0.bhtfxua.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/blogs');
+  await mongoose.connect(dbURL);
 }
 
 main()
@@ -43,9 +51,25 @@ app.use(express.static(path.join(__dirname, "assets/")));
 app.use(methodOverride('_method'));
 
 app.use(cookieParser());
-app.use(session({secret: "mysupersecretstring",
+
+const store = MongoStore.create({
+    mongoUrl : dbURL,
+    crypto : {
+        secret : process.env.mongoSecret
+    },
+    touchAfter : 24*3600
+})
+
+store.on("error", () => {
+    console.log("ERROR IN MONGO STORE : ", err);
+})
+
+app.use(session({
+                 store,
+                 secret: process.env.sessionSecret,
                  resave: false,
-                 saveUninitialized: true }));
+                 saveUninitialized: true 
+                }));
 
 app.use(flash());
 
@@ -61,7 +85,15 @@ passport.deserializeUser(authorInfo.deserializeUser());
 app.use((req, res, next) => {
     res.locals.successMsg = req.flash("success");
     res.locals.errorMsg = req.flash("error");
+
+    if (req.path === '/favicon.ico') return next();
+
     res.locals.currUser = req.user;
+
+    if(!req.isAuthenticated() && req.path !== '/authors/signup' && req.path!=="/authors/login") {
+        if(req.cookies.redirected) res.clearCookie("redirected");
+        res.cookie("redirected", req.originalUrl);
+    }
     next();
 })
 
@@ -69,19 +101,18 @@ app.get("/contact", (req, res) => {
     res.render("contact.ejs");
 })
 
+app.use("/authors", authorPath);
 app.use("/", homePath);
 app.use("/majors", majorPath);
 app.use("/minors", minorPath);
-app.use("/authors", authorPath);
 
 app.use((err, req, res, next) => {
     let {status=500, message="Something went wrong" } = err;
-    console.log(err);
-    res.render("Error.ejs", {status, message});
+    res.render("Error", {status, message});
 })
 
 app.use("*", (req, res) => {
-    res.render("Error.ejs", {status:404, message:"Page Not Found"});
+    res.render("Error", {status:404, message:"Page Not Found"});
 })
 
 app.listen(port, ()=> {

@@ -12,6 +12,12 @@ const mongoose = require('mongoose');
 //     console.log(err);
 // });
 
+const ImageSchema = new mongoose.Schema({
+    url: { type: String, required: true },
+    filename: { type: String, required: true }
+  });
+
+
 const majorInfoSchema = new mongoose.Schema({
     submajor: [
         {
@@ -28,12 +34,9 @@ const majorInfoSchema = new mongoose.Schema({
         ref: "AuthorInfo",
         required: true
     },
-    desc: {
-        type: String,
-        required: true
-    },
     img: {
-        type: String,
+        type: ImageSchema,
+        _id : false,
         required: true
     },
     description: {

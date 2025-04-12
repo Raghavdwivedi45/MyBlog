@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const { asyncWrap } = require("../utils/asyncWrap.js");
 const minorController = require("../controllers/minor.js");
+const multer = require("multer");
+const { storage } = require("../cloudConfig.js")
+const upload = multer({storage});
 
 function checkAuthentication(req, res, next) {
     if (req.isAuthenticated()) {
@@ -12,6 +15,10 @@ function checkAuthentication(req, res, next) {
     }
 }
 
+
+router.get("/getMore", asyncWrap(minorController.infiniteScrollMinors));
+
+
 router.get("", asyncWrap(minorController.renderAllMinors));
 
 router
@@ -20,7 +27,7 @@ router
         let { id } = req.params;
         res.render("newMinor.ejs", { id });
     })
-    .post(checkAuthentication, asyncWrap(minorController.saveNewMinor));
+    .post(checkAuthentication, upload.single("image"), asyncWrap(minorController.saveNewMinor));
 
 router.get("/:id", asyncWrap(minorController.renderOneMinor));
 
@@ -32,7 +39,7 @@ router.post("/:id/comment", asyncWrap(minorController.comments));
 router
     .route("/:id/edit")
     .get(checkAuthentication, asyncWrap(minorController.editMinor))
-    .put(checkAuthentication, asyncWrap(minorController.saveEditedMinor));
+    .put(checkAuthentication, upload.single("img"), asyncWrap(minorController.saveEditedMinor));
 
 router.delete("/:id/delete", checkAuthentication, asyncWrap(minorController.deleteMinor));
 

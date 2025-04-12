@@ -8,6 +8,92 @@
     <%- include("includes/impLinks.ejs") %>
         <link rel="stylesheet" href="/minors.css">
 
+        <style>
+
+.showIt {
+    animation: opaque linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 30%;
+}
+@keyframes opaque {
+    from {
+        scale: 0;
+    } to {
+        scale: 1;
+    }
+
+}
+            .minors {
+                width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3.5rem;
+  padding: 2rem 1.5rem;
+  justify-items: center;
+}
+
+/* Minor Card */
+.minor {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 228, 196, 0.08);
+  color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 195, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  text-decoration: none;
+  max-width: 340px;
+  height: 100%;
+  margin: 1rem;
+}
+
+.minor:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 195, 255, 0.4);
+}
+
+/* Minor Image */
+.minor .img img {
+    border-radius: 1rem;
+  width: 100%;
+  height: 300px;
+  object-fit: fill;
+  border-bottom: 2px solid #00c3ff;
+}
+
+/* Info */
+.minor .info {
+  padding: 1rem;
+}
+
+.minor .info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.minor .info li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.minor .info li:first-child {
+  font-weight: bold;
+  color: #00c3ff;
+}
+
+.minor .info li:nth-child(2) {
+  font-style: italic;
+  color: #ccc;
+}
+
+.minor .info li:nth-child(3) {
+  color: #aaa;
+}
+
+        </style>
 </head>
 
 <body>
@@ -28,21 +114,21 @@
 
             <% for(minor of minors) { %>
                 <a href="<%=minor._id%>">
-                    <div class="minor">
+                    <div class="minor showIt">
                         <div class="img">
-                            <img src="<%=minor.img%>" alt="">
+                            <img src="<%=minor.img.url%>" alt="">
                         </div>
 
                         <div class="info">
                             <ul>
                                 <li>
                                     <%=minor.title%>
-                                </li><br>
+                                </li>
                                 <li>
                                     <%=minor.author.name%>
                                 </li><br>
                                 <li>
-                                    <%=minor.desc%>
+                                    <%=minor.description.substring(0, 100)%>
                                 </li>
                             </ul>
 
@@ -55,5 +141,29 @@
         <%- include("includes/footer.ejs") %>
 </body>
 <script src="/filter.js"></script>
+<script>
+    let i = 0;
+    window.addEventListener("scroll", () => {
+        if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+            fetch("http://localhost:8080/minors/getMore")
+            .then(async (res) => {
+                let final = await res.json();
+
+                let addition="";
+                for(const minor of final) {
+                    if(i>=10) break;
+                    let str = `<a href="${minor._id}"><div class="minor showIt"><div class="img"><img src="${minor.img.url}" alt=""></div><div class="info"><ul><li>${minor.title}</li><br><li>${minor.author.name}</li><br><li>${minor.description.substring(0, 100)}</li></ul></div></div></a>`
+                    addition+=str;
+                    }
+                if(i<10) {
+                    const mainClass = document.querySelector(".minors");
+                    const mainText = mainClass.innerHTML;
+                    mainClass.innerHTML = mainText + addition;
+                }
+                i++;
+            });
+        }
+    })
+</script>
 
 </html>

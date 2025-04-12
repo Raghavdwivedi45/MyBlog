@@ -84,7 +84,7 @@
                 <% if (currUser){ %>
                 <div class="comment">
                     <div class="img">
-                    <img src="<%=currUser.img%>">
+                    <img src="<%=currUser.img.url%>">
                     </div>
                     
                     <div class="container">
@@ -101,10 +101,7 @@
                  
                 <%for(com of data.comments) {%>
                  <div class="comment">
-                    <div class="img">
-                    <%if(com.img){%><img src="<%=com.img%>"><%}%>
-                    <%if(!com.img){%><img src="/authors/demo.png"><%}%>
-                    </div>
+                    <div class="img"><img src="<%=com.img%>"></div>
                     
                     <div class="container">
                     <h3><%=com.commentWriter%> <%if(com.typ=="author"){%>&#10037;<%}%></h3>

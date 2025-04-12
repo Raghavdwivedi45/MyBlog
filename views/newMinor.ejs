@@ -12,12 +12,13 @@
 
     <div class="container">
         <h1>Create New Minor</h1><br>
-        <form method="post" action="http://localhost:8080/minors/<%=id%>/new">
+        <form method="post" action="http://localhost:8080/minors/<%=id%>/new" enctype="multipart/form-data">
             <label for="title">Title</label><br>
             <input name="title" type="text" id="title" required><br><br>
 
-            <label for="img">Image</label><br>
-            <input type="text" name="img" id="img" required><br><br><br>
+            <img src="" alt="" class="insert"><br>
+            <label for="img" class="file-upload">Upload Image</label>
+            <input type="file" id="img" name="image" style="display: none;"><br><br><br>
 
             <label >Genre:</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <button id="tag">
@@ -53,7 +54,28 @@
         </form>
     </div>
 
-
     <%- include("includes/footer.ejs") %>
+    <script>
+        const lbl = document.querySelector(".file-upload"); 
+        const fl = document.querySelector("#img");
+
+        fl.addEventListener("change", () => { 
+            lbl.innerText = "Change Image";
+            
+            const img = document.querySelector('.insert');
+            
+            const file = fl.files[0]; // get the first selected file
+            if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) { 
+                img.width = "310";
+                img.src = e.target.result; // set img src to file content 
+            };
+            reader.readAsDataURL(file); // convert file to base64 string
+            } else {
+            img.src = ""; // clear preview if no file selected
+            }
+        })
+    </script>
 </body>
 </html>

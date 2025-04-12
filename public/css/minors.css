@@ -57,7 +57,7 @@ a {
     width: 7rem;
     border-radius: 0.7rem;
     font-size: 1.2rem;
-    margin: 1rem 10%;
+    margin: 1rem 7%;
     float: inline-end;
     font-weight: bold;
     background-color: rgba(255, 228, 196, 0.2);
@@ -137,7 +137,7 @@ a {
     }
 }
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     .minors {
         width: 95vw;
     }
@@ -154,4 +154,4 @@ a {
     .minors {
         grid-template-columns: auto;
     }
-}
+} */

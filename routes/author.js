@@ -4,14 +4,8 @@ const { asyncWrap } = require("../utils/asyncWrap.js");
 const authorController = require("../controllers/author.js");
 const passport = require("passport");
 const multer = require("multer");
-const upload = multer({dest : "./uploads"});
-
-function prevPath (req, res, next) {
-    if(req.session.redirectUrl) {
-        res.locals.redirectUrl = req.sessions.redirectUrl;
-    }
-    next();
-}
+const { storage } = require("../cloudConfig.js")
+const upload = multer({storage});
 
 router.get("", asyncWrap(authorController.renderAllAuthors));
 
@@ -23,7 +17,7 @@ router.get("/login", (req, res) => {
     res.render("login.ejs");
 })
 
-router.post("/login", prevPath, 
+router.post("/login", 
             passport.authenticate("local", {failureRedirect: "/authors/login", failureFlash: true}), 
             authorController.login)
 

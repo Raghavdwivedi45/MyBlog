@@ -2,6 +2,16 @@ const majorInfo = require("../models/majorInfo.js");
 const ExpressError = require("../utils/ExpressError.js");
 const passport = require("passport");
 
+
+
+module.exports.infiniteScrollMajors = async (req, res) => {
+        let majors = await majorInfo.find().populate({ path: 'author', select: 'name img -_id' });
+        let random = Math.floor(Math.random()*(100));
+        random = random%(majors.length-6);
+        majors = majors.slice(random, random+6);
+        res.json(majors);
+}
+
 module.exports.renderAllMajors = async (req, res) => {
     let blogs;
     if(req.query.tag) {
@@ -30,23 +40,28 @@ module.exports.renderSubmajor = async (req, res, next) => {
     res.render("submajor.ejs", { data, id, Majors });
 }
 
-module.exports.createNewMajor = async (req, res) => {
+module.exports.createNewMajor = async (req, res, next) => {
     let { id } = req.params;
-    let inp = req.body;
-    let desc = inp.description.substring(0, 251);
-    if (res.locals.currUser._id.equals(id)) {
-        let obj = new majorInfo({
-            title: inp.title,
-            author: id,
-            desc: desc,
-            img: inp.img,
-            tag: req.body.tag,
-            description: inp.description,
-        });
-
-        await obj.save();
-        req.flash("success", "A new Major was succesffully created");
+    if(!req.file) {
+        return next(new ExpressError(400, "Upload image to register")); 
     }
+    if(!(res.locals.currUser._id.equals(id))) {
+        return next(new ExpressError(400, "You need to register as an author to create a listing")); 
+    }
+    let inp = req.body;
+    
+    let obj = new majorInfo({
+        title: inp.title,
+        author: id,
+        img: {
+            url : req.file.path,
+            filename: req.file.filename
+        },
+        tag: req.body.tag,
+        description: inp.description,
+    });
+    await obj.save();
+    req.flash("success", "A new Major was succesffully created");
     res.redirect(`/authors/${id}`);
 }
 
@@ -169,23 +184,20 @@ module.exports.like = async (req, res) => {
 
 module.exports.comments = async (req, res) => {
     let {id} = req.params;
-    let major = await majorInfo.findById(id);
 
-    let currentDate = new Date();
-    let formattedDate = currentDate.toString().substring(4, 15);
+    const badWords = [ "damn", "hell", "shit", "fuck", "bitch", "bastard", "asshole", "crap", "dick", "piss", "slut", "whore", "cock", "fag", "nigger", "cunt",];
+    let replacedComment = req.body.comment;
+    for(w of badWords){ replacedComment = replacedComment.replaceAll(w, "*#@$*")}
 
     let comm = {
-        commentWriter: req.body.writer,
-        comment: req.body.comment,
-        date: formattedDate
+        commentWriter: res.locals.currUser.name,
+        comment: replacedComment,
+        date: new Date(Date.now()).toString().substring(4, 15),
+        img: res.locals.currUser.img.url
     }
-    if(res.locals.currUser.typ=="author") {
+        if(res.locals.currUser.typ=="author") {
         comm.typ="author";
-        comm.img = res.locals.currUser.img;
     }
-
-    major.comments.push(comm);
-
-    await major.save();
+    await majorInfo.findByIdAndUpdate(id, { $push: { comments: comm } }, { new: true });
     res.redirect(`/majors/${id}`);
 }

@@ -30,7 +30,6 @@ async function Rate() {
         if (ele[i].checked)
             currStar = ele[i].value;
     }
-    console.log(currStar);
 
     await axios.put(url, { rating: Math.floor(currStar) });
 }

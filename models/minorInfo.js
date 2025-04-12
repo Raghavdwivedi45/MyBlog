@@ -1,5 +1,14 @@
-const { required } = require('joi');
 const mongoose = require('mongoose');
+
+
+
+
+const ImageSchema = new mongoose.Schema({
+    url: { type: String, required: true },
+    filename: { type: String, required: true }
+  });
+
+
 
 const minorInfoSchema = new mongoose.Schema({
     title: {
@@ -11,12 +20,9 @@ const minorInfoSchema = new mongoose.Schema({
         ref: "AuthorInfo",
         required: true
     },
-    desc: {
-        type: String,
-        required: true
-    },
     img: {
-        type: String,
+        type: ImageSchema,
+        _id : false,
         required: true
     },
     description: {

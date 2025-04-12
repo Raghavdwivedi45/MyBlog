@@ -2,6 +2,16 @@ const minorInfo = require("../models/minorInfo.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { minorValidate } = require("../schema.js");
 
+
+
+module.exports.infiniteScrollMinors = async (req, res) => {
+        let minors = await minorInfo.find().populate("author");
+        let random = Math.floor(Math.random()*(100));
+        random = random%(minors.length-6);
+        minors = minors.slice(random, random+6);
+        res.json(minors);
+}
+
 module.exports.renderAllMinors = async (req, res) => {
     let minors;
     if(req.query.tag) {
@@ -18,18 +28,35 @@ module.exports.renderOneMinor = async (req, res) => {
     res.render("minorDetail.ejs", { data, likes: data.like.length, loves: data.love.length });
 }
 
-module.exports.saveNewMinor = async (req, res) => {
+module.exports.saveNewMinor = async (req, res, next) => {
     let { id } = req.params;
     if (minorValidate.validate(req.body).error) throw new ExpressError(400, minorValidate.validate(req.body).error);
+    
+    if(!req.file) {
+        return next(new ExpressError(400, "Upload image to register")); 
+    }
+
+    if(!(res.locals.currUser._id.equals(id))) {
+        return next(new ExpressError(400, "You need to register as an author to create a listing")); 
+    }
+
+    if(!(res.locals.currUser._id.equals(id))) {
+        return next(new ExpressError(400, "You need to register as an author to create a listing")); 
+    }
 
     let obj = new minorInfo({
         title: req.body.title,
         author: id,
-        desc: req.body.description.substring(0, 21),
-        img: req.body.img,
+        img: {
+            url : req.file.path,
+            filename: req.file.filename
+        },
         description: req.body.description,
-        tag: req.body.tag
     });
+    if(typeof(req.body.tag)=="string") obj.tag = [req.body.tag];
+    else if(!req.body.tag) obj.tag = [];
+    else obj.tag = req.body.tag;
+
     await obj.save();
     req.flash("success", "The Minor was successfully created");
     res.redirect(`/authors/${id}`);
@@ -43,17 +70,22 @@ module.exports.editMinor = async (req, res, next) => {
 
 module.exports.saveEditedMinor = async (req, res, next) => {
     let { id } = req.params;
-    if (minorValidate.validate(req.body).error) throw new ExpressError(400, minorValidate.validate(req.body).error);
+    if (minorValidate.validate(req.body).error) {
+        throw new ExpressError(400, minorValidate.validate(req.body).error);}
 
-    await minorInfo.findByIdAndUpdate(id, {
-        $set: {
-            title: req.body.title,
-            description: req.body.description,
-            img: req.body.img,
-            desc: req.body.description.substring(0, 21)
+    let finalObj = {
+        title: req.body.title,
+        description: req.body.description,
+        desc: req.body.description.substring(0, 21),
+    }
+    if(req.file) {
+        finalObj.img = {
+            url : req.file.path,
+            filename: req.file.filename
         }
-    },
-        { returnDocument: "after" });
+    }
+    await minorInfo.findByIdAndUpdate(id, finalObj, { returnDocument: "after" });
+
     req.flash("success", "The Minor was successfully saved");
     res.redirect(`/minors/${id}`);
 }
@@ -99,23 +131,22 @@ module.exports.like = async (req, res) => {
 
 module.exports.comments = async (req, res) => {
     let {id} = req.params;
-    let minor = await minorInfo.findById(id);
 
-    let currentDate = new Date();
-    let formattedDate = currentDate.toString().substring(4, 15);
+    const badWords = [ "damn", "hell", "shit", "fuck", "bitch", "bastard", "asshole", "crap", "dick", "piss", "slut", "whore", "cock", "fag", "nigger", "cunt",];
+    let replacedComment = req.body.comment;
+    for(w of badWords){ replacedComment = replacedComment.replaceAll(w, "*#@$*")}
 
     let comm = {
-        commentWriter: req.body.writer,
-        comment: req.body.comment,
-        date: formattedDate
+        commentWriter: res.locals.currUser.name,
+        comment: replacedComment,
+        date: new Date(Date.now()).toString().substring(4, 15),
+        img: res.locals.currUser.img.url
     }
+
     if(res.locals.currUser.typ=="author") {
-        comm.typ="author";
-        comm.img = res.locals.currUser.img;
+    comm.typ="author";
     }
-
-    minor.comments.push(comm);
-
-    await minor.save();
+    
+    await minorInfo.findByIdAndUpdate(id, { $push: { comments: comm } }, { new: true });
     res.redirect(`/minors/${id}`);
 }

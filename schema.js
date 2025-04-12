@@ -2,9 +2,11 @@ const Joi = require("joi");
 
 module.exports.minorValidate = Joi.object({
     title: Joi.string().required(),
-    img: Joi.string().required(),
     description: Joi.string().required(),
-    tag: Joi.array().items(Joi.string())
+    tag: Joi.alternatives().try(
+        Joi.string(),
+        Joi.array().items(Joi.string())
+    )
 })
 
 module.exports.ratingValidate = Joi.object({
@@ -13,11 +15,10 @@ module.exports.ratingValidate = Joi.object({
 
 module.exports.authorValidate = Joi.object({
     name: Joi.string().required(),
-    img: Joi.object({
-        url:  Joi.string().required(),
-        filename: Joi.string().required()
-    }),
-    email: Joi.string().required(),
-    dateOfBirth: Joi.string().required(),  
-    typ: Joi.string().required()
+    mail: Joi.string().required(),
+    username: Joi.string().required(),  
+    password: Joi.string().required(),  
+    type: Joi.string().allow(''),  
+    description: Joi.string().allow(''),  
+    birthdate: Joi.string()  
 })

@@ -10,6 +10,7 @@ module.exports.renderAllAuthors = async (req, res) => {
 }
 
 module.exports.renderOneAuthor = async (req, res) => {
+
     let { id } = req.params;
     let authors = await authorInfo.findById(id);
     let authorMinors = await minorInfo.find({ author: id });
@@ -24,39 +25,58 @@ module.exports.renderAuthorByName = async (req, res) => {
 }
 
 module.exports.signup = async (req, res, next) => {
-    authorValidate.validate(req.body);
+    let result = authorValidate.validate(req.body);
+    if(result.error) { 
+        return next(new ExpressError(400, result.error)); 
+    }
+
     let currMail = await authorInfo.find({ email: req.body.mail });
     if (currMail.length > 0) {
         return next(new ExpressError(401, "This Email is already registered"));
     }
-    let user = new authorInfo({
+    if(!req.file) {
+        return next(new ExpressError(400, "Upload image to register")); 
+    }
+    let user = {
         name: req.body.name,
         username: req.body.username,
         email: req.body.mail,
-        dateOfBirth: req.body.birthdate
-    });
-    if(req.body.type=="author") {
-        user.description = req.body.description;
-        user.img = {
-            url : req.file.url,
+        dateOfBirth: req.body.birthdate,
+        img: {
+            url : req.file.path,
             filename: req.file.filename
-        };
+        }
+    };
+
+    if(req.body.type=="author") {
+        if(!req.body.description) {
+            return next(new ExpressError(400, "Description is missing")); 
+        }
+        user.description = req.body.description;
         user.typ = "author";
     }
-    console.log(user);
-    // let regUser = await authorInfo.register(user, req.body.password);
-
+    
+    const redi = req.cookies.redirected || "/";
+    res.clearCookie("redirected");
+    
+    let regUser = await authorInfo.register(user, req.body.password);
+    
     req.login(regUser, (err) => {
         if (err) {
             return next(err);
         }
         req.flash("success", "Welcome to ArticleVerse. You successfully created your account");
-        res.redirect("/");
+        if(!req.session.redirected) return res.redirect("/");
+        
+        res.redirect(redi);
     })
 }
 
 module.exports.login = (req, res) => {
     req.flash("success", "Welcome back to ArticleVerse. ");
-    let redirectUrl = res.locals.redirectUrl || "/"
-    res.redirect(redirectUrl);
+
+    const redi = req.cookies.redirected || "/";
+    res.clearCookie("redirected");
+    res.redirect(redi);
 };
+

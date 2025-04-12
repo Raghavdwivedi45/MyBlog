@@ -19,23 +19,31 @@ slides.forEach(
     }
 )
 
-const slideImage = ()=> {
+// const slideImage = ()=> {
+//     slides.forEach((slide) => {
+//         slide.style.transform = `translateX(${counter*100}%)`;
+//     })
+// }
+
+const slideImageRt = ()=> {
     slides.forEach((slide) => {
-        slide.style.transform = `translateX(-${counter*100}%)`;
+        slide.style.transform = `translateX(${(-1)*counter*100}%)`;
     })
 }
 
 const goPrev = () => {
-    if(counter>=0){
+    if(counter>-2){
         counter--;
-        slideImage();
+        console.log(counter)
+        slideImageRt();
     }
 }
 
 const goNext = () => {
-    if(counter<5){
+    if(counter<2){
         counter++;
-        slideImage();
+        console.log(counter)
+        slideImageRt();
     }
 
 }

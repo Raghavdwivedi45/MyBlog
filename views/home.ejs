@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="home2.css">
+    <!-- <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home2.css"> -->
+    <link rel="stylesheet" href="trial.css">
     <%- include("includes/impLinks.ejs") %>
         <title>ArticleVerse- Your Personal Learning Spot</title>
+
 </head>
 
 <body>
@@ -16,23 +18,23 @@
 
             <div class="search-bar">
                 <form action="/search">
-                    <input type="text" list="search" name="title">&nbsp;&nbsp;&nbsp;
+                    <input type="text" list="search" name="title" >&nbsp;&nbsp;&nbsp;
                     <datalist id="search">
                         <% for(major of uniqueMajors) { %>
-                            <option value="<%=major%> - Major"></option>
+                            <option value="<%=major.title%> - Major"></option>
                             <% } %>
                                 <% for(minor of uniqueMinors) { %>
-                                    <option value="<%=minor%> - Minor"></option>
+                                    <option value="<%=minor.title%> - Minor"></option>
                                     <% } %>
                                         <% for(author of uniqueAuthors) { %>
-                                            <option value="<%=author%>"></option>
+                                            <option value="<%=author.name%>"></option>
                                             <% } %>
                     </datalist>
                     <button class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div><br><br>
 
-            <div class="dynamicImg">
+            <div class="dynamicImg showIt">
 
                 <div class="mainText">
                     <span>MEET OUR TEAM</span>
@@ -55,23 +57,23 @@
 
             <h1>Hot Topics</h1>
 
-            <div class="topics">
-                <% for (let i=0; i < 5; i++) { %>
+            <div class="topics moveRt">
+                <% for (let i=0; i < 2; i++) { %>
                     <a href="/majors/<%=allmajors[i]._id%>">
                         <div class="topic">
                             <div class="img">
-                                <img src="<%=allmajors[i].img%>" alt="">
+                                <img src="<%=allmajors[i].img.url%>" alt="">
                             </div>
 
                             <ul>
                                 <li>
-                                    <%=allmajors[i].title%>
+                                    <%=allmajors[i].title.substring(0, 28)%>
                                 </li>
                                 <li>
                                     <%=allmajors[i].author.name%>
                                 </li> <br>
                                 <li class="description">
-                                    <%=allmajors[i].desc%>...
+                                    <%=allmajors[i].description.substring(0, 50)%>...
                                 </li>
                             </ul>
                         </div>
@@ -89,23 +91,23 @@
 
             <h1>Recents</h1>
 
-            <div class="topics" style="margin-bottom: 10rem;">
-                <% for (let i=0; i < 5; i++) { %>
+            <div class="topics moveIt" style="margin-bottom: 10rem;">
+                <% for (let i=0; i < 2; i++) { %>
                     <a href="/minors/<%=allminors[i]._id%>">
                         <div class="topic">
                             <div class="img">
-                                <img src="<%=allminors[i].img%>" alt="">
+                                <img src="<%=allminors[i].img.url%>" alt="">
                             </div>
 
                             <ul>
                                 <li>
-                                    <%=allminors[i].title%>
+                                    <%=allminors[i].title.substring(0, 20)%>
                                 </li>
                                 <li>
                                     <%=allminors[i].author.name%>
                                 </li> <br>
                                 <li class="description">
-                                    <%=allminors[i].desc%>...
+                                    <%=allminors[i].description.substring(0, 50)%>...
                                 </li>
                             </ul>
                         </div>

@@ -7,13 +7,14 @@ const ExpressError = require("../utils/ExpressError.js");
 
 router.get("/", async (req, res) => {
 
-    let authors = await authorInfo.find();
+    let authors = await authorInfo.find({typ: "author"});
     let allMajors = await majorInfo.find({}).populate("author");
     let allMinors = await minorInfo.find({}).populate("author");
+    
+    let uniqueAuthors = authors;
+    let uniqueMajors = allMajors;
+    let uniqueMinors = allMinors;
 
-    let uniqueAuthors = await authorInfo.distinct("name");
-    let uniqueMajors = await majorInfo.distinct("title");
-    let uniqueMinors = await minorInfo.distinct("title");
     res.render("home.ejs", { allmajors: allMajors, allminors: allMinors, authors, uniqueMajors, uniqueMinors, uniqueAuthors });
 });
 
