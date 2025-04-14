@@ -35,6 +35,10 @@
     opacity: 0.8;
 }
 
+h2 {
+    text-align: left;
+}
+
 @media (max-width: 620px) {
     .about {
         flex-wrap: wrap;
@@ -50,7 +54,10 @@
         text-align: center;                
     }
     .written p {
-        text-align: center;
+        text-align: justify;
         max-width: 100%;
+    }
+    h2 {
+        text-align: center;
     }
 }

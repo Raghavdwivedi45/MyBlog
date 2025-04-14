@@ -16,9 +16,9 @@
     <%- include("includes/navbar.ejs") %>
         <%- include("includes/flash.ejs") %>
 
-            <div class="search-bar">
-                <form action="/search">
-                    <input type="text" list="search" name="title" >&nbsp;&nbsp;&nbsp;
+            <div class="search-bar ">
+                <form action="/search"  class="moveIt">
+                    <input type="text" list="search" name="title">&nbsp;&nbsp;&nbsp;
                     <datalist id="search">
                         <% for(major of uniqueMajors) { %>
                             <option value="<%=major.title%> - Major"></option>
@@ -60,7 +60,7 @@
             <div class="topics moveRt">
                 <% for (let i=0; i < 2; i++) { %>
                     <a href="/majors/<%=allmajors[i]._id%>">
-                        <div class="topic">
+                        <div class="topic ">
                             <div class="img">
                                 <img src="<%=allmajors[i].img.url%>" alt="">
                             </div>
@@ -91,7 +91,7 @@
 
             <h1>Recents</h1>
 
-            <div class="topics moveIt" style="margin-bottom: 10rem;">
+            <div class="topics moveRt" style="margin-bottom: 10rem;">
                 <% for (let i=0; i < 2; i++) { %>
                     <a href="/minors/<%=allminors[i]._id%>">
                         <div class="topic">

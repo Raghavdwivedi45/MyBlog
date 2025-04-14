@@ -8,7 +8,8 @@ module.exports.infiniteScrollMinors = async (req, res) => {
         let minors = await minorInfo.find().populate("author");
         let random = Math.floor(Math.random()*(100));
         random = random%(minors.length-6);
-        minors = minors.slice(random, random+6);
+        minors = minors.slice(random, random+3);
+        
         res.json(minors);
 }
 
@@ -18,6 +19,8 @@ module.exports.renderAllMinors = async (req, res) => {
         minors = await minorInfo.find({tag: req.query.tag}).populate("author");
     } else {
         minors = await minorInfo.find().populate("author");
+        if(minors.length%3==1) minors = minors.slice(0, minors.length-1);
+        if(minors.length%3==2) minors = minors.slice(0, minors.length-2);
     }
     res.render("minors.ejs", { minors });
 }

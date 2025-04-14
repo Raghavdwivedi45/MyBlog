@@ -31,7 +31,8 @@
 @media (max-width: 600px) {
     .authorMinor {
         height: fit-content;
-        padding: 1rem;
+        padding: 0;
+        padding-top: 1rem;
     }
     .authorMinor a {
         width: 100%;

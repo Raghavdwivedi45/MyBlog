@@ -46,6 +46,13 @@
 
 @media (max-width: 600px) {
     .nav-div {
-        margin: 1rem 1rem 1rem auto;
+        margin: 1rem auto;
+        margin-bottom: 0;
+    }
+    h1 {
+        text-align: center;
+    }
+    .blog{
+        text-align: justify;
     }
 }

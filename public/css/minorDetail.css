@@ -17,7 +17,7 @@ body {
     color: wheat;
     position: sticky;
     top: 65%;
-    background-color: rgba(255, 228, 196, 0.04);
+    /* background-color: rgba(255, 228, 196, 0.04); */
     margin-right: 3rem;
     height: fit-content;
     min-height: 10rem;

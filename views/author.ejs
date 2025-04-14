@@ -10,6 +10,60 @@
         <title>
             <%=authors.name%>
         </title>
+
+        <style>
+            .top {
+                margin-top: 2rem;
+                margin-left: 1rem;
+            }
+            .top button {
+                margin-left: 1rem;
+            }
+
+            @media (max-width: 800px) {
+                .nav-div {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                .content {
+                    text-align: justify;
+                }
+
+                .authorMinor a .contains .img {
+                    width: 40%;
+                    margin: auto 1rem;
+                }
+            }
+            @media (max-width: 600px) {
+                .btn {
+                    display: flex;
+                    justify-content: center;
+                }
+                .btn button, .btn a button {
+                    padding-top: 0.25rem;
+                    padding-bottom: 0.25rem;
+                }
+                .authorMinor {
+                    padding: 0.5rem;
+                }
+                .nav-div {
+                    width: 90%;
+                }
+                .title {
+                    text-align: center;
+                }
+                .top {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                .top button {
+                    margin: 0.5rem;
+                }
+            }
+        </style>
 </head>
 
 <body>
@@ -18,14 +72,17 @@
             <div class="container">
 
                 <div class="nav-div">
-                    <%if(currUser && currUser._id.equals(authors.id)) {%>
-                        <a href="/minors/<%=authors.id%>/new">
-                            <button style="margin-left: 3rem;">Create New Minor</button>
-                        </a>
 
-                        <a href="/majors/<%=authors.id%>/new">
-                            <button>Create New Major</button>
-                        </a><br><br><br>
+                    <%if(currUser && currUser._id.equals(authors.id)) {%>
+                        <div class="top">
+                            <a href="/minors/<%=authors.id%>/new">
+                                <button class="top tedha">Create New Minor</button>
+                            </a>
+    
+                            <a href="/majors/<%=authors.id%>/new">
+                                <button>Create New Major</button>
+                            </a><br><br><br>                    
+                        </div>
                         <% } %>
 
 
@@ -63,8 +120,7 @@
                                     <div class="alertBox">
                                         <p style="transform: translate(7rem, 2rem); font-weight: bold;">Do you really
                                             want to delete?</p><br>
-                                        <form method="post"
-                                            action="/minors/<%=Minors.id%>/delete/?_method=DELETE"
+                                        <form method="post" action="/minors/<%=Minors.id%>/delete/?_method=DELETE"
                                             style="display: inline;" class="close"><button
                                                 style="margin-left: 4rem;">Yes</button></form>
                                         <button class="close" style="margin-left: 1rem;">No</button>
@@ -83,7 +139,10 @@
 
                                                     <div class="intro">
                                                         <div class="title" style="height: 80%; overflow: hidden;">
-                                                            <h3><%=Majors.title%> (<span style="color: brown;">Major</span>) </h3>
+                                                            <h3>
+                                                                <%=Majors.title%> (<span
+                                                                        style="color: brown;">Major</span>)
+                                                            </h3>
                                                             <%=Majors.description.substring(0, 250)%>...
                                                         </div>
                                                     </div>

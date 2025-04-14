@@ -92,7 +92,7 @@ img {
   background-color: rgba(255, 228, 196, 0.08);
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0, 195, 255, 0.2);
+  box-shadow: 7px -5px 16px 0px rgba(120, 149, 158, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
   max-width: 350px;
@@ -100,7 +100,7 @@ img {
 
 .major:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 12px rgba(0, 195, 255, 0.4);
+  box-shadow: 5px 11px 18px 2px rgb(101 102 105 / 50%)
 }
 
 /* AUTHOR IMAGE */
@@ -216,11 +216,32 @@ img {
 }
 @keyframes opaque {
     from {
+        opacity: 0;
         scale: 0;
     } to {
+        opacity: 1;
         scale: 1;
     }
 
+}
+
+
+.tags button {
+    margin: 0.1rem;
+}
+
+@media (max-width: 1000px) {
+    .tags {
+        margin-top: 4rem;
+        flex-wrap: wrap;
+        padding-right: 2rem;
+    }
+    .tag-close {
+        margin-left: 0.1rem;
+    }
+    .majors {
+        margin-top: 0;
+    }
 }
 /* @media (max-width: 600px) {
     .major {

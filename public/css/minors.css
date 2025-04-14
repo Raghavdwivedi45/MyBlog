@@ -137,19 +137,23 @@ a {
     }
 }
 
-/* @media (max-width: 600px) {
-    .minors {
-        width: 95vw;
+.tags button {
+    margin: 0.1rem;
+}
+
+@media (max-width: 1000px) {
+    .tags {
+        margin-top: 4rem;
+        flex-wrap: wrap;
+        padding-right: 2rem;
     }
-    .minor{
-        margin: 1.5rem 0;
-    }
-    .minor .img {
-        width: 10rem;
-        height: 15rem;
+    .tag-close {
+        margin-left: 0.1rem;
     }
 }
 
+
+/* 
 @media (max-width: 550px) {
     .minors {
         grid-template-columns: auto;

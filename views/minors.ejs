@@ -7,114 +7,118 @@
     <title>Minors</title>
     <%- include("includes/impLinks.ejs") %>
         <link rel="stylesheet" href="/minors.css">
-
+        
         <style>
+            .showIt {
+                animation: opaque linear;
+                animation-timeline: view();
+                animation-range: entry 0 cover 30%;
+            }
 
-.showIt {
-    animation: opaque linear;
-    animation-timeline: view();
-    animation-range: entry 0 cover 30%;
-}
-@keyframes opaque {
-    from {
-        scale: 0;
-    } to {
-        scale: 1;
-    }
+            @keyframes opaque {
+                from {
+                    scale: 0;
+                    opacity: 0;
+                }
 
-}
+                to {
+                    opacity: 1;
+                    scale: 1;
+                }
+
+            }
+
             .minors {
                 width: 90%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 3.5rem;
-  padding: 2rem 1.5rem;
-  justify-items: center;
-}
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 3.5rem;
+                padding: 2rem 1.5rem;
+                justify-items: center;
+            }
 
-/* Minor Card */
-.minor {
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(255, 228, 196, 0.08);
-  color: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 8px 16px rgba(0, 195, 255, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  text-decoration: none;
-  max-width: 340px;
-  height: 100%;
-  margin: 1rem;
-}
+            /* Minor Card */
+            .minor {
+                display: flex;
+                flex-direction: column;
+                background-color: rgba(255, 228, 196, 0.08);
+                color: #fff;
+                border-radius: 1rem;
+                box-shadow: 7px -5px 16px 0px rgba(120, 149, 158, 0.2);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                overflow: hidden;
+                text-decoration: none;
+                max-width: 340px;
+                height: 100%;
+                margin: 1rem;
+            }
 
-.minor:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 195, 255, 0.4);
-}
+            .minor:hover {
+                transform: translateY(-5px);
+                box-shadow: 5px 11px 18px 2px rgb(101 102 105 / 50%)
+            }
 
-/* Minor Image */
-.minor .img img {
-    border-radius: 1rem;
-  width: 100%;
-  height: 300px;
-  object-fit: fill;
-  border-bottom: 2px solid #00c3ff;
-}
+            /* Minor Image */
+            .minor .img img {
+                border-radius: 1rem;
+                width: 100%;
+                height: 300px;
+                object-fit: fill;
+                border-bottom: 2px solid #00c3ff;
+            }
 
-/* Info */
-.minor .info {
-  padding: 1rem;
-}
+            /* Info */
+            .minor .info {
+                padding: 1rem;
+            }
 
-.minor .info ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+            .minor .info ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
 
-.minor .info li {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  word-wrap: break-word;
-}
+            .minor .info li {
+                font-size: 0.95rem;
+                line-height: 1.5;
+                word-wrap: break-word;
+            }
 
-.minor .info li:first-child {
-  font-weight: bold;
-  color: #00c3ff;
-}
+            .minor .info li:first-child {
+                font-weight: bold;
+                color: #00c3ff;
+            }
 
-.minor .info li:nth-child(2) {
-  font-style: italic;
-  color: #ccc;
-}
+            .minor .info li:nth-child(2) {
+                font-style: italic;
+                color: #ccc;
+            }
 
-.minor .info li:nth-child(3) {
-  color: #aaa;
-}
-
+            .minor .info li:nth-child(3) {
+                color: #aaa;
+            }
         </style>
 </head>
 
 <body>
     <%- include("includes/navbar.ejs") %>
-    <button id="filter">Filter</button>
-    <div class="tags">
-        <a href="/minors?tag=Technology"><button>Technology</button></a>
-        <a href="/minors?tag=Engineering"><button>Engineering</button></a>
-        <a href="/minors?tag=Business"><button>Business</button></a>
-        <a href="/minors?tag=Love"><button>Love</button></a>
-        <a href="/minors?tag=Relations"><button>Relations</button></a>
-        <a href="/minors?tag=Medicine"><button>Medicine</button></a>
-        <a href="/minors"><button>None</button></a>
-        <div class="tag-close"><i class="fa-solid fa-xmark"></i></div>
-    </div>
+        <button id="filter">Filter</button>
+        <div class="tags">
+            <a href="/minors?tag=Technology"><button>Technology</button></a>
+            <a href="/minors?tag=Engineering"><button>Engineering</button></a>
+            <a href="/minors?tag=Business"><button>Business</button></a>
+            <a href="/minors?tag=Love"><button>Love</button></a>
+            <a href="/minors?tag=Relations"><button>Relations</button></a>
+            <a href="/minors?tag=Medicine"><button>Medicine</button></a>
+            <a href="/minors"><button>None</button></a>
+            <div class="tag-close"><i class="fa-solid fa-xmark"></i></div>
+        </div>
 
         <div class="minors">
 
             <% for(minor of minors) { %>
                 <a href="<%=minor._id%>">
-                    <div class="minor showIt">
+                    <div class="minor">
                         <div class="img">
                             <img src="<%=minor.img.url%>" alt="">
                         </div>
@@ -144,24 +148,24 @@
 <script>
     let i = 0;
     window.addEventListener("scroll", () => {
-        if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
             fetch("/minors/getMore")
-            .then(async (res) => {
-                let final = await res.json();
+                .then(async (res) => {
+                    let final = await res.json();
 
-                let addition="";
-                for(const minor of final) {
-                    if(i>=10) break;
-                    let str = `<a href="${minor._id}"><div class="minor showIt"><div class="img"><img src="${minor.img.url}" alt=""></div><div class="info"><ul><li>${minor.title}</li><br><li>${minor.author.name}</li><br><li>${minor.description.substring(0, 100)}</li></ul></div></div></a>`
-                    addition+=str;
+                    let addition = "";
+                    for (const minor of final) {
+                        if (i >= 10) break;
+                        let str = `<a href="${minor._id}"><div class="minor showIt"><div class="img"><img src="${minor.img.url}" alt=""></div><div class="info"><ul><li>${minor.title}</li><br><li>${minor.author.name}</li><br><li>${minor.description.substring(0, 100)}</li></ul></div></div></a>`
+                        addition += str;
                     }
-                if(i<10) {
-                    const mainClass = document.querySelector(".minors");
-                    const mainText = mainClass.innerHTML;
-                    mainClass.innerHTML = mainText + addition;
-                }
-                i++;
-            });
+                    if (i < 10) {
+                        const mainClass = document.querySelector(".minors");
+                        const mainText = mainClass.innerHTML;
+                        mainClass.innerHTML = mainText + addition;
+                    }
+                    i++;
+                });
         }
     })
 </script>

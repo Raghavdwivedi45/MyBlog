@@ -8,7 +8,7 @@ module.exports.infiniteScrollMajors = async (req, res) => {
         let majors = await majorInfo.find().populate({ path: 'author', select: 'name img -_id' });
         let random = Math.floor(Math.random()*(100));
         random = random%(majors.length-6);
-        majors = majors.slice(random, random+6);
+        majors = majors.slice(random, random+3);
         res.json(majors);
 }
 
@@ -18,6 +18,8 @@ module.exports.renderAllMajors = async (req, res) => {
         blogs = await majorInfo.find({tag: req.query.tag}).populate("author");
     } else {
         blogs = await majorInfo.find().populate("author");
+        if(blogs.length%3==1) blogs = blogs.slice(0, blogs.length-1);
+        if(blogs.length%3==2) blogs = blogs.slice(0, blogs.length-2);
     }
     res.render("majors.ejs", { blogs });
 }
