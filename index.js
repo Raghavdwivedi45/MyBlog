@@ -12,7 +12,7 @@ const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
-// const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -51,20 +51,20 @@ app.use(methodOverride('_method'));
 
 app.use(cookieParser());
 
-// const store = MongoStore.create({
-//     mongoUrl : dbURL,
-//     crypto : {
-//         secret : process.env.mongoSecret
-//     },
-//     touchAfter : 24*3600
-// })
+const store = MongoStore.create({
+    mongoUrl : dbURL,
+    crypto : {
+        secret : process.env.mongoSecret
+    },
+    touchAfter : 24*3600
+})
 
-// store.on("error", () => {
-//     console.log("ERROR IN MONGO STORE : ", err);
-// })
+store.on("error", () => {
+    console.log("ERROR IN MONGO STORE : ", err);
+})
 
 app.use(session({
-                //  store,
+                 store,
                  secret: process.env.SESSION_SECRET,
                  resave: false,
                  saveUninitialized: false 
