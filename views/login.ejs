@@ -13,6 +13,14 @@
                 animation: border-glow 700ms infinite alternate;
             }
 
+            .btn {
+                height: 5rem; margin: auto 0.1rem; width: 40%;
+            }
+
+            .btn button {
+                font-size: 2.5rem;
+            }
+
             @keyframes border-glow {
                 from {
                     border-color: #f6f8f6;
@@ -22,6 +30,20 @@
                 to {
                     border-color: #ffffff;
                     box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+                }
+            }
+
+            @media (max-width:600px) {
+                .info {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                .basic {
+                    width: 90%;
+                }
+                .btn {
+                    width: 100%;
                 }
             }
         </style>
@@ -43,8 +65,8 @@
 
                         </div>
 
-                        <div class="btn" style="height: 5rem; margin: auto 0.1rem; width: 40%;">
-                            <button style="font-size: 2.5rem;">Login</button>
+                        <div class="btn">
+                            <button>Login</button>
                         </div>
 
                     </div>

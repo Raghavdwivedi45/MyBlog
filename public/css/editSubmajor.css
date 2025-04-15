@@ -1,0 +1,30 @@
+.alertBox p {
+    transform: translate(9.5rem, 2rem); font-weight: bold;
+}
+.off {
+    margin-left: 4rem;
+}
+.close {
+    margin-left: 1rem;
+}
+
+@media (max-width:420px) {
+    .alertBox {
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .alertBox button {
+        margin-top: 0;
+    }
+    .alertBox p {
+        transform: translate(0, 0);
+    }
+    .off{
+        transform: translateX(-2rem);
+    }
+    .close {
+        transform: translateX(-0.5rem);
+    }
+}

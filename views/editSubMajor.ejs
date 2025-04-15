@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include("includes/impLinks.ejs") %>
         <link rel="stylesheet" href="/newMinor.css">
+        <link rel="stylesheet" href="/editSubMajor.css">
         <title>Edit: <%=data.subtitle%></title>
 </head>
 
@@ -24,14 +25,14 @@
                 <textarea name="description" id="description" rows="10" cols="75" required
                     minlength="2"><%=data.subdescription%></textarea><br><br>
 
-                <div class="delete">Save</div>
+                <div class="delete" ><span>Save</span></div>
             </div>
 
             <div class="fullscreen-container">
                 <div class="alertBox">
-                    <p style="transform: translate(9.5rem, 2rem); font-weight: bold;">Save changes?</p><br>
-                    <button style="margin-left: 4rem;" type="submit" class="off">Yes</button>
-                    <button class="close" style="margin-left: 1rem;" type="button">No</button>
+                    <p>Save changes?</p><br>
+                    <button type="submit" class="off">Yes</button>
+                    <button class="close" type="button">No</button>
                 </div>
             </div>
         </form>

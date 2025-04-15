@@ -8,13 +8,41 @@
     <%- include("includes/impLinks.ejs") %>
         <title>Sign in</title>
 
-    <style>
-        .file-upload {
-            width: 70%;
-            font-size: small;
-            opacity: 0.5;
-        }
-    </style>
+        <style>
+            .file-upload {
+                width: 70%;
+                font-size: small;
+                opacity: 0.5;
+            }
+
+
+            @media (max-width:600px) {
+                .container, .info {
+                    display: flex;
+                    flex-wrap: wrap;
+                    height: fit-content;
+                    justify-content: center;
+                }
+
+                .basic {
+                    margin-bottom: 1rem;
+                }
+
+                .basic,
+                .description {
+                    width: 80%;
+                    height: fit-content;
+                    min-height: 15rem;
+                }
+                .description, .btn {
+                    transform: translateX(-10px);
+                }
+
+                textarea {
+                    height: 100px;
+                }
+            }
+        </style>
 </head>
 
 <body>
@@ -41,16 +69,17 @@
                     </div>
 
                     <div class="description">
-                        <textarea name="description" placeholder="Describe yourself in 200-300 words (*Only for Authors)" maxlength="1600"
-                            ></textarea>
+                        <textarea name="description"
+                            placeholder="Describe yourself in 200-300 words (*Only for Authors)"
+                            maxlength="1600"></textarea>
 
-                            <div class="type">
-                                <input type="radio" name="type" id="author" value="author">
-                                <label for="author">Author</label>
-                                &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;
-                                <input type="radio" name="type" id="user" value="user">
-                                <label for="author">User</label>
-                            </div>
+                        <div class="type">
+                            <input type="radio" name="type" id="author" value="author">
+                            <label for="author">Author</label>
+                            &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;
+                            <input type="radio" name="type" id="user" value="user">
+                            <label for="author">User</label>
+                        </div>
                     </div>
 
 
@@ -65,10 +94,10 @@
         </form>
 
         <script>
-            const lbl = document.querySelector(".file-upload"); 
+            const lbl = document.querySelector(".file-upload");
             const fl = document.querySelector("#file");
 
-            fl.addEventListener("change", () => { 
+            fl.addEventListener("change", () => {
                 lbl.innerText = fl.value;
                 lbl.style.opacity = 0.8;
             })

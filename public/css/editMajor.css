@@ -41,10 +41,16 @@ form {
 form button {
     margin-left: 91%;
     font-size: 1.5rem;
+    transform: translateX(0.8rem);
 }
 
 .delete {
-    margin-left: 90%;
+    width: 75vw;
+    display: flex;
+    justify-content: end;
+}
+
+.delete span {
     text-align: center;
     padding: 0.4rem 0 0.4rem 0;
     background-color: rgba(255, 183, 3, 0.6);
@@ -53,10 +59,9 @@ form button {
     border-radius: 1rem;
     border: none;
     color: wheat;
-    cursor: pointer;
 }
 
-.delete:hover {
+.delete span:hover {
     background-color: rgba(255, 183, 3, 0.8);
     transition: 700ms;
 }
@@ -103,26 +108,14 @@ form button {
     min-height: 25rem;
 }
 
-img {
-    width: 200px;
-}
-.delete {
-    padding: 0.5rem 1.5rem;
-}
-
-.last {
-    width: 75vw;
+.btn {
     display: flex;
     justify-content: end;
+    width: 75vw;
 }
 
-@media (max-width:500px) {
-    .last {
-        justify-content: center;
-    }
-    .last button {
-        margin-left: 0;
-    }
+.btn button {
+    margin-left: 0;
 }
 
 @media (max-width:400px) {
@@ -132,8 +125,7 @@ img {
     #tag {
         margin: 0.1rem;
     }
-    form button {
-        margin-left: 0;
-        transform: translateX(0);
+    .btn, .delete {
+        justify-content: center;
     }
 }

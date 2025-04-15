@@ -18,7 +18,7 @@
                 <label for="title">Title</label><br>
                 <input name="title" type="text" id="title" value="<%=data.title%>" required><br><br>
                 
-                <img src="<%=data.img.url%>" alt="" width="310"><br>
+                <img src="<%=data.img.url%>" alt=""><br>
                 <label for="img" class="file-upload">Change Image</label><br>
                 <input type="file" id="img" name="" style="display: none;" value="<%=data.img.url%>"><br><br><br>
 
@@ -26,7 +26,8 @@
                 <textarea name="description" id="description" rows="10" cols="75" required
                     minlength="2"><%=data.description%></textarea><br><br>
 
-                <button class="delete" id="delete" type="button">Save</button>
+                    <div class="last"><button class="delete" id="delete" type="button">Save</button></div>
+                
             </div>
 
             <div class="fullscreen-container" id="fullscreen">

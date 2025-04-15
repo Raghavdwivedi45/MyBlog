@@ -140,3 +140,27 @@ h4 {
     
 }
 
+.comment-head {
+    text-align: center;
+}
+
+@media (max-width:740px) {
+    .comment .container input {
+        width: 85%;
+    }
+}
+
+@media (max-width:500px) {
+    .comment .container input {
+        width: 80%;
+    }
+    .comment .img img{
+        width: 100%;
+    }
+}
+
+@media (max-width:375px) {
+    .comment .container input {
+        width: 75%;
+    }
+}
