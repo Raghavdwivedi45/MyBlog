@@ -57,8 +57,6 @@ Validations for file type
 ![image](https://github.com/user-attachments/assets/433f0f2b-01a9-469e-b603-797e627cb4ee)
 ![image](https://github.com/user-attachments/assets/2ea80740-9b3f-4bbf-9be7-dcbb18f213f0)
 ![image](https://github.com/user-attachments/assets/93da3d37-316c-4e7b-a737-45be5f53e921)
-![image](https://github.com/user-attachments/assets/ede79772-5d8e-4f5d-9f69-844c2611fb4c)
-![image](https://github.com/user-attachments/assets/98e1ce9b-083b-4742-95e3-52ded1306d36)
 
 
 
