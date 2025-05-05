@@ -61,8 +61,7 @@ Validations for file type
 
 
 
-🧑‍💻 Author
-Your Name – [@Raghavdwivedi45]
+🧑‍💻 Author Name – @Raghavdwivedi45
 
 🌐 Demo
 https://articleverse.onrender.com/
