@@ -62,7 +62,7 @@ Validations for file type
 
 
 🧑‍💻 Author
-Your Name – [@yourgithub](https://github.com/Raghavdwivedi45/)
+Your Name – [@Raghavdwivedi45]
 
 🌐 Demo
 https://articleverse.onrender.com/
