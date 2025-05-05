@@ -29,17 +29,17 @@ node index.js
 
 📁 Folder Structure
 
-MyBlog/
-├── models/          # Mongoose models
-├── routes/          # Express route handlers
-├── views/           # EJS templates
-├── public/          # Static files (CSS, images)
-├── uploads/         # Uploaded images
-├── config/          # Passport and DB config
-├── app.js           # Entry point
-├── .env             # Environment variables
-└── package.json
-
+MyBlog/ </br>
+├── models/          # Mongoose models </br>
+├── routes/          # Express route handlers </br>
+├── views/           # EJS templates </br>
+├── public/          # Static files (CSS, images) </br>
+├── uploads/         # Uploaded images </br>
+├── config/          # Passport and DB config </br>
+├── app.js           # Entry point </br>
+├── .env             # Environment variables </br>
+└── package.json </br>
+</br>
 
 🔒 Authentication
 Local strategy with Passport.js
