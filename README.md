@@ -1,4 +1,5 @@
 # MyBlog 📝
+Already deployed and under the 3rd cycle of update
 
 A full-featured blogging platform built with [Express.js](https://expressjs.com/), [MongoDB](https://www.mongodb.com/), [Mongoose](https://mongoosejs.com/), [Passport.js](http://www.passportjs.org/), and [EJS](https://ejs.co/). This platform allows users to register, authenticate, write blog posts, upload images, and browse other users’ blogs.
 
